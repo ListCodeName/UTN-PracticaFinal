@@ -3,9 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/login.css">
     <title>Document</title>
 </head>
 <body>
-    
+
+    <form action="" method="post" class="slide-login" id="login">
+        
+        <span class="icon-cross" id="close-login"></span>
+
+
+        <div class="login-container">
+            <div class="login-header">
+                <p>Ingreso de usuario</p>
+            </div>
+
+            <div class="login-body">
+                <div class="lb-area">
+                    <span class="icon-user"></span>
+                    <input type="text" placeholder="Usuario..." name="user">
+                </div>
+                <div class="lb-area">
+                    <span class="icon-key"></span>
+                    <input type="password" placeholder="Contraseña..." name="pass">
+                </div>
+            </div>  
+        </div>
+        
+    </form>
+
+
+    <script src="js/login.js"></script>
 </body>
 </html>
