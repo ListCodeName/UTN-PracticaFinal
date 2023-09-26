@@ -14,7 +14,7 @@ body{
     width: 100%;
     height: 100vh;
     box-sizing: border-box;
-    position: sticky;
+    position: fixed;
     right: 0px;
     top: 0px;
     box-shadow: -5px 0px 10px rgba(0,0,0,0.1);
@@ -48,7 +48,7 @@ body{
     background: rgba(255,255,255,0.1);
     box-sizing: border-box;
     border-radius: 0.5rem;
-    padding: 50px 25px;
+    padding: 3.5rem 1.5rem 5rem 1.5rem;
     box-shadow: inset 0px 0px 10px rgba(255,255,255,0.15);
     transition: all 0.35s ease;
 }
@@ -112,4 +112,24 @@ body{
 .login-body .lb-area input:focus{
     background: rgba(255,255,255,0.85);
     color: #333;
+}
+
+.login-recovery{
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.login-recovery p{
+    font-size: 1rem;
+    cursor:pointer;
+    color: #444;
+    transition: all 0.35s ease;
+}
+
+.login-recovery p:hover{
+    font-weight: bolder;
+    color: #FAFAFA;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.85);
 }
