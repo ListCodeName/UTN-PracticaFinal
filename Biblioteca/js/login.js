@@ -2,7 +2,7 @@ document.getElementById("close-login").addEventListener('click', ()=>{
     document.getElementById("login-cont").style.opacity = "0";
     setTimeout(()=>{
         document.getElementById("login").style.position = "absolute";
-        document.getElementById("login").style.right = "-100%";
+        document.getElementById("login").style.right = "-50%";
     
     },250);
 });
