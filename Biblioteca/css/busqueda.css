@@ -118,6 +118,10 @@
 }
 
 
+
+
+
+
 .buscar-avanzada{
     width: 100%;
     display: flex;
@@ -125,6 +129,7 @@
     justify-content: flex-start;
     align-items: center;
     position: relative;
+    margin-top: 40px;
 }
 
 .buscar-avanzada h1{
@@ -141,7 +146,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 25px;
+    font-size: 40px;
     color: #FAFAFA;
     font-weight: bolder;
     cursor: pointer;
@@ -149,9 +154,89 @@
     transition: all 0.35s ease;
 }
 
-.buscar-avanzada span:hover{
+.buscar-avanzada:hover span{
     transform: rotate(90deg);
 }
+
+.adv-modes{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 50px;
+}
+
+.adv-modes-items{
+    flex-grow: 1;
+    flex-basis: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.adv-modes-items h2{
+    font-size: 18px;
+    color: #FAFAFA;
+}
+
+.adv-modes-items .input-box{
+    padding: 15px 30px;
+}
+
+.adv-modes-items .input-box select{
+    border: 2px solid #0ef;
+    background: #081b29;
+    color: #FAFAFA;
+}
+
+.adv-modes-items.autor{
+    width: 100%;
+}
+
+.adv-modes-items.edicion{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.adv-modes-items.edicion .input-box{
+    width: 100%;
+    display: flex;
+}
+
+.adv-modes-items.edicion h2{
+    width: 200px;
+}
+
+.adv-modes-items.edicion .anio-edit{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.adv-modes-items.edicion .anio-edit label{
+    color: #FAFAFA;
+    font-size: 15px;
+    padding: 0px 30px;
+}
+
+.adv-modes-items.edicion .anio-edit input{
+    padding: 0px;
+    border: 2px solid #0ef;
+    text-align: center;
+}
+
+.adv-modes-items.edicion .anio-edit input:hover,
+.adv-modes-items.edicion .anio-edit input:valid{
+    background: rgba(255,255,255,0.1);
+}
+
+
+
 
 
 
@@ -242,6 +327,10 @@
     width: 100%;
     padding: 5px 0px;
 }
+
+
+
+
 
 
 @media only screen and (min-width: 768px){

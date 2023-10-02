@@ -24,17 +24,17 @@
                     </div>
                     <button type="submit" class="btn animation" style="--i:3; --j:24;">Buscar</button>
                 </div>
+
                 <div class="buscar-avanzada">
                     <h1> Busqueda Avanzada</h1>
                     <span class="animation">></span>
                     <div class="adv-modes">
-                        <div class="adv-modes-items">
+                        <div class="adv-modes-items autor">
                             <h2>Autor</h2>
                             <div class="input-box">
                                 <input type="text" name="" id="" required placeholder="Buscar autor">
                             </div>
                         </div>
-                        
                         <div class="adv-modes-items">
                             <h2>Genero</h2>
                             <div class="input-box">
@@ -68,16 +68,20 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="adv-modes-items">
+                        <div class="adv-modes-items edicion">
                             <h2>Año Edición</h2>
                             <div class="input-box">
-                                <label for="">Desde</label>
-                                <input type="number" min="2000" max="2030">
-                                <label for="">Hasta</label>
-                                <input type="number" min="2000" max="2030">
+                                <div class="anio-edit">
+                                    <label for="">Desde</label>
+                                    <input type="number" min="2000" max="2030">    
+                                </div>
+                                
+                                <div class="anio-edit">
+                                    <label for="">Hasta</label>
+                                    <input type="number" min="2000" max="2030">    
+                                </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </form>
