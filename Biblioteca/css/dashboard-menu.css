@@ -1,0 +1,105 @@
+aside{
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: #1f2940;
+    border-right: 2px solid rgba(0,0,0,0.35);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 50px 0px 50px 0px;
+}
+
+.avatar{
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    padding: 5px;
+    border: 2px solid #30c5f7;
+}
+
+.avatar span{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    padding: 5px;
+    border: 2px solid #30c5f7;
+    color: #FAFAFA;
+    background: #1f2940;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    z-index: 5;
+    top: 0px;
+    right: 75px;
+    cursor: pointer;
+    transition: all 0.35s ease;
+}
+
+.avatar span:hover{
+    background: #FAFAFA;
+    color: #1f2940;
+}
+
+
+.menu-dash{
+    width: 100%;
+    padding: 50px 0px 50px 0px;
+}
+
+.menu-dash .menu-item{
+    width: 100%;
+    padding: 10px 0px 10px 15px;
+    color: #FAFAFA;
+    position: relative;
+    transition: all 0.5s ease;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: pointer;
+}
+
+.menu-dash .menu-item::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: -100%;
+    background: #30c5f7;
+    transition: all 0.5s ease;
+    z-index: -1;
+    
+}
+
+.menu-dash .menu-item:hover{
+    color: #1f2940;
+    
+}
+
+.menu-dash .menu-item:hover::before{
+    left: 0%;
+}
+
+.menu-dash .menu-item span{
+    font-size: 20px;
+    padding: 0px 10px;
+}
+
+.menu-dash .menu-item p{
+    font-size: 18px;
+    font-weight: bolder;
+}
