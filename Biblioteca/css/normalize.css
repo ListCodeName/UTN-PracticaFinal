@@ -4,11 +4,28 @@
     margin: 0px;
     border: 0px;
     box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
     font-family: 'Poppins', sans-serif;
+}
+
+:root{
+    --bg-color: #081b29;
+    --second-bg-color: #112e42;
+    --text-color: #ededed;
+    --main-color: #00abf0;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
 }
 
 body{
     display: flex;
     min-height: 100vh;
-    background: #081b29;
+    background: var(--bg-color);
+    color: var(--text-color);
 }

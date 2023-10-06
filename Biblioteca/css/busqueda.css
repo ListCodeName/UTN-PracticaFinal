@@ -225,6 +225,7 @@
 }
 
 .adv-modes-items.edicion .anio-edit input{
+    width: 100px;
     padding: 0px;
     border: 2px solid #0ef;
     text-align: center;
