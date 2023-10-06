@@ -1,0 +1,38 @@
+section{
+    width: 100%;
+    height: 100vh;
+    padding:0px 0px 0px 250px;
+    position: relative;
+}
+
+form{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    padding: 100px 0px 25px 0px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+form h1{
+    width: 100%;
+    height: auto;
+    padding: 10px;
+    border-bottom: 2px solid #FAFAFA;
+    font-size: 30px;
+    color: #FAFAFA;
+    position: absolute;
+    top: 25px;
+    left: 0px;
+}
+
+article{
+    width: 100%;
+    flex-grow: 1;
+    background: #1f2940;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.25);
+    border-radius: 15px;
+    margin: 0px 10px;
+}
+
