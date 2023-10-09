@@ -1,16 +1,18 @@
+/* Panel de control Menu */
 aside{
-    width: 250px;
+    width: 275px;
     height: 100vh;
     position: fixed;
     top: 0px;
     left: 0px;
-    background: #1f2940;
+    background: var(--second-bg-color);
     border-right: 2px solid rgba(0,0,0,0.35);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     padding: 50px 0px 50px 0px;
+    z-index: 15;
 }
 
 .avatar{
@@ -26,7 +28,7 @@ aside{
     height: 100px;
     border-radius: 50%;
     padding: 5px;
-    border: 2px solid #30c5f7;
+    border: 2px solid var(--main-color);
 }
 
 .avatar span{
@@ -34,9 +36,8 @@ aside{
     height: 30px;
     border-radius: 50%;
     padding: 5px;
-    border: 2px solid #30c5f7;
-    color: #FAFAFA;
-    background: #1f2940;
+    border: 2px solid var(--main-color);
+    background: var(--bg-color);
     font-size: 13px;
     display: flex;
     justify-content: center;
@@ -50,8 +51,8 @@ aside{
 }
 
 .avatar span:hover{
-    background: #FAFAFA;
-    color: #1f2940;
+    background: var(--text-color);
+    color: var(--bg-color);
 }
 
 
@@ -63,7 +64,6 @@ aside{
 .menu-dash .menu-item{
     width: 100%;
     padding: 10px 0px 10px 15px;
-    color: #FAFAFA;
     position: relative;
     transition: all 0.5s ease;
     display: flex;
@@ -79,14 +79,13 @@ aside{
     height: 100%;
     top: 0px;
     left: -100%;
-    background: #30c5f7;
+    background: var(--main-color);
     transition: all 0.5s ease;
     z-index: -1;
-    
 }
 
 .menu-dash .menu-item:hover{
-    color: #1f2940;
+    color: var(--second-bg-color);
     
 }
 
@@ -101,5 +100,5 @@ aside{
 
 .menu-dash .menu-item p{
     font-size: 18px;
-    font-weight: bolder;
+    font-weight: 500;
 }
