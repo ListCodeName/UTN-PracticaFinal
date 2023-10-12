@@ -9,8 +9,31 @@ let diaActual = date.getDate();
 let mesActual = date.getMonth();
 let anioActual = date.getFullYear();
 
-let currentMonth = mesActual;
-let currentYear = anioActual;
+let desdeDay = diaActual;
+let desdeMonth = mesActual;
+let desdeYear = anioActual;
+
+let hastaDay = 0;
+let hastaMonth = 0;
+let hastaYear = 0;
+
+let fechaIndice = date;
+
+calcularFechaHasta(desdeDay, desdeMonth);
+
+
+
+function calcularFechaHasta(dia, mes){
+    if(dia+7 > mesesDias[mes]){
+        hastaDay = dia + 7 - mesesDias[mes];
+        hastaMonth++;
+        if(hastaMonth > 11){
+            hastaMonth = 0;
+            hastaYear++;
+        }
+    }
+}
+
 
 cargarDiasAnteriores("alm1");
 
@@ -40,7 +63,7 @@ function cargarDiasAnteriores( htmlClass){
                 if(current.getDay() === 0 || current.getDay() === 6)
                     diasHtml += "<li style='background: #333'>"+i+"</li>";
                 else
-                    diasHtml += "<li class='dia-valido'>"+i+"</li>";
+                    diasHtml += "<li class='dia-valido primer'>"+i+"</li>";
             }
         }
             
@@ -52,7 +75,6 @@ function cargarDiasAnteriores( htmlClass){
 
 
 }
-
 
 /*
 cargarAlmanaqueActual("alm1");
@@ -108,25 +130,38 @@ function cargarAlmanaque( htmlClass){
     document.getElementById(htmlClass).innerHTML = diasHtml;
 }
 
-
+*/
 function esBiciesto( anioActual ){
     return ((anioActual % 4 === 0 && anioActual % 100 !== 0) || anioActual % 400 === 0);
 }
-*/
 
 document.querySelectorAll(".dia-valido").forEach(el => {
     el.addEventListener("click", e => {
         const valor = Number(e.target.innerHTML);
-        const id = e.target.getAttribute("id");
-        cambiarPrestamo(valor);
+        desdeDay = valor;
 
+        if(el.className == "dia-valido primer"){
+            cambiarPrestamo(desdeDay, desdeMonth, desdeYear);
+
+        }else{
+            desdeMonth++;
+            cambiarPrestamo(desdeDay, desdeMonth, desdeYear);
+        }
+        //const id = e.target.getAttribute("id");
+        cambiarPrestamo(valor,);
 
     });
 });
 
-function cambiarPrestamo(valor){
-    document.getElementById("dia-desde").innerHTML = valor;
-    document.getElementById("dia-hasta").innerHTML = valor +7;
+function cambiarPrestamo(vdia, vmes, vanio){
+
+
+
+    document.getElementById("dia-desde").innerHTML = vdia;
+
+    if(vdia+7 > mesesDias[vmes]){
+        document.getElementById("dia-hasta").innerHTML = vdia - mesesDias[vmes];
+    }
 }
 
 /*
