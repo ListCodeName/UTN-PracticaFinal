@@ -8,24 +8,49 @@ let date = new Date();
 let diaActual = date.getDate();
 let mesActual = date.getMonth();
 let anioActual = date.getFullYear();
-//let gap = date.getDay() - dia % 7 ;
 
-//mesesDias[1] += (esBiciesto(anio)? 1 : 0);
+let currentMonth = mesActual;
+let currentYear = anioActual;
 
 cargarDiasAnteriores("alm1");
 
 
+function cargarDias(htmlClass){
+    let current;
+    for(i = 1; i <= mesesDias[mesActual] ; i++ ){
+
+    }
+
+}
+
 
 function cargarDiasAnteriores( htmlClass){
-    let primerDia = new Date(anioActual,mesActual,1);
+    let current;
+    let primerDia = new Date(anioActual, mesActual,1);
     let diasHtml = "";
-    for( i = 1 ; i < diaActual ; i++ ){
+    for( i = 1 ; i <= mesesDias[mesActual] ; i++ ){
         if(i === 1)
             diasHtml += "<li style='background: #333; grid-column-start:"+(primerDia.getDay+1)+"'>1</li>";
-        else
-            diasHtml += "<li style='background: #333'>"+i+"</li>";
+        else{
+
+            if(i < diaActual){
+                diasHtml += "<li style='background: #333'>"+i+"</li>";
+            }else{
+                current = new Date(anioActual,mesActual,i);
+                if(current.getDay() === 0 || current.getDay() === 6)
+                    diasHtml += "<li style='background: #333'>"+i+"</li>";
+                else
+                    diasHtml += "<li class='dia-valido'>"+i+"</li>";
+            }
+        }
+            
     }
+    
+
+    
     document.getElementById(htmlClass).innerHTML = diasHtml;
+
+
 }
 
 
@@ -87,6 +112,7 @@ function cargarAlmanaque( htmlClass){
 function esBiciesto( anioActual ){
     return ((anioActual % 4 === 0 && anioActual % 100 !== 0) || anioActual % 400 === 0);
 }
+*/
 
 document.querySelectorAll(".dia-valido").forEach(el => {
     el.addEventListener("click", e => {
@@ -103,6 +129,7 @@ function cambiarPrestamo(valor){
     document.getElementById("dia-hasta").innerHTML = valor +7;
 }
 
+/*
 function pintarSemana(){
 
 }
