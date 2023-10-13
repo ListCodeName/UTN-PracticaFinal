@@ -2,186 +2,114 @@ let meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Ag
 let mesesDias = [31,28,31,30,31,30,31,31,30,31,30,31];
 let dias = ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'];
 
-let nextMonth = 0;
-
 let date = new Date();
-let diaActual = date.getDate();
-let mesActual = date.getMonth();
-let anioActual = date.getFullYear();
 
-let desdeDay = diaActual;
-let desdeMonth = mesActual;
-let desdeYear = anioActual;
+let fechaPivote = new Date(date.getFullYear(), date.getMonth(), 1, 19, 0, 0);
 
-let hastaDay = 0;
-let hastaMonth = 0;
-let hastaYear = 0;
+let fechaDesde = new Date(date);
+let fechaHasta = new Date(date);
+fechaHasta.setDate(fechaDesde.getDate() + 7);
 
-let fechaIndice = date;
-
-calcularFechaHasta(desdeDay, desdeMonth);
+cargarDias();
+ponerEventos();
 
 
-
-function calcularFechaHasta(dia, mes){
-    if(dia+7 > mesesDias[mes]){
-        hastaDay = dia + 7 - mesesDias[mes];
-        hastaMonth++;
-        if(hastaMonth > 11){
-            hastaMonth = 0;
-            hastaYear++;
-        }
-    }
-}
-
-
-cargarDiasAnteriores("alm1");
-
-
-function cargarDias(htmlClass){
-    let current;
-    for(i = 1; i <= mesesDias[mesActual] ; i++ ){
-
-    }
-
-}
-
-
-function cargarDiasAnteriores( htmlClass){
-    let current;
-    let primerDia = new Date(anioActual, mesActual,1);
+function cargarDias(){
+    let current = new Date(fechaPivote);
     let diasHtml = "";
-    for( i = 1 ; i <= mesesDias[mesActual] ; i++ ){
-        if(i === 1)
-            diasHtml += "<li style='background: #333; grid-column-start:"+(primerDia.getDay+1)+"'>1</li>";
-        else{
+    for( i = 1 ; i <= mesesDias[current.getMonth()] ; i++ ){
 
-            if(i < diaActual){
+        if(i === 1){
+            if(date > current && (current.getDay() === 0 || current.getDay() === 6))
+                diasHtml += "<li style='background: #333; grid-column-start:"+(current.getDay()+1)+"'>1</li>";
+            else
+                diasHtml += "<li class='dia-valido primer' style='grid-column-start:"+(current.getDay()+1)+"'>1</li>";
+        }else{
+            current.setDate(i);
+            if(date > current){
                 diasHtml += "<li style='background: #333'>"+i+"</li>";
             }else{
-                current = new Date(anioActual,mesActual,i);
                 if(current.getDay() === 0 || current.getDay() === 6)
                     diasHtml += "<li style='background: #333'>"+i+"</li>";
                 else
                     diasHtml += "<li class='dia-valido primer'>"+i+"</li>";
             }
         }
-            
     }
-    
+    document.getElementById("alm1").innerHTML = diasHtml;
 
-    
-    document.getElementById(htmlClass).innerHTML = diasHtml;
+    diasHtml = "";
+    current = new Date(fechaPivote);
+    current.setMonth(current.getMonth()+1);
+    for( i = 1 ; i <= mesesDias[current.getMonth()] ; i++ ){
 
-
-}
-
-/*
-cargarAlmanaqueActual("alm1");
-cargarAlmanaque("alm2");
-
-
-
-
-function cargarAlmanaqueActual( htmlClass){
-    let diasHtml = "";
-    
-    for(i = 1; i < dia ; i++){
-        if(i === 1)
-            diasHtml += "<li style='background: #333; grid-column-start:"+(dia%7-date.getDay())+"'>1</li>";
-        else
-            diasHtml += "<li style='background: #333'>"+i+"</li>";
-    }
-
-    for(i = dia; i <= mesesDias[mes+nextMonth]; i++){
-        if(i%7+gap === 0 || i%7+gap === -1)
-            diasHtml += "<li style='background: #333'>"+i+"</li>";    
-        else
-            diasHtml += "<li class='dia-valido'>"+i+"</li>";
-            
-    }
-
-    document.getElementById(htmlClass).innerHTML = diasHtml;
-}
-
-function cargarAlmanaque( htmlClass){
-    let diasHtml = "";
-    let calc = 0;
-    let cantDias = 1;
-
-    for(i = 0; i < nextMonth+1; i++)
-        cantDias += mesesDias[mes + nextMonth];
-
-    console.log(cantDias);
-
-    for(i = 1; i <= mesesDias[mes+nextMonth+1]; i++){
-        calc = (cantDias+i)%7+gap-1;
-        console.log(calc);
-        if(calc === 0 || calc === 1){
-            diasHtml += "<li style='background: #333'>"+i+"</li>";
-        }else{
-            if(i === 1)
-                diasHtml += "<li class='dia-valido' style='grid-column-start:"+(calc)+"'>1</li>";
+        if(i === 1){
+            if(date > current && (current.getDay() === 0 || current.getDay() === 6))
+                diasHtml += "<li style='background: #333; grid-column-start:"+(current.getDay()+1)+"'>1</li>";
             else
-                diasHtml += "<li class='dia-valido'>"+i+"</li>";
+                diasHtml += "<li class='dia-valido segundo' style='grid-column-start:"+(current.getDay()+1)+"'>1</li>";
+        }else{
+            current.setDate(i);
+            if(date >= current){
+                diasHtml += "<li style='background: #333'>"+i+"</li>";
+            }else{
+                if(current.getDay() === 0 || current.getDay() === 6)
+                    diasHtml += "<li style='background: #333'>"+i+"</li>";
+                else
+                    diasHtml += "<li class='dia-valido segundo'>"+i+"</li>";
+            }
         }
     }
-
-    document.getElementById(htmlClass).innerHTML = diasHtml;
+    document.getElementById("alm2").innerHTML = diasHtml;
 }
 
-*/
 function esBiciesto( anioActual ){
     return ((anioActual % 4 === 0 && anioActual % 100 !== 0) || anioActual % 400 === 0);
 }
 
-document.querySelectorAll(".dia-valido").forEach(el => {
-    el.addEventListener("click", e => {
-        const valor = Number(e.target.innerHTML);
-        desdeDay = valor;
-
-        if(el.className == "dia-valido primer"){
-            cambiarPrestamo(desdeDay, desdeMonth, desdeYear);
-
-        }else{
-            desdeMonth++;
-            cambiarPrestamo(desdeDay, desdeMonth, desdeYear);
-        }
-        //const id = e.target.getAttribute("id");
-        cambiarPrestamo(valor,);
-
+function ponerEventos(){
+    document.querySelectorAll(".dia-valido").forEach(el => {
+        el.addEventListener("click", e => {
+            const dia = Number(e.target.innerHTML);
+            
+            if(el.className == "dia-valido primer"){
+                cambiarPrestamo(dia, fechaPivote.getMonth());
+            }else{
+                cambiarPrestamo(dia, fechaPivote.getMonth()+1);
+            }
+        });
     });
-});
-
-function cambiarPrestamo(vdia, vmes, vanio){
-
-
-
-    document.getElementById("dia-desde").innerHTML = vdia;
-
-    if(vdia+7 > mesesDias[vmes]){
-        document.getElementById("dia-hasta").innerHTML = vdia - mesesDias[vmes];
-    }
 }
 
-/*
+function cambiarPrestamo(vdia, vmes){
+    let fechaAux = new Date(fechaPivote);
+    fechaAux.setMonth(vmes);
+
+    document.getElementById("dia-desde").innerHTML = vdia;
+    document.getElementById("mes-anio-desde").innerHTML = meses[fechaAux.getMonth()]+" - "+fechaAux.getFullYear();
+
+    fechaAux.setDate(vdia + 7);
+    document.getElementById("dia-hasta").innerHTML = fechaAux.getDate();
+    document.getElementById("mes-anio-hasta").innerHTML = meses[fechaAux.getMonth()]+" - "+fechaAux.getFullYear();
+}
+
+
 function pintarSemana(){
 
 }
 
 document.querySelector(".icon-arrow-left").addEventListener("click", ()=>{
-    if(nextMonth > 0)
-        nextMonth--;
-
-    cargarAlmanaqueActual("alm1");
-    cargarAlmanaque("alm2");
-    
+    fechaPivote.setMonth(fechaPivote.getMonth()-1);
+    document.querySelector(".almanaque-mes.primer").innerHTML = "<p>"+meses[fechaPivote.getMonth()]+"</p>";
+    document.querySelector(".almanaque-mes.segundo").innerHTML = "<p>"+meses[(fechaPivote.getMonth()+1)%12]+"</p>";
+    cargarDias();
+    ponerEventos();
 });
 
 document.querySelector(".icon-arrow-right").addEventListener("click", ()=>{
-    nextMonth++;
-
-    cargarAlmanaqueActual("alm1");
-    cargarAlmanaque("alm2");
+    fechaPivote.setMonth(fechaPivote.getMonth()+1);
+    document.querySelector(".almanaque-mes.primer").innerHTML = "<p>"+meses[fechaPivote.getMonth()]+"</p>";
+    document.querySelector(".almanaque-mes.segundo").innerHTML = "<p>"+meses[(fechaPivote.getMonth()+1)%12]+"</p>";
+    cargarDias();
+    ponerEventos();
 });
-*/
