@@ -10,6 +10,7 @@ let fechaDesde = new Date(date);
 let fechaHasta = new Date(date);
 fechaHasta.setDate(fechaDesde.getDate() + 7);
 
+cargarFecha();
 cargarDias();
 ponerEventos();
 
@@ -20,7 +21,7 @@ function cargarDias(){
     for( i = 1 ; i <= mesesDias[current.getMonth()] ; i++ ){
 
         if(i === 1){
-            if(date > current && (current.getDay() === 0 || current.getDay() === 6))
+            if(date > current || (current.getDay() === 0 || current.getDay() === 6))
                 diasHtml += "<li style='background: #333; grid-column-start:"+(current.getDay()+1)+"'>1</li>";
             else
                 diasHtml += "<li class='dia-valido primer' style='grid-column-start:"+(current.getDay()+1)+"'>1</li>";
@@ -44,7 +45,7 @@ function cargarDias(){
     for( i = 1 ; i <= mesesDias[current.getMonth()] ; i++ ){
 
         if(i === 1){
-            if(date > current && (current.getDay() === 0 || current.getDay() === 6))
+            if(date > current || (current.getDay() === 0 || current.getDay() === 6))
                 diasHtml += "<li style='background: #333; grid-column-start:"+(current.getDay()+1)+"'>1</li>";
             else
                 diasHtml += "<li class='dia-valido segundo' style='grid-column-start:"+(current.getDay()+1)+"'>1</li>";
@@ -100,16 +101,20 @@ function pintarSemana(){
 
 document.querySelector(".icon-arrow-left").addEventListener("click", ()=>{
     fechaPivote.setMonth(fechaPivote.getMonth()-1);
-    document.querySelector(".almanaque-mes.primer").innerHTML = "<p>"+meses[fechaPivote.getMonth()]+"</p>";
-    document.querySelector(".almanaque-mes.segundo").innerHTML = "<p>"+meses[(fechaPivote.getMonth()+1)%12]+"</p>";
+    cargarFecha();
     cargarDias();
     ponerEventos();
 });
 
 document.querySelector(".icon-arrow-right").addEventListener("click", ()=>{
     fechaPivote.setMonth(fechaPivote.getMonth()+1);
-    document.querySelector(".almanaque-mes.primer").innerHTML = "<p>"+meses[fechaPivote.getMonth()]+"</p>";
-    document.querySelector(".almanaque-mes.segundo").innerHTML = "<p>"+meses[(fechaPivote.getMonth()+1)%12]+"</p>";
+    cargarFecha();
     cargarDias();
     ponerEventos();
 });
+
+
+function cargarFecha(){
+    document.querySelector(".almanaque-mes.primer").innerHTML = "<p>"+meses[fechaPivote.getMonth()]+" ("+fechaPivote.getFullYear()+")</p>";
+    document.querySelector(".almanaque-mes.segundo").innerHTML = "<p>"+meses[(fechaPivote.getMonth()+1)%12]+" ("+fechaPivote.getFullYear()+")</p>";
+}
