@@ -114,12 +114,12 @@ section{
     padding: 0px 20px 0px 300px;
     position: absolute;
     top: 0px;
-    /*left: -100%;
+    left: -100%;
     opacity: 0;
     filter: blur(15);
     z-index: 10;
     overflow: hidden;
-    transition: all 1s ease;*/
+    transition: all 1s ease;
 }
 
 section form{
@@ -169,6 +169,12 @@ section form{
 }
 
 .frame-reservas.active{
+    left: 0px;
+    filter: blur(0);
+    opacity: 1;
+}
+
+.frame-libros.active{
     left: 0px;
     filter: blur(0);
     opacity: 1;
