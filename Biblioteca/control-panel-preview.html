@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/cp-reserva.css">
     <link rel="stylesheet" href="css/cp-libro.css">
     <link rel="stylesheet" href="css/modal-reserva.css">
+    <link rel="stylesheet" href="css/modal-user-add.css">
     <link rel="stylesheet" href="css/calendario.css">
     <link rel="stylesheet" href="css/icomoon.css">
 
@@ -127,7 +128,7 @@
                         </div>
                         <div class="add-pre-btns box-type1-btns">
                             <span class="icon-hammer2"></span>
-                            <span class="icon-pencil"></span>
+                            <span class="icon-pencil edit-user"></span>
                             <span class="icon-bin"></span>
                         </div>
                     </div>
@@ -140,7 +141,7 @@
                         </div>
                         <div class="add-pre-btns box-type1-btns">
                             <span class="icon-hammer2"></span>
-                            <span class="icon-pencil"></span>
+                            <span class="icon-pencil edit-user"></span>
                             <span class="icon-bin"></span>
                         </div>
                     </div>
@@ -153,7 +154,7 @@
                         </div>
                         <div class="add-pre-btns box-type1-btns">
                             <span class="icon-hammer2"></span>
-                            <span class="icon-pencil"></span>
+                            <span class="icon-pencil edit-user"></span>
                             <span class="icon-bin"></span>
                         </div>
                     </div>
@@ -166,7 +167,7 @@
                         </div>
                         <div class="add-pre-btns box-type1-btns">
                             <span class="icon-hammer2"></span>
-                            <span class="icon-pencil"></span>
+                            <span class="icon-pencil edit-user"></span>
                             <span class="icon-bin"></span>
                         </div>
                     </div>
@@ -384,6 +385,7 @@
         </form>
     </section>
 
+    <!-- Modals de reserva -->
     <div class="modal-frame modal-reserva">
         <form action="#" class="modal-form1">
             <div class="modal-form1-titulo">
@@ -468,9 +470,119 @@
         </form>
     </div>
 
+
+    <!-- Modals de usuario -->
+    <div class="modal-frame modal-add-user">
+        <form action="#" class="modal-form1">
+            <div class="modal-form1-titulo">
+                <p>Agregar nuevo usuario</p>
+                <span class="icon-cross" id="close-modal-add-user"></span>
+            </div>
+
+            <div class="modal-form1-content">
+                
+                <div class="modal-form1-inputs">
+                    <div class="modal-form1-input-item">
+                        <input type="text" id="" required>
+                        <label for="">Nombre</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Apellido</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">DNI</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="date" name="" id="" required>
+                        <label for="">Fecha de Nacimiento</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Domicilio</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Email</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Telefono</label>
+                    </div>
+                </div>
+
+                
+                <div class="modal-form1-btns">
+                    <button type="submit">Confirmar</button>
+                    <button type="button" id="cancel-modal-add-user">Cancelar</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+    <div class="modal-frame modal-edit-user">
+        <form action="#" class="modal-form1">
+            <div class="modal-form1-titulo">
+                <p>Agregar nuevo usuario</p>
+                <span class="icon-cross" id="close-modal-edit-user"></span>
+            </div>
+
+            <div class="modal-form1-content">
+                
+                <div class="modal-form1-inputs">
+                    <div class="modal-form1-input-item">
+                        <input type="text" value="TextoEjemplo" id="" required>
+                        <label for="">Nombre</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" value="TextoEjemplo" name="" id="" required>
+                        <label for="">Apellido</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" value="TextoEjemplo" name="" id="" required>
+                        <label for="">DNI</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="date" value="TextoEjemplo" name="" id="" required>
+                        <label for="">Fecha de Nacimiento</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" value="TextoEjemplo" name="" id="" required>
+                        <label for="">Domicilio</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" value="TextoEjemplo" name="" id="" required>
+                        <label for="">Email</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" value="TextoEjemplo" name="" id="" required>
+                        <label for="">Telefono</label>
+                    </div>
+                </div>
+
+                
+                <div class="modal-form1-btns">
+                    <button type="submit">Confirmar</button>
+                    <button type="button" id="cancel-modal-edit-user">Cancelar</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+
+    <!-- Modals de prestamo -->
+
+    <!-- Modals de libro -->
+
     <script src="js/calendario.js"></script>
     <script src="js/reservas.js"></script>
     <script src="js/dashboard-menu.js"></script>
+    <script src="js/user.js"></script>
 
 </body>
 </html>

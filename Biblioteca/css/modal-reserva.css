@@ -23,7 +23,8 @@
 
 .modal-form1{
     background: var(--second-bg-color);
-
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .modal-form1-titulo{
