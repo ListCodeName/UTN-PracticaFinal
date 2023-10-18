@@ -13,6 +13,11 @@ const modalPenalUserCancel = document.querySelector("#cancel-modal-penal-user");
 const modalPenalUser = document.querySelector(".modal-frame.modal-penal-user");
 const modalPenalUserOpen = document.querySelector(".icon-hammer2.penal-user");
 
+const modalDelUserClose = document.querySelector("#close-modal-del-user");
+const modalDelUserCancel = document.querySelector("#cancel-modal-del-user");
+const modalDelUser = document.querySelector(".modal-frame.modal-del-user");
+const modalDelUserOpen = document.querySelector(".icon-bin.del-user");
+
 
 modalAddUserClose.addEventListener("click", ()=>{
     modalAddUser.classList.remove('active');
@@ -50,4 +55,17 @@ modalPenalUserCancel.addEventListener("click", ()=>{
 
 modalPenalUserOpen.addEventListener("click",()=>{
     modalPenalUser.classList.add('active');
+});
+
+
+modalDelUserClose.addEventListener("click", ()=>{
+    modalDelUser.classList.remove('active');
+});
+
+modalDelUserCancel.addEventListener("click", ()=>{
+    modalDelUser.classList.remove('active');
+});
+
+modalDelUserOpen.addEventListener("click",()=>{
+    modalDelUser.classList.add('active');
 });
