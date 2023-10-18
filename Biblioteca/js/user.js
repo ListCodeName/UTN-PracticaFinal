@@ -8,6 +8,11 @@ const modalEditUserCancel = document.querySelector("#cancel-modal-edit-user");
 const modalEditUser = document.querySelector(".modal-frame.modal-edit-user");
 const modalEditUserOpen = document.querySelector(".icon-pencil.edit-user");
 
+const modalPenalUserClose = document.querySelector("#close-modal-penal-user");
+const modalPenalUserCancel = document.querySelector("#cancel-modal-penal-user");
+const modalPenalUser = document.querySelector(".modal-frame.modal-penal-user");
+const modalPenalUserOpen = document.querySelector(".icon-hammer2.penal-user");
+
 
 modalAddUserClose.addEventListener("click", ()=>{
     modalAddUser.classList.remove('active');
@@ -32,4 +37,17 @@ modalEditUserCancel.addEventListener("click", ()=>{
 
 modalEditUserOpen.addEventListener("click",()=>{
     modalEditUser.classList.add('active');
+});
+
+
+modalPenalUserClose.addEventListener("click", ()=>{
+    modalPenalUser.classList.remove('active');
+});
+
+modalPenalUserCancel.addEventListener("click", ()=>{
+    modalPenalUser.classList.remove('active');
+});
+
+modalPenalUserOpen.addEventListener("click",()=>{
+    modalPenalUser.classList.add('active');
 });
