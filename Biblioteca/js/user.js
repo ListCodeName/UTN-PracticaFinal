@@ -1,22 +1,69 @@
-const modalAddUserClose = document.querySelector("#close-modal-add-user");
-const modalAddUserCancel = document.querySelector("#cancel-modal-add-user");
-const modalAddUser = document.querySelector(".modal-frame.modal-add-user");
-const modalAddUserOpen = document.querySelector(".add-new-user");
+modalAddUserClose = document.querySelector(".close-modal-add-user");
+modalAddUserCancel = document.querySelector(".cancel-modal-add-user");
+modalAddUser = document.querySelector(".modal-frame.modal-add-user");
+modalAddUserOpen = document.querySelector(".add-new-user");
 
-const modalEditUserClose = document.querySelector("#close-modal-edit-user");
-const modalEditUserCancel = document.querySelector("#cancel-modal-edit-user");
-const modalEditUser = document.querySelector(".modal-frame.modal-edit-user");
-const modalEditUserOpen = document.querySelector(".icon-pencil.edit-user");
+modalEditUserClose = document.querySelector(".close-modal-edit-user");
+modalEditUserCancel = document.querySelector(".cancel-modal-edit-user");
+modalEditUser = document.querySelector(".modal-frame.modal-edit-user");
+modalEditUserOpen = document.querySelectorAll(".edit-user");
 
-const modalPenalUserClose = document.querySelector("#close-modal-penal-user");
-const modalPenalUserCancel = document.querySelector("#cancel-modal-penal-user");
-const modalPenalUser = document.querySelector(".modal-frame.modal-penal-user");
-const modalPenalUserOpen = document.querySelector(".icon-hammer2.penal-user");
+modalPenalUserClose = document.querySelector(".close-modal-penal-user");
+modalPenalUserCancel = document.querySelector(".cancel-modal-penal-user");
+modalPenalUser = document.querySelector(".modal-frame.modal-penal-user");
+modalPenalUserOpen = document.querySelectorAll(".penal-user");
 
-const modalDelUserClose = document.querySelector("#close-modal-del-user");
-const modalDelUserCancel = document.querySelector("#cancel-modal-del-user");
-const modalDelUser = document.querySelector(".modal-frame.modal-del-user");
-const modalDelUserOpen = document.querySelector(".icon-bin.del-user");
+modalDelUserClose = document.querySelector(".close-modal-del-user");
+modalDelUserCancel = document.querySelector(".cancel-modal-del-user");
+modalDelUser = document.querySelector(".modal-frame.modal-del-user");
+modalDelUserOpen = document.querySelectorAll(".del-user");
+
+console.log(modalDelUserOpen);
+
+modalEditUserClose.addEventListener("click", ()=>{
+    modalEditUser.classList.remove('active');
+});
+
+modalEditUserCancel.addEventListener("click", ()=>{
+    modalEditUser.classList.remove('active');
+});
+
+
+modalPenalUserClose.addEventListener("click", ()=>{
+    modalPenalUser.classList.remove('active');
+});
+
+modalPenalUserCancel.addEventListener("click", ()=>{
+    modalPenalUser.classList.remove('active');
+});
+
+
+modalDelUserClose.addEventListener("click", ()=>{
+    modalDelUser.classList.remove('active');
+});
+
+modalDelUserCancel.addEventListener("click", ()=>{
+    modalDelUser.classList.remove('active');
+});
+
+
+for (var i = 0; i < modalDelUserOpen.length; i++) {
+    
+    modalEditUserOpen[i].addEventListener("click",()=>{
+        modalEditUser.classList.add('active');
+    });
+    
+    
+    modalPenalUserOpen[i].addEventListener("click",()=>{
+        modalPenalUser.classList.add('active');
+    });
+    
+    
+    modalDelUserOpen[i].addEventListener("click",()=>{
+        modalDelUser.classList.add('active');
+    });
+    
+}
 
 
 modalAddUserClose.addEventListener("click", ()=>{
@@ -29,43 +76,4 @@ modalAddUserCancel.addEventListener("click", ()=>{
 
 modalAddUserOpen.addEventListener("click",()=>{
     modalAddUser.classList.add('active');
-});
-
-
-modalEditUserClose.addEventListener("click", ()=>{
-    modalEditUser.classList.remove('active');
-});
-
-modalEditUserCancel.addEventListener("click", ()=>{
-    modalEditUser.classList.remove('active');
-});
-
-modalEditUserOpen.addEventListener("click",()=>{
-    modalEditUser.classList.add('active');
-});
-
-
-modalPenalUserClose.addEventListener("click", ()=>{
-    modalPenalUser.classList.remove('active');
-});
-
-modalPenalUserCancel.addEventListener("click", ()=>{
-    modalPenalUser.classList.remove('active');
-});
-
-modalPenalUserOpen.addEventListener("click",()=>{
-    modalPenalUser.classList.add('active');
-});
-
-
-modalDelUserClose.addEventListener("click", ()=>{
-    modalDelUser.classList.remove('active');
-});
-
-modalDelUserCancel.addEventListener("click", ()=>{
-    modalDelUser.classList.remove('active');
-});
-
-modalDelUserOpen.addEventListener("click",()=>{
-    modalDelUser.classList.add('active');
 });
