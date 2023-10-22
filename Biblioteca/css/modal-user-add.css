@@ -49,7 +49,7 @@
 
 .modal-form1-input-item input:focus~label,
 .modal-form1-input-item input:valid~label{
-    top: -5px;
+    top: -5px; 
     color: var(--main-color);
 }
 
