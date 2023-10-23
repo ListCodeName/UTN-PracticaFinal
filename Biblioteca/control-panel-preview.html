@@ -50,6 +50,8 @@
         </div>
     </aside>
 
+
+    <!-- Frames -->
     <section class="frame-usuarios">
         <form action="" class="form-container">
             <h1>Gestión de Usuarios</h1>
@@ -287,7 +289,7 @@
                         </div>
                         <div class="add-lp-btns box-type1-btns">
                             <span class="icon-checkmark"></span>
-                            <span class="icon-pencil"></span>
+                            <span class="icon-pencil edit-libro-pedido"></span>
                             <span class="icon-cross"></span>
                         </div>
                     </div>
@@ -301,7 +303,7 @@
                         </div>
                         <div class="add-lp-btns box-type1-btns">
                             <span class="icon-checkmark"></span>
-                            <span class="icon-pencil"></span>
+                            <span class="icon-pencil edit-libro-pedido"></span>
                             <span class="icon-cross"></span>
                         </div>
                     </div>
@@ -315,7 +317,7 @@
                         </div>
                         <div class="add-lp-btns box-type1-btns">
                             <span class="icon-checkmark"></span>
-                            <span class="icon-pencil"></span>
+                            <span class="icon-pencil edit-libro-pedido"></span>
                             <span class="icon-cross"></span>
                         </div>
                     </div>
@@ -341,8 +343,8 @@
                             <span class="icon-library" title="Editorial"><p>Santillana</p></span>
                         </div>
                         <div class="add-pre-btns box-type1-btns">
-                            <span class="icon-pencil"></span>
-                            <span class="icon-bin"></span>
+                            <span class="icon-pencil edit-libro"></span>
+                            <span class="icon-bin del-libro"></span>
                         </div>
                     </div>
                     <div class="add-pre-item box-type1">
@@ -353,8 +355,8 @@
                             <span class="icon-library" title="Editorial"><p>Santillana</p></span>
                         </div>
                         <div class="add-pre-btns box-type1-btns">
-                            <span class="icon-pencil"></span>
-                            <span class="icon-bin"></span>
+                            <span class="icon-pencil edit-libro"></span>
+                            <span class="icon-bin del-libro"></span>
                         </div>
                     </div>
                     <div class="add-pre-item box-type1">
@@ -365,8 +367,8 @@
                             <span class="icon-library" title="Editorial"><p>Santillana</p></span>
                         </div>
                         <div class="add-pre-btns box-type1-btns">
-                            <span class="icon-pencil"></span>
-                            <span class="icon-bin"></span>
+                            <span class="icon-pencil edit-libro"></span>
+                            <span class="icon-bin del-libro"></span>
                         </div>
                     </div>
                     <div class="add-pre-item box-type1">
@@ -377,8 +379,8 @@
                             <span class="icon-library" title="Editorial"><p>Santillana</p></span>
                         </div>
                         <div class="add-pre-btns box-type1-btns">
-                            <span class="icon-pencil"></span>
-                            <span class="icon-bin"></span>
+                            <span class="icon-pencil edit-libro"></span>
+                            <span class="icon-bin del-libro"></span>
                         </div>
                     </div>
 
@@ -386,6 +388,8 @@
             </article>
         </form>
     </section>
+
+
 
     <!-- Modals de reserva -->
     <div class="modal-frame modal-reserva">
@@ -471,7 +475,6 @@
 
         </form>
     </div>
-
 
     <!-- Modals de usuario -->
     <div class="modal-frame modal-add-user">
@@ -632,10 +635,190 @@
 
     <!-- Modals de libro -->
 
+    <div class="modal-frame modal-add-libro">
+        <form action="#" class="modal-form1">
+            <div class="modal-form1-titulo">
+                <p>Agregar nuevo libro</p>
+                <span class="icon-cross close-modal-add-libro"></span>
+            </div>
+
+            <div class="modal-form1-content">
+                
+                <div class="modal-form1-inputs">
+                    <div class="modal-form1-input-item">
+                        <input type="text" id="" required>
+                        <label for="">Titulo</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Editorial</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Autor</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Año de fabricación</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Número de edición</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Ubicación en biblioteca</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Observaciones</label>
+                    </div>
+
+                </div>
+
+                
+                <div class="modal-form1-btns">
+                    <button type="submit">Confirmar</button>
+                    <button type="button" class="cancel-modal-add-libro">Cancelar</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+    <div class="modal-frame modal-edit-libro-pedido">
+        <form action="#" class="modal-form1">
+            <div class="modal-form1-titulo">
+                <p>Editar libro</p>
+                <span class="icon-cross close-modal-edit-libro-pedido"></span>
+            </div>
+
+            <div class="modal-form1-content">
+                
+                <div class="modal-form1-inputs">
+                    <div class="modal-form1-input-item">
+                        <input type="text" id="" required>
+                        <label for="">Titulo</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Editorial</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Autor</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Año de fabricación</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Cantidad ejemplares</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Observaciones</label>
+                    </div>
+
+                </div>
+
+                
+                <div class="modal-form1-btns">
+                    <button type="submit">Confirmar</button>
+                    <button type="button" class="cancel-modal-edit-libro-pedido">Cancelar</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+    <div class="modal-frame modal-edit-libro">
+        <form action="#" class="modal-form1">
+            <div class="modal-form1-titulo">
+                <p>Editar libro</p>
+                <span class="icon-cross close-modal-edit-libro"></span>
+            </div>
+
+            <div class="modal-form1-content">
+                
+                <div class="modal-form1-inputs">
+                    <div class="modal-form1-input-item">
+                        <input type="text" id="" required>
+                        <label for="">Titulo</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Editorial</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Autor</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Año de fabricación</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Número de edición</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Ubicación en biblioteca</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input type="text" name="" id="" required>
+                        <label for="">Observaciones</label>
+                    </div>
+
+                </div>
+
+                
+                <div class="modal-form1-btns">
+                    <button type="submit">Confirmar</button>
+                    <button type="button" class="cancel-modal-edit-libro">Cancelar</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+    <div class="modal-frame modal-del-libro">
+        <form action="#" class="modal-form1">
+            <div class="modal-form1-titulo">
+                <p>Eliminar libro</p>
+                <span class="icon-cross close-modal-del-libro"></span>
+            </div>
+
+            <div class="modal-form1-content">
+                
+                <div class="modal-form1-confirmdialog">
+                    <p>¿Está seguro de eliminar el siguiente elemento?</p>
+                    <span class="icon-user del-user-id"><p>#123415135 - Caperucita Verde</p></span>
+                </div>
+
+                
+                <div class="modal-form1-btns">
+                    <button type="submit">Confirmar</button>
+                    <button type="button" class="cancel-modal-del-libro">Cancelar</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
+
+    <!-- Scripts -->
     <script src="js/calendario.js"></script>
     <script src="js/reservas.js"></script>
     <script src="js/dashboard-menu.js"></script>
     <script src="js/user.js"></script>
+    <script src="js/libro.js"></script>
 
 </body>
 </html>
