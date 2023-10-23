@@ -45,18 +45,19 @@ modalDelLibroCancel.addEventListener("click", ()=>{
     modalDelLibro.classList.remove('active');
 });
 
+for (var i = 0; i < modalPedidoLibroOpen.length; i++) {
+    
+    modalPedidoLibroOpen[i].addEventListener("click",()=>{
+        modalPedidoLibro.classList.add('active');
+    });
+    
+}
 
 for (var i = 0; i < modalDelLibroOpen.length; i++) {
     
     modalEditLibroOpen[i].addEventListener("click",()=>{
         modalEditLibro.classList.add('active');
     });
-    
-    
-    modalPedidoLibroOpen[i].addEventListener("click",()=>{
-        modalPedidoLibro.classList.add('active');
-    });
-    
     
     modalDelLibroOpen[i].addEventListener("click",()=>{
         modalDelLibro.classList.add('active');

@@ -18,8 +18,6 @@ modalDelUserCancel = document.querySelector(".cancel-modal-del-user");
 modalDelUser = document.querySelector(".modal-frame.modal-del-user");
 modalDelUserOpen = document.querySelectorAll(".del-user");
 
-console.log(modalDelUserOpen);
-
 modalEditUserClose.addEventListener("click", ()=>{
     modalEditUser.classList.remove('active');
 });

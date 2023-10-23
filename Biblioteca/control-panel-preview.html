@@ -195,7 +195,7 @@
                             <span class="icon-download"><p>Devolución: 20/10/2023</p></span>
                         </div>
                         <div class="add-pre-btns box-type1-btns">
-                            <span class="icon-cross"></span>
+                            <span class="icon-cross cancel-reserva"></span>
                         </div>
                     </div>
 
@@ -396,7 +396,7 @@
         <form action="#" class="modal-form1">
             <div class="modal-form1-titulo">
                 <p>Confirmar reserva - Fijar fecha</p>
-                <span class="icon-cross" id="close-modal-res"></span>
+                <span class="icon-cross close-modal-res"></span>
             </div>
 
             <div class="modal-form1-content">
@@ -468,13 +468,39 @@
 
                 <div class="modal-form1-btns">
                     <button type="submit">Confirmar</button>
-                    <button type="button" id="cancel-modal-res">Cancelar</button>
+                    <button type="button" class="cancel-modal-res">Cancelar</button>
                 </div>
 
             </div>
 
         </form>
     </div>
+
+    <div class="modal-frame modal-del-reserva">
+        <form action="#" class="modal-form1">
+            <div class="modal-form1-titulo">
+                <p>Eliminar libro</p>
+                <span class="icon-cross close-modal-del-reserva"></span>
+            </div>
+
+            <div class="modal-form1-content">
+                
+                <div class="modal-form1-confirmdialog">
+                    <p>¿Está seguro de dar de baja la siguiente reserva?</p>
+                    <span class="icon-user del-user-id"><p>Reserva: 123415135 - Libro: Caperucita Roja</p></span>
+                </div>
+
+                
+                <div class="modal-form1-btns">
+                    <button type="submit">Confirmar</button>
+                    <button type="button" class="cancel-modal-del-reserva">Cancelar</button>
+                </div>
+
+            </div>
+
+        </form>
+    </div>
+
 
     <!-- Modals de usuario -->
     <div class="modal-frame modal-add-user">
