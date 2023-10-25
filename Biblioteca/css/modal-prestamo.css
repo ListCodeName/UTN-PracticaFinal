@@ -12,6 +12,9 @@
     width: 300%;
     height: 100%;
     position: absolute;
+    left: 0px;
+    top: 0px;
+    transition: all 0.5s ease;
 }
 
 .modal-slide-form-box{
@@ -39,7 +42,8 @@
 .modal-slide-result{
     width: 100%;
     padding: 0px 5px 0px 25px;
-    max-height: 50%;
+    max-height: 500px;
+    min-height: 500px;
     overflow-y: scroll;
 }
 
@@ -130,29 +134,42 @@
     padding: 5px 25px 15px 25px;
 }
 
-.modal-slide-buttons span{
+.modal-slide-buttons span,
+.modal-slide-buttons button{
     display: flex;
+    justify-content: center;
+    align-items: center;
+    appearance: none;
+    background: transparent;
+    color: var(--text-color);
+    font-weight: 300;
     font-size: 18px;
     position: relative;
     overflow: hidden;
-    background: var(--second-bg-color);
-    color: transparent;
     z-index: 1;
+    padding: 5px 10px;
+    transition: all 0.5s ease;
+    border: 2px solid var(--text-color);
+    border-radius: 15px;
+    cursor: pointer;
 }
 
-.modal-slide-buttons span:hover::after{
+.modal-slide-buttons span:hover::after,
+.modal-slide-buttons button:hover::after{
     left: -100%;
 }
 
-.modal-slide-buttons span::after{
+.modal-slide-buttons span::after,
+.modal-slide-buttons button::after{
     content: "";
     width: 200%;
     height: 100%;
-    background: linear-gradient(90deg,var(--text-color) 50%, var(--main-color) 50%);
+    background: linear-gradient(90deg,var(--second-bg-color) 50%, var(--main-color) 50%);
     position: absolute;
     z-index: -1;
     top: 0px;
     left: 0px;
+    transition: all 0.5s ease;
 }
 
 .modal-slide-buttons span p{
@@ -161,3 +178,30 @@
     margin: 0px 10px;
 }
 
+.modal-slide-buttons span.icon-arrow-right{
+    flex-direction: row-reverse;
+}
+
+.modal-slide-buttons button{
+    font-size: 16px;
+}
+
+
+
+
+.modal-slide-confirm-data{
+    width: 100%;
+    background: var(--main-color);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.modal-slide-confirm-data span{
+    display: flex;
+    width: 100%;
+    
+
+}
