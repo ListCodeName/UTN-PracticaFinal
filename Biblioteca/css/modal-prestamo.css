@@ -11,7 +11,7 @@
     width: 300%;
     height: 100%;
     position: absolute;
-    left: -200%;
+    left: 0%;
     top: 0px;
     transition: all 0.5s ease;
 }
@@ -32,6 +32,7 @@
     justify-content: flex-start;
     padding: 15px 25px;
     position: relative;
+    margin: 0px 0px 10px 0px;
 }
 
 .modal-slide-busqueda input{
@@ -42,8 +43,9 @@
     width: 100%;
     padding: 0px 5px 0px 25px;
     max-height: 500px;
-    min-height: 500px;
+    min-height: 250px;
     overflow-y: scroll;
+    margin: 15px 0px;
 }
 
 .modal-slide-result-item{

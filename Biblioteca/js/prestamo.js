@@ -4,6 +4,28 @@ const slidePrestamoNext2 = document.querySelector(".icon-arrow-right.next2");
 const slidePrestamoPrev1 = document.querySelector(".icon-arrow-left.previous1");
 const slidePrestamoPrev2 = document.querySelector(".icon-arrow-left.previous2");
 
+const modalAddPrestamoClose = document.querySelectorAll(".close-modal-add-prestamo");
+const modalAddPrestamo = document.querySelector(".modal-add-prestamo");
+const modalAddPrestamoOpen = document.querySelector(".add-new-prestamo");
+
+for(var i = 0; i < modalAddPrestamoClose.length; i++){
+    modalAddPrestamoClose[i].addEventListener("click",()=>{
+        console.log("hola");
+        modalAddPrestamo.classList.remove('active');
+    });
+}
+/*
+for (var i = 0; i < modalResOpen.length; i++) {
+    modalResOpen[i].addEventListener("click", ()=>{
+        modalRes.classList.add('active');
+    });
+}
+*/
+
+modalAddPrestamoOpen.addEventListener("click",()=>{
+    modalAddPrestamo.classList.add('active');
+});
+
 slidePrestamoNext1.addEventListener("click",()=>{
     slidePrestamo.style.left = "-100%";
 });
