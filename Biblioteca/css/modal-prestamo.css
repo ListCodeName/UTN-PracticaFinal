@@ -4,7 +4,6 @@
     height: 90vh;
     overflow: hidden;
     position: relative;
-    background: red;
 }
 
 .modal-slide-form{
@@ -12,7 +11,7 @@
     width: 300%;
     height: 100%;
     position: absolute;
-    left: 0px;
+    left: -200%;
     top: 0px;
     transition: all 0.5s ease;
 }
@@ -191,7 +190,6 @@
 
 .modal-slide-confirm-data{
     width: 100%;
-    background: var(--main-color);
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -202,6 +200,19 @@
 .modal-slide-confirm-data span{
     display: flex;
     width: 100%;
-    
+    justify-content: flex-start;
+    align-items: center;
+    background: var(--main-color);
+    border-radius: 15px;
+    padding: 0px 0px 0px 10px;
+    border: 2px solid var(--main-color);
+    margin: 10px 0px;
+}
 
+.modal-slide-confirm-data span p{
+    background: var(--second-bg-color);
+    width: 100%;
+    margin: 0px 0px 0px 10px;
+    border-radius: 0px 15px 15px 0px;
+    padding: 10px 15px;
 }
