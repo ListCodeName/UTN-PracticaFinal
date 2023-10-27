@@ -185,3 +185,9 @@ section form{
     filter: blur(0);
     opacity: 1;
 }
+
+.frame-solicitar-libro.active{
+    left: 0px;
+    filter: blur(0);
+    opacity: 1;
+}
