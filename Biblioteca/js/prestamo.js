@@ -14,13 +14,6 @@ for(var i = 0; i < modalAddPrestamoClose.length; i++){
         modalAddPrestamo.classList.remove('active');
     });
 }
-/*
-for (var i = 0; i < modalResOpen.length; i++) {
-    modalResOpen[i].addEventListener("click", ()=>{
-        modalRes.classList.add('active');
-    });
-}
-*/
 
 modalAddPrestamoOpen.addEventListener("click",()=>{
     modalAddPrestamo.classList.add('active');
