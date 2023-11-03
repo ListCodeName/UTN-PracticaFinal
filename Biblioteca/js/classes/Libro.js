@@ -104,8 +104,8 @@ class Libro{
                     '<span class="icon-library" title="Editorial"><p>'+this.editorial+'</p></span>'+
                 '</div>'+
                 '<div class="add-pre-btns box-type1-btns">'+
-                    '<span class="icon-pencil edit-libro"></span>'+
-                    '<span class="icon-bin del-libro"></span>'+
+                    '<span isbn="'+this.isbn+'" class="icon-pencil edit-libro"></span>'+
+                    '<span isbn="'+this.isbn+'" class="icon-bin del-libro"></span>'+
                 '</div>'+
             '</div>';
     }
@@ -148,7 +148,7 @@ class Libro{
 class LibroController{
     
     constructor(){
-        this.listaLibros = null;
+        this.listaLibrosBM = {};
     }
 
     //Getters
@@ -160,9 +160,26 @@ class LibroController{
     set listaLibros(listaLibros){
         this.listaLibros = listaLibros;
     }
+    
+    cargarListaEn(target){
+        this.listaLibrosBM = {};
+        let listado = "";
+        for(this.listaLibrosBM of libro){
+            listado += (new Libro(libro)).printBoxLibroBM();
+        }
+        if(listado.length != 0){
+            document.querySelector(target).innerHTML(listado);
+        }else{
+            document.querySelector(target).innerHTML("No se han encontrado resultados.");
+        }
+    }
 
-    addLibro(posicionArray){
-        solicitarAjax("/php/librosController/add", this.listaLibros[posicionArray]);
+    buscarLibros(valor){
+        solicitarAjax("/php/librosController/search", valor);
+    }
+
+    addLibro(posicionArray, target){
+        solicitarAjax("/php/librosController/add", this.listaLibros[posicionArray], target);
     }
 
     delLibro(posicionArray){
@@ -173,11 +190,14 @@ class LibroController{
         solicitarAjax("/php/librosController/put", this.listaLibros[posicionArray]);
     }
 
-    solicitudAjax(archivoPHP, libro){
-        let data = { "libro" : JSON.stringify(libro.toJson()),
-            "operacion" : codigoOperacion
-        };
-    
+    solicitudAjax(archivoPHP, libro, target){
+        let data;
+        if(libro != null)
+            data = JSON.stringify(libro.toJson());
+        else
+            data = "*";
+        
+        
         var xhr = new XMLHttpRequest();
         xhr.open("POST", archivoPHP, true);
         xhr.setRequestHeader("Content-Type", "application/json");
@@ -185,10 +205,10 @@ class LibroController{
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 let response = JSON.parse(xhr.responseText); //el json que envía el servidor
-    
-                /* Area para imprimir la información en la página */
-                //document.getElementById("result").innerHTML = "Name: " + response.name + "<br>LastName: " + response.lastname + "<br>Age: " + response.age;
-    
+                
+                this.listaLibrosBM = response;
+                cargarListaEn(target);
+
             } else if (xhr.readyState == 4 && xhr.status != 200) {
                 console.error("Error en la solicitud: " + xhr.status);
             }
@@ -198,3 +218,11 @@ class LibroController{
     }
 
 }
+
+var libroCtrl = new LibroController();
+
+// Eventos de libros  (buscadores)
+
+document.querySelector(".bm-libro-result.librosBM").addEventListener("click",()=>{
+    libroCtrl.buscarLibros(document.querySelector(".inputLibroBM").value);
+});
