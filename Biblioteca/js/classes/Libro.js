@@ -164,39 +164,42 @@ class LibroController{
     cargarListaEn(target){
         this.listaLibrosBM = {};
         let listado = "";
-        for(this.listaLibrosBM of libro){
-            listado += (new Libro(libro)).printBoxLibroBM();
-        }
-        if(listado.length != 0){
+        
+        if(this.listaLibros.lenght != 0){
+            for(this.listaLibrosBM of libro){
+                listado += (new Libro(libro)).printBoxLibroBM();
+            }
+
             document.querySelector(target).innerHTML(listado);
         }else{
-            document.querySelector(target).innerHTML("No se han encontrado resultados.");
+            document.querySelector(target).innerHTML("<p>No se han encontrado resultados.</p>");
         }
     }
 
-    buscarLibros(valor){
-        solicitarAjax("/php/librosController/search", valor);
+    solicitudAjaxBuscar(data, target){
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/php/librosController/search", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+    
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                let response = JSON.parse(xhr.responseText); //el json que envía el servidor
+                
+                this.listaLibrosBM = JSON.parse(response);
+                cargarListaEn(target);
+
+            } else if (xhr.readyState == 4 && xhr.status != 200) {
+                console.error("Error en la solicitud: " + xhr.status);
+            }
+        };
+    
+        xhr.send(JSON.stringify(data)); //Envía la info al servidor en formato string de json
     }
 
-    addLibro(posicionArray, target){
-        solicitarAjax("/php/librosController/add", this.listaLibros[posicionArray], target);
-    }
-
-    delLibro(posicionArray){
-        solicitarAjax("/php/librosController/del", this.listaLibros[posicionArray]);
-    }
-
-    updateLibro(posicionArray){
-        solicitarAjax("/php/librosController/put", this.listaLibros[posicionArray]);
-    }
-
-    solicitudAjax(archivoPHP, libro, target){
+    solicitudAjaxABM(libro, target, archivoPHP){
         let data;
         if(libro != null)
             data = JSON.stringify(libro.toJson());
-        else
-            data = "*";
-        
         
         var xhr = new XMLHttpRequest();
         xhr.open("POST", archivoPHP, true);
@@ -206,7 +209,7 @@ class LibroController{
             if (xhr.readyState == 4 && xhr.status == 200) {
                 let response = JSON.parse(xhr.responseText); //el json que envía el servidor
                 
-                this.listaLibrosBM = response;
+                this.listaLibrosBM = JSON.parse(response);
                 cargarListaEn(target);
 
             } else if (xhr.readyState == 4 && xhr.status != 200) {
@@ -224,5 +227,5 @@ var libroCtrl = new LibroController();
 // Eventos de libros  (buscadores)
 
 document.querySelector(".bm-libro-result.librosBM").addEventListener("click",()=>{
-    libroCtrl.buscarLibros(document.querySelector(".inputLibroBM").value);
+    libroCtrl.solicitudAjaxBuscar(document.querySelector(".inputLibroBM").value, ".bm-libro-result.librosBM");
 });
