@@ -79,6 +79,7 @@ class LibroController{
     }
 
     solicitudAjaxBuscar(data, target){
+        let datasend = {"search": data};
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "php/respuestaServidor.php", true);
         xhr.setRequestHeader("Content-Type", "application/json");
@@ -144,13 +145,12 @@ class LibroController{
             }
         };
     
-        xhr.send(JSON.stringify(data)); //Envía la info al servidor en formato string de json
+        xhr.send(JSON.stringify(datasend)); //Envía la info al servidor en formato string de json
     }
 
-    solicitudAjaxABM(libro, target, archivoPHP){
+    solicitudAjaxABM(libro, archivoPHP){
         let data;
-        if(libro != null)
-            data = JSON.stringify(libro.toJson());
+        
         
         var xhr = new XMLHttpRequest();
         xhr.open("POST", archivoPHP, true);
@@ -159,9 +159,8 @@ class LibroController{
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
                 let response = JSON.parse(xhr.responseText); //el json que envía el servidor
-                
                 this.listaLibrosBM = JSON.parse(response);
-                cargarListaEn(target);
+                
 
             } else if (xhr.readyState == 4 && xhr.status != 200) {
                 console.error("Error en la solicitud: " + xhr.status);
