@@ -418,54 +418,7 @@
                 </div>
                 
                 <div class="bm-libro-result librosBM">
-                    <div class="add-pre-item box-type1">
-                        <h4>Los 5 mosquiteros</h4>
-                        <div class="add-pre-content box-type1-content">
-                            <span class="icon-quill" title="Autor"><p>Arnold Sampallo</p></span>
-                            <span class="icon-book" title="Materia"><p>Historia</p></span>
-                            <span class="icon-library" title="Editorial"><p>Santillana</p></span>
-                        </div>
-                        <div class="add-pre-btns box-type1-btns">
-                            <span class="icon-pencil edit-libro"></span>
-                            <span class="icon-bin del-libro"></span>
-                        </div>
-                    </div>
-                    <div class="add-pre-item box-type1">
-                        <h4>Los 5 mosquiteros</h4>
-                        <div class="add-pre-content box-type1-content">
-                            <span class="icon-quill" title="Autor"><p>Arnold Sampallo</p></span>
-                            <span class="icon-book" title="Materia"><p>Historia</p></span>
-                            <span class="icon-library" title="Editorial"><p>Santillana</p></span>
-                        </div>
-                        <div class="add-pre-btns box-type1-btns">
-                            <span class="icon-pencil edit-libro"></span>
-                            <span class="icon-bin del-libro"></span>
-                        </div>
-                    </div>
-                    <div class="add-pre-item box-type1">
-                        <h4>Los 5 mosquiteros</h4>
-                        <div class="add-pre-content box-type1-content">
-                            <span class="icon-quill" title="Autor"><p>Arnold Sampallo</p></span>
-                            <span class="icon-book" title="Materia"><p>Historia</p></span>
-                            <span class="icon-library" title="Editorial"><p>Santillana</p></span>
-                        </div>
-                        <div class="add-pre-btns box-type1-btns">
-                            <span class="icon-pencil edit-libro"></span>
-                            <span class="icon-bin del-libro"></span>
-                        </div>
-                    </div>
-                    <div class="add-pre-item box-type1">
-                        <h4>Los 5 mosquiteros</h4>
-                        <div class="add-pre-content box-type1-content">
-                            <span class="icon-quill" title="Autor"><p>Arnold Sampallo</p></span>
-                            <span class="icon-book" title="Materia"><p>Historia</p></span>
-                            <span class="icon-library" title="Editorial"><p>Santillana</p></span>
-                        </div>
-                        <div class="add-pre-btns box-type1-btns">
-                            <span class="icon-pencil edit-libro"></span>
-                            <span class="icon-bin del-libro"></span>
-                        </div>
-                    </div>
+                    
 
                 </div>
             </article>

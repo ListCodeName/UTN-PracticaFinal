@@ -12,55 +12,6 @@ class Libro{
         this.serie = serie;
         this.observaciones = observaciones;
     }
-/*
-    constructor(json){
-        console.log(json.isbn);
-        this.isbn = json.isbn;
-        console.log(json.titulo);
-        this.titulo = json.titulo;
-        this.autor = json.autor;
-        this.ubicacionFisica = json.ubicacionFisica;
-        this.editorial = json.editorial;
-        this.materia = json.materia;
-        this.lugarEdicion = json.lugarEdicion;
-        this.anio = json.anio;
-        this.serie = json.serie;
-        this.observaciones = json.observaciones;
-    }
-
-*/
-    //Getters
-    get isbn(){
-        return this.isbn;
-    }
-
-    get titulo(){
-        return this.titulo;
-    }
-
-    get autor(){
-        return this.autor;
-    }
-
-    get ubicacionFisica(){
-        return this.ubicacionFisica;
-    }
-
-    get lugarEdicion(){
-        return this.lugarEdicion;
-    }
-
-    get anio(){
-        return this.anio;
-    }
-
-    get serie(){
-        return this.serie;
-    }
-
-    get observaciones(){
-        return this.observaciones;
-    }
 
     //Metodos
 
@@ -120,14 +71,11 @@ class LibroController{
         this.listaLibrosBM = null;
     }
 
-    //Getters
-    get listaLibros(){
-        return this.listaLibros;
-    }
-
-    //Setters
-    set listaLibros(listaLibros){
-        this.listaLibros = listaLibros;
+    buscarLibroPorid(id){
+        this.listaLibrosBM.forEach(function (l) {
+            if(l.isbn == id)
+                return new Libro(l.isbn, l.titulo, l.autor, l.ubicacionFisica, l.editorial, l.materia, l.lugarEdicion, l.anio, l.serie, l.observaciones);
+        });
     }
 
     solicitudAjaxBuscar(data, target){
@@ -142,13 +90,51 @@ class LibroController{
 
                 if(this.listaLibrosBM){
                     this.listaLibrosBM.forEach(function (l) {
-                        let aux = new Libro(l.isbn, l.titulo, l.autor, l.ubicacionFisica, l.editorial, l.materia, l.lugarEdicion, l.anio, l.serie, l.observaciones);
-                        listado += aux.printBoxLibroBM();
+                        listado += (new Libro(l.isbn, l.titulo, l.autor, l.ubicacionFisica, l.editorial, l.materia, l.lugarEdicion, l.anio, l.serie, l.observaciones)).printBoxLibroBM();
                     });
 
-                    console.log(listado);
-
                     document.querySelector(target).innerHTML = listado;
+
+                    //Agregar eventos
+                    modalEditLibroClose = document.querySelector(".close-modal-edit-libro");
+                    modalEditLibroCancel = document.querySelector(".cancel-modal-edit-libro");
+                    modalEditLibro = document.querySelector(".modal-frame.modal-edit-libro");
+                    modalEditLibroOpen = document.querySelectorAll(".edit-libro");
+
+                    modalDelLibroClose = document.querySelector(".close-modal-del-libro");
+                    modalDelLibroCancel = document.querySelector(".cancel-modal-del-libro");
+                    modalDelLibro = document.querySelector(".modal-del-libro");
+                    modalDelLibroOpen = document.querySelectorAll(".del-libro");
+
+                    for (var i = 0; i < modalDelLibroOpen.length; i++) {
+                
+                        modalEditLibroOpen[i].addEventListener("click",()=>{
+                            modalEditLibro.classList.add('active');
+                        });
+                        
+                        modalDelLibroOpen[i].addEventListener("click",()=>{
+                            modalDelLibro.classList.add('active');
+                        });
+                        
+                    }
+
+                    modalDelLibroClose.addEventListener("click", ()=>{
+                        modalDelLibro.classList.remove('active');
+                    });
+                    
+                    modalDelLibroCancel.addEventListener("click", ()=>{
+                        modalDelLibro.classList.remove('active');
+                    });
+
+                    modalEditLibroClose.addEventListener("click", ()=>{
+                        modalEditLibro.classList.remove('active');
+                    });
+                    
+                    modalEditLibroCancel.addEventListener("click", ()=>{
+                        modalEditLibro.classList.remove('active');
+                    });
+                    //fin agregar eventos
+
                 }else{
                     document.querySelector(target).innerHTML = "<p>No se han encontrado resultados.</p>";
                 }

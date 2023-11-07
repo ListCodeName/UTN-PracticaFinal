@@ -13,12 +13,9 @@ $libro = array(
     'observaciones' => 'Un libro muy interesante'
 );
 
-$arreglo = array($libro);
+$arreglo = array($libro); 
 array_push($arreglo, $libro);
 
-
 echo json_encode($arreglo);
-
-
 
 ?>
