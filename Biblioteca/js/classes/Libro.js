@@ -1,4 +1,5 @@
 class Libro{
+    
     constructor(isbn, titulo, autor, ubicacionFisica, editorial, materia, lugarEdicion, anio, serie, observaciones){
         this.isbn = isbn;
         this.titulo = titulo;
@@ -10,11 +11,12 @@ class Libro{
         this.anio = anio;
         this.serie = serie;
         this.observaciones = observaciones;
-
     }
-
-    unpackJSON(json){
+/*
+    constructor(json){
+        console.log(json.isbn);
         this.isbn = json.isbn;
+        console.log(json.titulo);
         this.titulo = json.titulo;
         this.autor = json.autor;
         this.ubicacionFisica = json.ubicacionFisica;
@@ -26,7 +28,7 @@ class Libro{
         this.observaciones = json.observaciones;
     }
 
-
+*/
     //Getters
     get isbn(){
         return this.isbn;
@@ -58,39 +60,6 @@ class Libro{
 
     get observaciones(){
         return this.observaciones;
-    }
-
-    //Setters
-    set isbn(isbn){
-        this.isbn = isbn;
-    }
-
-    set titulo(titulo){
-        this.titulo = titulo;
-    }
-
-    set autor(autor){
-        this.autor = autor;
-    }
-
-    set ubicacionFisica(ubicacionFisica){
-        this.ubicacionFisica = ubicacionFisica;
-    }
-
-    set lugarEdicion(lugarEdicion){
-        this.lugarEdicion = lugarEdicion;
-    }
-
-    set anio(anio){
-        this.anio = anio;
-    }
-
-    set serie(serie){
-        this.serie = serie;
-    }
-
-    set observaciones(observaciones){
-        this.observaciones = observaciones;
     }
 
     //Metodos
@@ -148,7 +117,7 @@ class Libro{
 class LibroController{
     
     constructor(){
-        this.listaLibrosBM = {};
+        this.listaLibrosBM = null;
     }
 
     //Getters
@@ -160,20 +129,6 @@ class LibroController{
     set listaLibros(listaLibros){
         this.listaLibros = listaLibros;
     }
-    
-    cargarListaEn(target){
-        let listado = "";
-        
-        if(this.listaLibrosBM.lenght != 0){
-            for(this.listaLibrosBM of libro){
-                listado += (new Libro(libro)).printBoxLibroBM();
-            }
-
-            document.querySelector(target).innerHTML(listado);
-        }else{
-            document.querySelector(target).innerHTML("<p>No se han encontrado resultados.</p>");
-        }
-    }
 
     solicitudAjaxBuscar(data, target){
         var xhr = new XMLHttpRequest();
@@ -182,24 +137,21 @@ class LibroController{
     
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
-                let response = JSON.parse(xhr.responseText); //el json que envía el servidor
-                this.listaLibrosBM = response;
-                alert(response[0].editorial);
-
+                this.listaLibrosBM = JSON.parse(xhr.responseText); //el json que envía el servidor
                 let listado = "";
-        
-                if(this.listaLibrosBM.lenght != 0){
-                    for(this.listaLibrosBM of libro){
-                        listado += (new Libro(libro)).printBoxLibroBM();
-                    }
 
-                    document.querySelector(target).innerHTML(listado);
+                if(this.listaLibrosBM){
+                    this.listaLibrosBM.forEach(function (l) {
+                        let aux = new Libro(l.isbn, l.titulo, l.autor, l.ubicacionFisica, l.editorial, l.materia, l.lugarEdicion, l.anio, l.serie, l.observaciones);
+                        listado += aux.printBoxLibroBM();
+                    });
+
+                    console.log(listado);
+
+                    document.querySelector(target).innerHTML = listado;
                 }else{
-                    document.querySelector(target).innerHTML("<p>No se han encontrado resultados.</p>");
+                    document.querySelector(target).innerHTML = "<p>No se han encontrado resultados.</p>";
                 }
-
-
-                //this.cargarListaEn(target);
 
             } else if (xhr.readyState == 4 && xhr.status != 200) {
                 console.error("Error en la solicitud: " + xhr.status);
