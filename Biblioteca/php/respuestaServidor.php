@@ -9,10 +9,16 @@ $libro = array(
     'materia' => 'Lengua y literatura',
     'lugarEdicion' =>  'Buenos Aires',
     'anio' => '2000',
-    'serie' => 'Ficción',
+    'serie' => 'Ficcion',
     'observaciones' => 'Un libro muy interesante'
 );
 
-echo json_encode($libro);
+$arreglo = array($libro);
+array_push($arreglo, $libro);
+
+
+echo json_encode($arreglo);
+
+
 
 ?>

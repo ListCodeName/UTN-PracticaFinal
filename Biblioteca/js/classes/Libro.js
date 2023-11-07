@@ -182,9 +182,9 @@ class LibroController{
     
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
-                //let response = JSON.parse(xhr.responseText); //el json que envía el servidor
-                //this.listaLibrosBM = response;
-                this.listaLibrosBM = xhr.responseText;
+                let response = JSON.parse(xhr.responseText); //el json que envía el servidor
+                this.listaLibrosBM = response;
+                alert(response[0].editorial);
 
                 let listado = "";
         
