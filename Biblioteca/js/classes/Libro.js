@@ -13,7 +13,7 @@ class Libro{
 
     }
 
-    constructor(json){
+    unpackJSON(json){
         this.isbn = json.isbn;
         this.titulo = json.titulo;
         this.autor = json.autor;
@@ -162,10 +162,9 @@ class LibroController{
     }
     
     cargarListaEn(target){
-        this.listaLibrosBM = {};
         let listado = "";
         
-        if(this.listaLibros.lenght != 0){
+        if(this.listaLibrosBM.lenght != 0){
             for(this.listaLibrosBM of libro){
                 listado += (new Libro(libro)).printBoxLibroBM();
             }
@@ -178,15 +177,29 @@ class LibroController{
 
     solicitudAjaxBuscar(data, target){
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/php/librosController/search", true);
+        xhr.open("POST", "php/respuestaServidor.php", true);
         xhr.setRequestHeader("Content-Type", "application/json");
     
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
-                let response = JSON.parse(xhr.responseText); //el json que envía el servidor
-                
-                this.listaLibrosBM = JSON.parse(response);
-                cargarListaEn(target);
+                //let response = JSON.parse(xhr.responseText); //el json que envía el servidor
+                //this.listaLibrosBM = response;
+                this.listaLibrosBM = xhr.responseText;
+
+                let listado = "";
+        
+                if(this.listaLibrosBM.lenght != 0){
+                    for(this.listaLibrosBM of libro){
+                        listado += (new Libro(libro)).printBoxLibroBM();
+                    }
+
+                    document.querySelector(target).innerHTML(listado);
+                }else{
+                    document.querySelector(target).innerHTML("<p>No se han encontrado resultados.</p>");
+                }
+
+
+                //this.cargarListaEn(target);
 
             } else if (xhr.readyState == 4 && xhr.status != 200) {
                 console.error("Error en la solicitud: " + xhr.status);
@@ -226,6 +239,6 @@ var libroCtrl = new LibroController();
 
 // Eventos de libros  (buscadores)
 
-document.querySelector(".bm-libro-result.librosBM").addEventListener("click",()=>{
+document.querySelector(".icon-search.buscarLibroBM").addEventListener("click",()=>{
     libroCtrl.solicitudAjaxBuscar(document.querySelector(".inputLibroBM").value, ".bm-libro-result.librosBM");
 });
