@@ -1097,9 +1097,12 @@
 
                 </div>
 
+                <div class="modal-form1-status db-add-libro">
+
+                </div>
                 
                 <div class="modal-form1-btns">
-                    <button type="submit">Confirmar</button>
+                    <button type="button" class="confirm-modal-add-libro" >Confirmar</button>
                     <button type="button" class="cancel-modal-add-libro">Cancelar</button>
                 </div>
 
