@@ -1122,27 +1122,35 @@
                 
                 <div class="modal-form1-inputs">
                     <div class="modal-form1-input-item">
-                        <input type="text" id="" required>
+                        <input class="libro-edit-pedido titulo" type="text" id="" required>
                         <label for="">Titulo</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" name="" id="" required>
+                        <input class="libro-edit-pedido editorial" type="text" name="" id="" required>
                         <label for="">Editorial</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" name="" id="" required>
+                        <input class="libro-edit-pedido autor" type="text" name="" id="" required>
                         <label for="">Autor</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" name="" id="" required>
+                        <input class="libro-edit-pedido anio" type="text" name="" id="" required>
                         <label for="">Año de fabricación</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" name="" id="" required>
-                        <label for="">Cantidad ejemplares</label>
+                        <input class="libro-edit-pedido edicion" type="text" name="" id="" required>
+                        <label for="">Número de Ejemplares</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" name="" id="" required>
+                        <input class="libro-edit-pedido edicion" type="text" name="" id="" required>
+                        <label for="">Edición</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input class="libro-edit-pedido ubicacion" type="text" name="" id="" required>
+                        <label for="">Ubicación</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input class="libro-edit-pedido observacion" type="text" name="" id="" required>
                         <label for="">Observaciones</label>
                     </div>
 
@@ -1150,7 +1158,7 @@
 
                 
                 <div class="modal-form1-btns">
-                    <button type="submit">Confirmar</button>
+                    <button type="submit" class="confirm-modal-edit-libro-pedido">Confirmar</button>
                     <button type="button" class="cancel-modal-edit-libro-pedido">Cancelar</button>
                 </div>
 
@@ -1170,31 +1178,31 @@
                 
                 <div class="modal-form1-inputs">
                     <div class="modal-form1-input-item">
-                        <input type="text" id="" required>
+                        <input type="text" class="libro-edit titulo" id="" required>
                         <label for="">Titulo</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" name="" id="" required>
+                        <input type="text" class="libro-edit editorial" name="" id="" required>
                         <label for="">Editorial</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" name="" id="" required>
+                        <input type="text" class="libro-edit autor" name="" id="" required>
                         <label for="">Autor</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" name="" id="" required>
+                        <input type="text" class="libro-edit anio" name="" id="" required>
                         <label for="">Año de fabricación</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" name="" id="" required>
+                        <input type="text" class="libro-edit edicion" name="" id="" required>
                         <label for="">Número de edición</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" name="" id="" required>
+                        <input type="text" class="libro-edit ubicacion" name="" id="" required>
                         <label for="">Ubicación en biblioteca</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" name="" id="" required>
+                        <input type="text" class="libro-edit observacion" name="" id="" required>
                         <label for="">Observaciones</label>
                     </div>
 
@@ -1202,7 +1210,7 @@
 
                 
                 <div class="modal-form1-btns">
-                    <button type="submit">Confirmar</button>
+                    <button type="button">Confirmar</button>
                     <button type="button" class="cancel-modal-edit-libro">Cancelar</button>
                 </div>
 

@@ -16,12 +16,23 @@ var campoUbicacionAdd = document.querySelector(".libro-add.ubicacion");
 var campoObservacionAdd = document.querySelector(".libro-add.observacion");
 
 
-
-
+//Editar libro + modal
 var modalEditLibroClose = document.querySelector(".close-modal-edit-libro");
 var modalEditLibroCancel = document.querySelector(".cancel-modal-edit-libro");
 var modalEditLibro = document.querySelector(".modal-frame.modal-edit-libro");
 var modalEditLibroOpen = document.querySelectorAll(".edit-libro");
+var modalEditBotonSend = document.querySelector("confirm-modal-edit-libro");
+var modalStatusEdit = document.querySelector(".db-edit-libro");
+
+var campoTituloEdit = document.querySelector(".libro-edit.titulo");
+var campoEditorialEdit = document.querySelector(".libro-edit.editorial");
+var campoAutorEdit = document.querySelector(".libro-edit.autor");
+var campoAnioEdit = document.querySelector(".libro-edit.anio");
+var campoEdicionEdit = document.querySelector(".libro-edit.edicion");
+var campoUbicacionEdit = document.querySelector(".libro-edit.ubicacion");
+var campoObservacionEdit = document.querySelector(".libro-edit.observacion");
+
+
 
 var modalPedidoLibroClose = document.querySelector(".close-modal-edit-libro-pedido");
 var modalPedidolibroCancel = document.querySelector(".cancel-modal-edit-libro-pedido");
@@ -121,7 +132,7 @@ class LibroController{
     solicitudAjaxBuscar(data, target){
         let datasend = {"search": data};
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "php/respuestaServidor.php", true);
+        xhr.open("POST", "controlador/libros_controlador.php", true);
         xhr.setRequestHeader("Content-Type", "application/json");
     
         xhr.onreadystatechange = function () {
@@ -182,7 +193,7 @@ class LibroController{
         let data = {accion : libro};
         
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "php/libroController.php", true);
+        xhr.open("POST", "controlador/libros_controlador.php", true);
         xhr.setRequestHeader("Content-Type", "application/json");
     
         xhr.onreadystatechange = function () {
@@ -198,7 +209,14 @@ class LibroController{
                             modalStatusAdd.innerHTML = '<span class="icon-blocked"> No se ha podido agregar el libro</span>';
                         }
                         break;
-                    
+                    case "edit":
+                        if(response.status == "ok"){
+                            modalStatusEdit.innerHTML = '<span class="icon-checkmark"> Libro agregado exitosamente</span>';
+                            
+                        }else{
+                            modalStatusEdit.innerHTML = '<span class="icon-blocked"> No se ha podido agregar el libro</span>';
+                        }
+                        break;
                 }
 
             } else if (xhr.readyState == 4 && xhr.status != 200) {
@@ -233,4 +251,19 @@ modalAddBotonSend.addEventListener("click",()=>{
     campoObservacionAdd.value);
 
     libroCtrl.solicitudAjaxABM(libro.toJson(),"add");
+});
+
+// Eventos editar libro
+
+modalEditBotonSend.addEventListener("click", ()=>{
+    let libro = new Libro(
+        campoTituloEdit.value,
+        campoEditorialEdit.value,
+        campoAutorEdit.value,
+        campoAnioEdit.value,
+        campoEdicionEdit.value,
+        campoUbicacionEdit.value,
+        campoObservacionEdit.value);
+    
+    libroCtrl.solicitudAjaxABM(libro.toJson(),"edit");
 });
