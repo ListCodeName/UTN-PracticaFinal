@@ -1,24 +1,3 @@
-modalAddLibroClose = document.querySelector(".close-modal-add-libro");
-modalAddLibroCancel = document.querySelector(".cancel-modal-add-libro");
-modalAddLibro = document.querySelector(".modal-add-libro");
-modalAddLibroOpen = document.querySelector(".add-new-libro");
-
-modalEditLibroClose = document.querySelector(".close-modal-edit-libro");
-modalEditLibroCancel = document.querySelector(".cancel-modal-edit-libro");
-modalEditLibro = document.querySelector(".modal-frame.modal-edit-libro");
-modalEditLibroOpen = document.querySelectorAll(".edit-libro");
-
-modalPedidoLibroClose = document.querySelector(".close-modal-edit-libro-pedido");
-modalPedidolibroCancel = document.querySelector(".cancel-modal-edit-libro-pedido");
-modalPedidoLibro = document.querySelector(".modal-edit-libro-pedido");
-modalPedidoLibroOpen = document.querySelectorAll(".edit-libro-pedido");
-
-modalDelLibroClose = document.querySelector(".close-modal-del-libro");
-modalDelLibroCancel = document.querySelector(".cancel-modal-del-libro");
-modalDelLibro = document.querySelector(".modal-del-libro");
-modalDelLibroOpen = document.querySelectorAll(".del-libro");
-
-
 modalEditLibroClose.addEventListener("click", ()=>{
     modalEditLibro.classList.remove('active');
 });
@@ -76,4 +55,5 @@ modalAddLibroCancel.addEventListener("click", ()=>{
 
 modalAddLibroOpen.addEventListener("click",()=>{
     modalAddLibro.classList.add('active');
+
 });

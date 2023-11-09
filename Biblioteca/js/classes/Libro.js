@@ -1,3 +1,37 @@
+//Elementos de la vista libro
+var modalAddLibroClose = document.querySelector(".close-modal-add-libro");
+var modalAddLibroCancel = document.querySelector(".cancel-modal-add-libro");
+var modalAddLibro = document.querySelector(".modal-add-libro");
+var modalAddLibroOpen = document.querySelector(".add-new-libro");
+
+var modalEditLibroClose = document.querySelector(".close-modal-edit-libro");
+var modalEditLibroCancel = document.querySelector(".cancel-modal-edit-libro");
+var modalEditLibro = document.querySelector(".modal-frame.modal-edit-libro");
+var modalEditLibroOpen = document.querySelectorAll(".edit-libro");
+
+var modalPedidoLibroClose = document.querySelector(".close-modal-edit-libro-pedido");
+var modalPedidolibroCancel = document.querySelector(".cancel-modal-edit-libro-pedido");
+var modalPedidoLibro = document.querySelector(".modal-edit-libro-pedido");
+var modalPedidoLibroOpen = document.querySelectorAll(".edit-libro-pedido");
+
+var modalDelLibroClose = document.querySelector(".close-modal-del-libro");
+var modalDelLibroCancel = document.querySelector(".cancel-modal-del-libro");
+var modalDelLibro = document.querySelector(".modal-del-libro");
+var modalDelLibroOpen = document.querySelectorAll(".del-libro");
+
+var campoTituloAdd = document.querySelector(".libro-add.titulo");
+var campoEditorialAdd = document.querySelector(".libro-add.editorial");
+var campoAutorAdd = document.querySelector(".libro-add.autor");
+var campoAnioAdd = document.querySelector(".libro-add.anio");
+var campoEdicionAdd = document.querySelector(".libro-add.edicion");
+var campoUbicacionAdd = document.querySelector(".libro-add.ubicacion");
+var campoObservacionAdd = document.querySelector(".libro-add.observacion");
+
+
+
+//Fin elementos 
+
+
 class Libro{
     
     constructor(isbn, titulo, autor, ubicacionFisica, editorial, materia, lugarEdicion, anio, serie, observaciones){
@@ -97,16 +131,6 @@ class LibroController{
                     document.querySelector(target).innerHTML = listado;
 
                     //Agregar eventos
-                    modalEditLibroClose = document.querySelector(".close-modal-edit-libro");
-                    modalEditLibroCancel = document.querySelector(".cancel-modal-edit-libro");
-                    modalEditLibro = document.querySelector(".modal-frame.modal-edit-libro");
-                    modalEditLibroOpen = document.querySelectorAll(".edit-libro");
-
-                    modalDelLibroClose = document.querySelector(".close-modal-del-libro");
-                    modalDelLibroCancel = document.querySelector(".cancel-modal-del-libro");
-                    modalDelLibro = document.querySelector(".modal-del-libro");
-                    modalDelLibroOpen = document.querySelectorAll(".del-libro");
-
                     for (var i = 0; i < modalDelLibroOpen.length; i++) {
                 
                         modalEditLibroOpen[i].addEventListener("click",()=>{
@@ -179,3 +203,7 @@ var libroCtrl = new LibroController();
 document.querySelector(".icon-search.buscarLibroBM").addEventListener("click",()=>{
     libroCtrl.solicitudAjaxBuscar(document.querySelector(".inputLibroBM").value, ".bm-libro-result.librosBM");
 });
+
+// Eventos añadir libro
+
+//document.querySelector()
