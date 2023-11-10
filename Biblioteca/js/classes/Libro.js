@@ -51,8 +51,8 @@ var modalDelLibroOpen = document.querySelectorAll(".del-libro");
 
 class Libro{
     
-    constructor(isbn, titulo, autor, ubicacionFisica, editorial, materia, lugarEdicion, anio, serie, observaciones){
-        this.isbn = isbn;
+    constructor(idLibro, titulo, autor, ubicacionFisica, editorial, materia, lugarEdicion, anio, serie, observaciones){
+        this.idLibro = idLibro;
         this.titulo = titulo;
         this.autor = autor;
         this.ubicacionFisica = ubicacionFisica;
@@ -75,8 +75,8 @@ class Libro{
                     '<span class="icon-library" title="Editorial"><p>'+this.editorial+'</p></span>'+
                 '</div>'+
                 '<div class="add-pre-btns box-type1-btns">'+
-                    '<span isbn="'+this.isbn+'" class="icon-pencil edit-libro"></span>'+
-                    '<span isbn="'+this.isbn+'" class="icon-bin del-libro"></span>'+
+                    '<span idLibro="'+this.idLibro+'" class="icon-pencil edit-libro"></span>'+
+                    '<span idLibro="'+this.idLibro+'" class="icon-bin del-libro"></span>'+
                 '</div>'+
             '</div>';
     }
@@ -98,7 +98,7 @@ class Libro{
 
     toJson(){
         return {
-            "isbn" : this.isbn,
+            "idLibro" : this.idLibro,
             "titulo" : this.titulo,
             "autor" : this.autor,
             "ubicacionFisica" : this.ubicacionFisica,
@@ -124,15 +124,15 @@ class LibroController{
 
     buscarLibroPorid(id){
         this.listaLibrosBM.forEach(function (l) {
-            if(l.isbn == id)
-                return new Libro(l.isbn, l.titulo, l.autor, l.ubicacionFisica, l.editorial, l.materia, l.lugarEdicion, l.anio, l.serie, l.observaciones);
+            if(l.idLibro == id)
+                return new Libro(l.idLibro, l.titulo, l.autor, l.ubicacionFisica, l.editorial, l.materia, l.lugarEdicion, l.anio, l.serie, l.observaciones);
         });
     }
 
     solicitudAjaxBuscar(data, target){
         let datasend = {"search": data};
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "controlador/libros_controlador.php", true);
+        xhr.open("POST", "respuestaDelServer.php", true);
         xhr.setRequestHeader("Content-Type", "application/json");
     
         xhr.onreadystatechange = function () {
@@ -142,7 +142,7 @@ class LibroController{
 
                 if(this.listaLibrosBM){
                     this.listaLibrosBM.forEach(function (l) {
-                        listado += (new Libro(l.isbn, l.titulo, l.autor, l.ubicacionFisica, l.editorial, l.materia, l.lugarEdicion, l.anio, l.serie, l.observaciones)).printBoxLibroBM();
+                        listado += (new Libro(l.idLibro, l.titulo, l.autor, l.ubicacionFisica, l.editorial, l.materia, l.lugarEdicion, l.anio, l.serie, l.observaciones)).printBoxLibroBM();
                     });
 
                     document.querySelector(target).innerHTML = listado;

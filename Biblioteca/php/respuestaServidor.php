@@ -13,7 +13,8 @@ $libro = array(
     'observaciones' => 'Un libro muy interesante'
 );
 
-$data = array('add' => $libro);
+$data = array();
+
 
 $arreglo = array($libro); 
 array_push($arreglo, $libro);
