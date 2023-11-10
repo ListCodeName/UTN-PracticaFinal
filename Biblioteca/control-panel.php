@@ -312,7 +312,7 @@
         </form>
     </section>
 
-    <section class="frame-libros">
+    <section class="frame-libros active">
         <form action="" class="form-container">
             <h1>Gestión de Libros</h1>
             <article class="a-libro">
@@ -328,7 +328,7 @@
                     <div class="frame-filters-select-container">
                         <span class="icon-play3"></span>
 
-                        <select name="" id="">
+                        <select name="" id="" class="filtro-libro-pedido">
                             <option value="">por Titulo (ASC)</option>
                             <option value="">por Titulo (DESC)</option>
                             <option value="">por Autor (ASC)</option>
@@ -404,13 +404,14 @@
                     <div class="frame-filters-select-container">
                         <span class="icon-play3"></span>
 
-                        <select name="" id="">
-                            <option value="">por Titulo (ASC)</option>
-                            <option value="">por Titulo (DESC)</option>
-                            <option value="">por Autor (ASC)</option>
-                            <option value="">por Autor (DESC)</option>
-                            <option value="">por Materia (ASC)</option>
-                            <option value="">por Materia (DESC)</option>
+                        <select name="" id="" class="filtro-libro-bm">
+                            <option value="">Sin filtros</option>
+                            <option value="titulo ASC">por Titulo (ASC)</option>
+                            <option value="titulo DESC">por Titulo (DESC)</option>
+                            <option value="autor ASC">por Autor (ASC)</option>
+                            <option value="autor DESC">por Autor (DESC)</option>
+                            <option value="materia ASC">por Materia (ASC)</option>
+                            <option value="materia DESC">por Materia (DESC)</option>
     
                         </select>    
                         
@@ -1138,7 +1139,7 @@
                         <label for="">Año de fabricación</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input class="libro-edit-pedido edicion" type="text" name="" id="" required>
+                        <input class="libro-edit-pedido ejemplares" type="text" name="" id="" required>
                         <label for="">Número de Ejemplares</label>
                     </div>
                     <div class="modal-form1-input-item">
@@ -1153,6 +1154,10 @@
                         <input class="libro-edit-pedido observacion" type="text" name="" id="" required>
                         <label for="">Observaciones</label>
                     </div>
+
+                </div>
+
+                <div class="modal-form1-status db-edit-libro-pedido">
 
                 </div>
 
@@ -1208,9 +1213,13 @@
 
                 </div>
 
+                <div class="modal-form1-status db-edit-libro-pedido">
+
+                </div>
+
                 
                 <div class="modal-form1-btns">
-                    <button type="button">Confirmar</button>
+                    <button type="button" class="confirm-modal-edit-libro">Confirmar</button>
                     <button type="button" class="cancel-modal-edit-libro">Cancelar</button>
                 </div>
 

@@ -1,10 +1,17 @@
 //Elementos de la vista libro
+
+//Buscar libro
+var filtroBuscarLibrosBM = document.querySelector(".filtro-libro-bm");
+var botonBuscarLibrosBM = document.querySelector(".icon-search.buscarLibroBM");
+var inputBuscarLibrosBM = document.querySelector(".inputLibroBM");
+var listadoResultadosLibrosBM = document.querySelector(".bm-libro-result.librosBM");
+
 //Agregar libro + Modal
 var modalAddLibroClose = document.querySelector(".close-modal-add-libro");
 var modalAddLibroCancel = document.querySelector(".cancel-modal-add-libro");
 var modalAddLibro = document.querySelector(".modal-add-libro");
 var modalAddLibroOpen = document.querySelector(".add-new-libro");
-var modalAddBotonSend = document.querySelector("confirm-modal-add-libro");
+var modalAddBotonSend = document.querySelector(".confirm-modal-add-libro");
 var modalStatusAdd = document.querySelector(".db-add-libro");
 
 var campoTituloAdd = document.querySelector(".libro-add.titulo");
@@ -21,7 +28,7 @@ var modalEditLibroClose = document.querySelector(".close-modal-edit-libro");
 var modalEditLibroCancel = document.querySelector(".cancel-modal-edit-libro");
 var modalEditLibro = document.querySelector(".modal-frame.modal-edit-libro");
 var modalEditLibroOpen = document.querySelectorAll(".edit-libro");
-var modalEditBotonSend = document.querySelector("confirm-modal-edit-libro");
+var modalEditBotonSend = document.querySelector(".confirm-modal-edit-libro");
 var modalStatusEdit = document.querySelector(".db-edit-libro");
 
 var campoTituloEdit = document.querySelector(".libro-edit.titulo");
@@ -33,11 +40,24 @@ var campoUbicacionEdit = document.querySelector(".libro-edit.ubicacion");
 var campoObservacionEdit = document.querySelector(".libro-edit.observacion");
 
 
-
+//Editar libro pedido + modal pedido
 var modalPedidoLibroClose = document.querySelector(".close-modal-edit-libro-pedido");
 var modalPedidolibroCancel = document.querySelector(".cancel-modal-edit-libro-pedido");
 var modalPedidoLibro = document.querySelector(".modal-edit-libro-pedido");
 var modalPedidoLibroOpen = document.querySelectorAll(".edit-libro-pedido");
+var modalEditBotonSend = document.querySelector(".confirm-modal-edit-libro-pedido");
+var modalStatusEdit = document.querySelector(".db-edit-libro-pedido");
+
+var campoTituloEdit = document.querySelector(".libro-edit-pedido.titulo");
+var campoEditorialEdit = document.querySelector(".libro-edit-pedido.editorial");
+var campoAutorEdit = document.querySelector(".libro-edit-pedido.autor");
+var campoAnioEdit = document.querySelector(".libro-edit-pedido.anio");
+var campoEjemplaresEdit = document.querySelector(".libro-edit-pedido.ejemplares");
+var campoEdicionEdit = document.querySelector(".libro-edit-pedido.edicion");
+var campoUbicacionEdit = document.querySelector(".libro-edit-pedido.ubicacion");
+var campoObservacionEdit = document.querySelector(".libro-edit-pedido.observacion");
+
+
 
 var modalDelLibroClose = document.querySelector(".close-modal-del-libro");
 var modalDelLibroCancel = document.querySelector(".cancel-modal-del-libro");
@@ -47,6 +67,10 @@ var modalDelLibroOpen = document.querySelectorAll(".del-libro");
 
 
 //Fin elementos 
+
+
+
+
 
 
 class Libro{
@@ -129,10 +153,10 @@ class LibroController{
         });
     }
 
-    solicitudAjaxBuscar(data, target){
-        let datasend = {"search": data};
+    solicitudAjaxBuscar(target, filtros, data){
+        let datasend = {"funcion" : "search", "filtros": filtros, "data" : data};
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "respuestaDelServer.php", true);
+        xhr.open("POST", "controlador/libros_controlador.php", true);
         xhr.setRequestHeader("Content-Type", "application/json");
     
         xhr.onreadystatechange = function () {
@@ -145,7 +169,7 @@ class LibroController{
                         listado += (new Libro(l.idLibro, l.titulo, l.autor, l.ubicacionFisica, l.editorial, l.materia, l.lugarEdicion, l.anio, l.serie, l.observaciones)).printBoxLibroBM();
                     });
 
-                    document.querySelector(target).innerHTML = listado;
+                    target.innerHTML = listado;
 
                     //Agregar eventos
                     for (var i = 0; i < modalDelLibroOpen.length; i++) {
@@ -234,8 +258,9 @@ var libroCtrl = new LibroController();
 // Eventos de libros
 
 // Evento buscar
-document.querySelector(".icon-search.buscarLibroBM").addEventListener("click",()=>{
-    libroCtrl.solicitudAjaxBuscar(document.querySelector(".inputLibroBM").value, ".bm-libro-result.librosBM");
+botonBuscarLibrosBM.addEventListener("click",()=>{
+    alert(filtroBuscarLibrosBM.value);
+    libroCtrl.solicitudAjaxBuscar(listadoResultadosLibrosBM, filtroBuscarLibrosBM.value, inputBuscarLibrosBM.value);
 });
 
 // Eventos añadir libro
