@@ -352,9 +352,9 @@
                             <span class="icon-calendar"><p>Fecha solicitada: 16/10/2023</p></span>
                         </div>
                         <div class="add-lp-btns box-type1-btns">
-                            <span class="icon-checkmark"></span>
-                            <span class="icon-pencil edit-libro-pedido"></span>
-                            <span class="icon-cross"></span>
+                            <span class="icon-checkmark" idPedido="123"></span>
+                            <span class="icon-pencil edit-libro-pedido" idPedido="123"></span>
+                            <span class="icon-cross" idPedido="123"></span>
                         </div>
                     </div>
 

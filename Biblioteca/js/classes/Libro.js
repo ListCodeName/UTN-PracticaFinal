@@ -29,7 +29,7 @@ var campoObservacionAdd = document.querySelector(".libro-add.observacion");
 var modalEditLibroClose = document.querySelector(".close-modal-edit-libro");
 var modalEditLibroCancel = document.querySelector(".cancel-modal-edit-libro");
 var modalEditLibro = document.querySelector(".modal-frame.modal-edit-libro");
-var modalEditLibroOpen = document.querySelectorAll(".edit-libro");
+var botonEditLibroOpen = document.querySelectorAll(".edit-libro");
 var modalEditBotonSend = document.querySelector(".confirm-modal-edit-libro");
 var modalStatusEdit = document.querySelector(".db-edit-libro");
 
@@ -46,7 +46,7 @@ var campoObservacionEdit = document.querySelector(".libro-edit.observacion");
 var modalPedidoLibroClose = document.querySelector(".close-modal-edit-libro-pedido");
 var modalPedidolibroCancel = document.querySelector(".cancel-modal-edit-libro-pedido");
 var modalPedidoLibro = document.querySelector(".modal-edit-libro-pedido");
-var modalPedidoLibroOpen = document.querySelectorAll(".edit-libro-pedido");
+var botonPedidoLibroOpen = document.querySelectorAll(".edit-libro-pedido");
 var modalEditBotonSend = document.querySelector(".confirm-modal-edit-libro-pedido");
 var modalStatusEdit = document.querySelector(".db-edit-libro-pedido");
 
@@ -148,6 +148,13 @@ class LibroController{
         this.listaLibrosBM = null;
     }
 
+    cantidadLibros(){
+        if(this.listaLibrosBM)
+            return this.listaLibrosBM.length;
+        else
+            return 0;
+    }
+
     buscarLibroPorid(id){
         this.listaLibrosBM.forEach(function (l) {
             if(l.idLibro == id)
@@ -176,7 +183,7 @@ class LibroController{
                     //Agregar eventos
                     for (var i = 0; i < modalDelLibroOpen.length; i++) {
                 
-                        modalEditLibroOpen[i].addEventListener("click",()=>{
+                        botonEditLibroOpen[i].addEventListener("click",()=>{
                             modalEditLibro.classList.add('active');
                         });
                         
@@ -275,6 +282,15 @@ modalAddLibroCancel.addEventListener("click", ()=>{
 });
 
 modalAddLibroOpen.addEventListener("click",()=>{
+    campoTituloAdd.value = "";
+    campoAutorAdd.value = "";
+    campoUbicacionAdd.value = "";
+    campoEditorialAdd.value = "";
+    campoMaterialAdd.value = "";
+    campoOrigenAdd.value = "";
+    campoAnioAdd.value = "";
+    campoEdicionAdd.value = "";
+    campoObservacionAdd.value = "";
     modalAddLibro.classList.add('active');
 
 });
@@ -296,6 +312,21 @@ modalAddBotonSend.addEventListener("click",()=>{
 
 // Eventos editar libro
 
+modalEditLibroClose.addEventListener("click", ()=>{
+    modalEditLibro.classList.remove('active');
+});
+
+modalEditLibroCancel.addEventListener("click", ()=>{
+    modalEditLibro.classList.remove('active');
+});
+
+for (let i = 0; i < libroCtrl.cantidadLibros(); i++) {
+    botonEditLibroOpen[i].addEventListener("click",()=>{
+        
+        modalEditLibro.classList.add('active');
+    });
+}
+
 modalEditBotonSend.addEventListener("click", ()=>{
     let libro = new Libro(null,
         campoTituloEdit.value,
@@ -310,3 +341,22 @@ modalEditBotonSend.addEventListener("click", ()=>{
     
     libroCtrl.solicitudAjaxABM(libro.toJson(),"edit");
 });
+
+
+// Eventos eliminar libro
+
+for (let i = 0; i < libroCtrl.cantidadLibros(); i++) {
+    modalDelLibroOpen[i].addEventListener("click",()=>{
+        modalDelLibro.classList.add('active');
+    });
+}
+
+modalDelLibroClose.addEventListener("click", ()=>{
+    modalDelLibro.classList.remove('active');
+});
+
+modalDelLibroCancel.addEventListener("click", ()=>{
+    modalDelLibro.classList.remove('active');
+});
+
+alert(botonPedidoLibroOpen.getAttribute("idPedido"));
