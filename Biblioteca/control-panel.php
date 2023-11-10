@@ -1072,12 +1072,24 @@
                         <label for="">Titulo</label>
                     </div>
                     <div class="modal-form1-input-item">
+                        <input class="libro-add autor" type="text" name="" id="" required>
+                        <label for="">Autor</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input class="libro-add ubicacion" type="text" name="" id="" required>
+                        <label for="">Ubicación en biblioteca</label>
+                    </div>
+                    <div class="modal-form1-input-item">
                         <input class="libro-add editorial" type="text" name="" id="" required>
                         <label for="">Editorial</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input class="libro-add autor" type="text" name="" id="" required>
-                        <label for="">Autor</label>
+                        <input class="libro-add materia" type="text" name="" id="" required>
+                        <label for="">Materia</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input class="libro-add origen" type="text" name="" id="" required>
+                        <label for="">Lugar de edición</label>
                     </div>
                     <div class="modal-form1-input-item">
                         <input class="libro-add anio" type="text" name="" id="" required>
@@ -1085,11 +1097,7 @@
                     </div>
                     <div class="modal-form1-input-item">
                         <input class="libro-add edicion" type="text" name="" id="" required>
-                        <label for="">Número de edición</label>
-                    </div>
-                    <div class="modal-form1-input-item">
-                        <input class="libro-add ubicacion" type="text" name="" id="" required>
-                        <label for="">Ubicación en biblioteca</label>
+                        <label for="">Número de serie</label>
                     </div>
                     <div class="modal-form1-input-item">
                         <input class="libro-add observacion" type="text" name="" id="" required>

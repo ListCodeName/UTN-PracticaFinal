@@ -15,11 +15,13 @@ var modalAddBotonSend = document.querySelector(".confirm-modal-add-libro");
 var modalStatusAdd = document.querySelector(".db-add-libro");
 
 var campoTituloAdd = document.querySelector(".libro-add.titulo");
-var campoEditorialAdd = document.querySelector(".libro-add.editorial");
 var campoAutorAdd = document.querySelector(".libro-add.autor");
+var campoUbicacionAdd = document.querySelector(".libro-add.ubicacion");
+var campoEditorialAdd = document.querySelector(".libro-add.editorial");
+var campoMaterialAdd = document.querySelector(".libro-add.materia");
+var campoOrigenAdd = document.querySelector(".libro-add.origen");
 var campoAnioAdd = document.querySelector(".libro-add.anio");
 var campoEdicionAdd = document.querySelector(".libro-add.edicion");
-var campoUbicacionAdd = document.querySelector(".libro-add.ubicacion");
 var campoObservacionAdd = document.querySelector(".libro-add.observacion");
 
 
@@ -214,7 +216,7 @@ class LibroController{
     }
 
     solicitudAjaxABM(libro, accion){
-        let data = {accion : libro};
+        let data = {"funcion" : accion, "data" : libro};
         
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "controlador/libros_controlador.php", true);
@@ -259,20 +261,34 @@ var libroCtrl = new LibroController();
 
 // Evento buscar
 botonBuscarLibrosBM.addEventListener("click",()=>{
-    alert(filtroBuscarLibrosBM.value);
     libroCtrl.solicitudAjaxBuscar(listadoResultadosLibrosBM, filtroBuscarLibrosBM.value, inputBuscarLibrosBM.value);
 });
 
 // Eventos añadir libro
 
+modalAddLibroClose.addEventListener("click", ()=>{
+    modalAddLibro.classList.remove('active');
+});
+
+modalAddLibroCancel.addEventListener("click", ()=>{
+    modalAddLibro.classList.remove('active');
+});
+
+modalAddLibroOpen.addEventListener("click",()=>{
+    modalAddLibro.classList.add('active');
+
+});
+
 modalAddBotonSend.addEventListener("click",()=>{
-    let libro = new Libro(
+    let libro = new Libro(null,
     campoTituloAdd.value,
-    campoEditorialAdd.value,
     campoAutorAdd.value,
+    campoUbicacionAdd.value,
+    campoEditorialAdd.value,
+    campoMaterialAdd.value,
+    campoOrigenAdd.value,
     campoAnioAdd.value,
     campoEdicionAdd.value,
-    campoUbicacionAdd.value,
     campoObservacionAdd.value);
 
     libroCtrl.solicitudAjaxABM(libro.toJson(),"add");
@@ -281,13 +297,15 @@ modalAddBotonSend.addEventListener("click",()=>{
 // Eventos editar libro
 
 modalEditBotonSend.addEventListener("click", ()=>{
-    let libro = new Libro(
+    let libro = new Libro(null,
         campoTituloEdit.value,
-        campoEditorialEdit.value,
         campoAutorEdit.value,
+        campoUbicacionEdit.value,
+        campoEditorialEdit.value,
+        campoMaterialEdit.value,
+        campoOrigenEdit.value,
         campoAnioEdit.value,
         campoEdicionEdit.value,
-        campoUbicacionEdit.value,
         campoObservacionEdit.value);
     
     libroCtrl.solicitudAjaxABM(libro.toJson(),"edit");

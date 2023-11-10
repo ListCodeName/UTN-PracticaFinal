@@ -43,17 +43,3 @@ for (var i = 0; i < modalDelLibroOpen.length; i++) {
     });
     
 }
-
-
-modalAddLibroClose.addEventListener("click", ()=>{
-    modalAddLibro.classList.remove('active');
-});
-
-modalAddLibroCancel.addEventListener("click", ()=>{
-    modalAddLibro.classList.remove('active');
-});
-
-modalAddLibroOpen.addEventListener("click",()=>{
-    modalAddLibro.classList.add('active');
-
-});
