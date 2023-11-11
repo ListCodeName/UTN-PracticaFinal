@@ -1,12 +1,14 @@
-//Elementos de la vista libro
+// *****************************************************************
+//              Elementos de la vista libro (GLOBALES)
+// *****************************************************************
 
-//Buscar libro
+// ------------------------  Buscar libro  ------------------------
 var filtroBuscarLibrosBM = document.querySelector(".filtro-libro-bm");
 var botonBuscarLibrosBM = document.querySelector(".icon-search.buscarLibroBM");
 var inputBuscarLibrosBM = document.querySelector(".inputLibroBM");
 var listadoResultadosLibrosBM = document.querySelector(".bm-libro-result.librosBM");
 
-//Agregar libro + Modal
+// ------------------------  Agregar libro + Modal  ------------------------
 var modalAddLibroClose = document.querySelector(".close-modal-add-libro");
 var modalAddLibroCancel = document.querySelector(".cancel-modal-add-libro");
 var modalAddLibro = document.querySelector(".modal-add-libro");
@@ -18,14 +20,14 @@ var campoTituloAdd = document.querySelector(".libro-add.titulo");
 var campoAutorAdd = document.querySelector(".libro-add.autor");
 var campoUbicacionAdd = document.querySelector(".libro-add.ubicacion");
 var campoEditorialAdd = document.querySelector(".libro-add.editorial");
-var campoMaterialAdd = document.querySelector(".libro-add.materia");
+var campoMateriaAdd = document.querySelector(".libro-add.materia");
 var campoOrigenAdd = document.querySelector(".libro-add.origen");
 var campoAnioAdd = document.querySelector(".libro-add.anio");
 var campoEdicionAdd = document.querySelector(".libro-add.edicion");
 var campoObservacionAdd = document.querySelector(".libro-add.observacion");
 
 
-//Editar libro + modal
+// ------------------------  Editar libro + modal  ------------------------
 var modalEditLibroClose = document.querySelector(".close-modal-edit-libro");
 var modalEditLibroCancel = document.querySelector(".cancel-modal-edit-libro");
 var modalEditLibro = document.querySelector(".modal-frame.modal-edit-libro");
@@ -34,15 +36,25 @@ var modalEditBotonSend = document.querySelector(".confirm-modal-edit-libro");
 var modalStatusEdit = document.querySelector(".db-edit-libro");
 
 var campoTituloEdit = document.querySelector(".libro-edit.titulo");
-var campoEditorialEdit = document.querySelector(".libro-edit.editorial");
 var campoAutorEdit = document.querySelector(".libro-edit.autor");
+var campoUbicacionEdit = document.querySelector(".libro-edit.ubicacion");
+var campoEditorialEdit = document.querySelector(".libro-edit.editorial");
+var campoMateriaEdit = document.querySelector(".libro-edit.materia");
+var campoOrigenEdit = document.querySelector(".libro-edit.origen");
 var campoAnioEdit = document.querySelector(".libro-edit.anio");
 var campoEdicionEdit = document.querySelector(".libro-edit.edicion");
-var campoUbicacionEdit = document.querySelector(".libro-edit.ubicacion");
 var campoObservacionEdit = document.querySelector(".libro-edit.observacion");
 
 
-//Editar libro pedido + modal pedido
+// ------------------------ Eliminar libro + modal ------------------------
+var modalDelLibroClose = document.querySelector(".close-modal-del-libro");
+var modalDelLibroCancel = document.querySelector(".cancel-modal-del-libro");
+var modalDelLibro = document.querySelector(".modal-del-libro");
+var modalDelLibroOpen = document.querySelectorAll(".del-libro");
+var campoModalDelLibro = document.querySelector(".icon-user.del-user-id");
+
+
+// ------------------------ Editar libro pedido + modal pedido ------------------------
 var modalPedidoLibroClose = document.querySelector(".close-modal-edit-libro-pedido");
 var modalPedidolibroCancel = document.querySelector(".cancel-modal-edit-libro-pedido");
 var modalPedidoLibro = document.querySelector(".modal-edit-libro-pedido");
@@ -61,15 +73,11 @@ var campoObservacionEdit = document.querySelector(".libro-edit-pedido.observacio
 
 
 
-var modalDelLibroClose = document.querySelector(".close-modal-del-libro");
-var modalDelLibroCancel = document.querySelector(".cancel-modal-del-libro");
-var modalDelLibro = document.querySelector(".modal-del-libro");
-var modalDelLibroOpen = document.querySelectorAll(".del-libro");
 
 
-
-//Fin elementos 
-
+// *****************************************************************
+//                              Fin elementos 
+// *****************************************************************
 
 
 
@@ -215,6 +223,7 @@ class LibroController{
                 }
 
             } else if (xhr.readyState == 4 && xhr.status != 200) {
+                this.listaLibrosBM = null;
                 console.error("Error en la solicitud: " + xhr.status);
             }
         };
@@ -237,17 +246,16 @@ class LibroController{
                     case "add":
                         if(response.status == "ok"){
                             modalStatusAdd.innerHTML = '<span class="icon-checkmark"> Libro agregado exitosamente</span>';
-                            
                         }else{
                             modalStatusAdd.innerHTML = '<span class="icon-blocked"> No se ha podido agregar el libro</span>';
                         }
                         break;
                     case "edit":
                         if(response.status == "ok"){
-                            modalStatusEdit.innerHTML = '<span class="icon-checkmark"> Libro agregado exitosamente</span>';
-                            
+                            modalStatusEdit.innerHTML = '<span class="icon-checkmark"> Libro editado exitosamente</span>';
+                            solicitudAjaxBuscar(listadoResultadosLibrosBM, filtroBuscarLibrosBM.value, inputBuscarLibrosBM.value);
                         }else{
-                            modalStatusEdit.innerHTML = '<span class="icon-blocked"> No se ha podido agregar el libro</span>';
+                            modalStatusEdit.innerHTML = '<span class="icon-blocked"> No se ha podido editar el libro</span>';
                         }
                         break;
                 }
@@ -264,14 +272,17 @@ class LibroController{
 
 var libroCtrl = new LibroController();
 
-// Eventos de libros
 
-// Evento buscar
+// *****************************************************************
+//                           Eventos de libros
+// *****************************************************************
+
+// ------------------------  Evento buscar  ------------------------
 botonBuscarLibrosBM.addEventListener("click",()=>{
     libroCtrl.solicitudAjaxBuscar(listadoResultadosLibrosBM, filtroBuscarLibrosBM.value, inputBuscarLibrosBM.value);
 });
 
-// Eventos añadir libro
+// ------------------------  Eventos añadir libro  ------------------------
 
 modalAddLibroClose.addEventListener("click", ()=>{
     modalAddLibro.classList.remove('active');
@@ -286,7 +297,7 @@ modalAddLibroOpen.addEventListener("click",()=>{
     campoAutorAdd.value = "";
     campoUbicacionAdd.value = "";
     campoEditorialAdd.value = "";
-    campoMaterialAdd.value = "";
+    campoMateriaAdd.value = "";
     campoOrigenAdd.value = "";
     campoAnioAdd.value = "";
     campoEdicionAdd.value = "";
@@ -301,7 +312,7 @@ modalAddBotonSend.addEventListener("click",()=>{
     campoAutorAdd.value,
     campoUbicacionAdd.value,
     campoEditorialAdd.value,
-    campoMaterialAdd.value,
+    campoMateriaAdd.value,
     campoOrigenAdd.value,
     campoAnioAdd.value,
     campoEdicionAdd.value,
@@ -310,7 +321,7 @@ modalAddBotonSend.addEventListener("click",()=>{
     libroCtrl.solicitudAjaxABM(libro.toJson(),"add");
 });
 
-// Eventos editar libro
+// ------------------------  Eventos editar libro  ------------------------
 
 modalEditLibroClose.addEventListener("click", ()=>{
     modalEditLibro.classList.remove('active');
@@ -322,13 +333,27 @@ modalEditLibroCancel.addEventListener("click", ()=>{
 
 for (let i = 0; i < libroCtrl.cantidadLibros(); i++) {
     botonEditLibroOpen[i].addEventListener("click",()=>{
-        
+        let idLibro = botonEditLibroOpen[i].getAttribute("idLibro");
+        let objLibro = libroCtrl.buscarLibroPorid(idLibro);
+
+        campoTituloEdit.value = objLibro.titulo;
+        campoAutorEdit.value = objLibro.autor;
+        campoUbicacionEdit.value = objLibro.ubicacionFisica;
+        campoEditorialEdit.value = objLibro.editorial;
+        campoMaterialEdit.value = objLibro.materia;
+        campoOrigenEdit.value = objLibro.lugarEdicion;
+        campoAnioEdit.value = objLibro.anio;
+        campoEdicionEdit.value = objLibro.serie;
+        campoObservacionEdit.value = objLibro.observaciones;
+
+        modalEditLibro.setAttribute("idLibroTemp", idLibro);
+
         modalEditLibro.classList.add('active');
     });
 }
 
 modalEditBotonSend.addEventListener("click", ()=>{
-    let libro = new Libro(null,
+    let libro = new Libro(modalEditLibro.getAttribute("idLibroTemp"),
         campoTituloEdit.value,
         campoAutorEdit.value,
         campoUbicacionEdit.value,
@@ -343,7 +368,7 @@ modalEditBotonSend.addEventListener("click", ()=>{
 });
 
 
-// Eventos eliminar libro
+// ------------------------  Eventos eliminar libro  ------------------------
 
 for (let i = 0; i < libroCtrl.cantidadLibros(); i++) {
     modalDelLibroOpen[i].addEventListener("click",()=>{
@@ -358,5 +383,3 @@ modalDelLibroClose.addEventListener("click", ()=>{
 modalDelLibroCancel.addEventListener("click", ()=>{
     modalDelLibro.classList.remove('active');
 });
-
-alert(botonPedidoLibroOpen.getAttribute("idPedido"));
