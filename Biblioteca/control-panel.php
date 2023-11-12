@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="vistas/css/normalize-cp.css">
-    <link rel="stylesheet" href="vistas/css/dashboard-menu.css">
+    <link rel="stylesheet" href="css/normalize-cp.css">
+    <link rel="stylesheet" href="css/dashboard-menu.css">
     
-    <link rel="stylesheet" href="vistas/css/cp-user.css">
-    <link rel="stylesheet" href="vistas/css/cp-reserva.css">
-    <link rel="stylesheet" href="vistas/css/cp-libro.css">
-    <link rel="stylesheet" href="vistas/css/cp-prestamo.css">
-    <link rel="stylesheet" href="vistas/css/cp-solicitar.css">
+    <link rel="stylesheet" href="css/cp-user.css">
+    <link rel="stylesheet" href="css/cp-reserva.css">
+    <link rel="stylesheet" href="css/cp-libro.css">
+    <link rel="stylesheet" href="css/cp-prestamo.css">
+    <link rel="stylesheet" href="css/cp-solicitar.css">
 
-    <link rel="stylesheet" href="vistas/css/modal-reserva.css">
-    <link rel="stylesheet" href="vistas/css/modal-prestamo.css">
-    <link rel="stylesheet" href="vistas/css/modal-user-add.css">
-    <link rel="stylesheet" href="vistas/css/modal-user-penal.css">
-    <link rel="stylesheet" href="vistas/css/modal-user-del.css">
+    <link rel="stylesheet" href="css/modal-reserva.css">
+    <link rel="stylesheet" href="css/modal-prestamo.css">
+    <link rel="stylesheet" href="css/modal-user-add.css">
+    <link rel="stylesheet" href="css/modal-user-penal.css">
+    <link rel="stylesheet" href="css/modal-user-del.css">
     
-    <link rel="stylesheet" href="vistas/css/calendario.css">
-    <link rel="stylesheet" href="vistas/css/icomoon.css">
+    <link rel="stylesheet" href="css/calendario.css">
+    <link rel="stylesheet" href="css/icomoon.css">
 
 </head>
 <body>
@@ -58,7 +58,7 @@
 
 
     <!-- Frames -->
-    <section class="frame-usuarios">
+    <section class="frame-usuarios active">
         <form action="" class="form-container">
             <h1>Gestión de Usuarios</h1>
             <article class="a-user">
@@ -125,8 +125,8 @@
                 <h2>Baja, Modificación y Penalidad</h2>
                 <div class="bm-user-buscar">
                     <div class="user-buscador search-type1">
-                        <span class="icon-search buscar-usuario"></span>
-                        <input type="text" name="" id="" placeholder="Ingrese nombre, apellido o dni">
+                        <span class="icon-search buscar-usuario-bm"></span>
+                        <input class="input-buscar-usuario-bm" type="text" name="" id="" placeholder="Ingrese nombre, apellido o dni">
                     </div>
                 </div>
 
@@ -135,7 +135,7 @@
                     <div class="frame-filters-select-container">
                         <span class="icon-play3"></span>
 
-                        <select name="" id="">
+                        <select class="filtro-buscar-usuario-bm" name="" id="">
                             <option value="">por Fecha (ASC)</option>
                             <option value="">por Fecha (DESC)</option>
                             <option value="">por Libro (ASC)</option>
@@ -163,46 +163,6 @@
                             <span class="icon-bin del-user"></span>
                         </div>
                     </div>
-                    <div class="add-pre-item box-type1">
-                        <h4>Pablo Perez</h4>
-                        <div class="add-pre-content box-type1-content">
-                            <span class="icon-home"><p>Alberdi 345</p></span>
-                            <span class="icon-phone"><p>+345515964</p></span>
-                            <span class="icon-mail"><p>pabloperez@gmail.com</p></span>
-                        </div>
-                        <div class="add-pre-btns box-type1-btns">
-                            <span class="icon-hammer2 penal-user"></span>
-                            <span class="icon-pencil edit-user"></span>
-                            <span class="icon-bin del-user"></span>
-                        </div>
-                    </div>
-                    <div class="add-pre-item box-type1">
-                        <h4>Pablo Perez</h4>
-                        <div class="add-pre-content box-type1-content">
-                            <span class="icon-home"><p>Alberdi 345</p></span>
-                            <span class="icon-phone"><p>+345515964</p></span>
-                            <span class="icon-mail"><p>pabloperez@gmail.com</p></span>
-                        </div>
-                        <div class="add-pre-btns box-type1-btns">
-                            <span class="icon-hammer2 penal-user"></span>
-                            <span class="icon-pencil edit-user"></span>
-                            <span class="icon-bin del-user"></span>
-                        </div>
-                    </div>
-                    <div class="add-pre-item box-type1">
-                        <h4>Pablo Perez</h4>
-                        <div class="add-pre-content box-type1-content">
-                            <span class="icon-home"><p>Alberdi 345</p></span>
-                            <span class="icon-phone"><p>+345515964</p></span>
-                            <span class="icon-mail"><p>pabloperez@gmail.com</p></span>
-                        </div>
-                        <div class="add-pre-btns box-type1-btns">
-                            <span class="icon-hammer2 penal-user"></span>
-                            <span class="icon-pencil edit-user"></span>
-                            <span class="icon-bin del-user"></span>
-                        </div>
-                    </div>
-
                 </div>
             </article>
         </form>
@@ -312,7 +272,7 @@
         </form>
     </section>
 
-    <section class="frame-libros active">
+    <section class="frame-libros">
         <form action="" class="form-container">
             <h1>Gestión de Libros</h1>
             <article class="a-libro">
@@ -1323,14 +1283,14 @@
     </div>
 
     <!-- Scripts -->
-    <script src="vistas/js/classes/Libro.js"></script>
-    <script src="vistas/js/calendario.js"></script>
-    <script src="vistas/js/reservas.js"></script>
-    <script src="vistas/js/dashboard-menu.js"></script>
-    <script src="vistas/js/user.js"></script>
-    <script src="vistas/js/libro.js"></script>
-    <script src="vistas/js/prestamo.js"></script>
-    <script src="vistas/js/solicitar-libro.js"></script>
+    <script src="js/classes/Libro.js"></script>
+    <script src="js/calendario.js"></script>
+    <script src="js/reservas.js"></script>
+    <script src="js/dashboard-menu.js"></script>
+    <script src="js/user.js"></script>
+    <script src="js/libro.js"></script>
+    <script src="js/prestamo.js"></script>
+    <script src="js/solicitar-libro.js"></script>
     
 
 </body>
