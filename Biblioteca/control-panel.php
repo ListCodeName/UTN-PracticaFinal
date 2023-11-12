@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/normalize-cp.css">
-    <link rel="stylesheet" href="css/dashboard-menu.css">
+    <link rel="stylesheet" href="vistas/css/normalize-cp.css">
+    <link rel="stylesheet" href="vistas/css/dashboard-menu.css">
     
-    <link rel="stylesheet" href="css/cp-user.css">
-    <link rel="stylesheet" href="css/cp-reserva.css">
-    <link rel="stylesheet" href="css/cp-libro.css">
-    <link rel="stylesheet" href="css/cp-prestamo.css">
-    <link rel="stylesheet" href="css/cp-solicitar.css">
+    <link rel="stylesheet" href="vistas/css/cp-user.css">
+    <link rel="stylesheet" href="vistas/css/cp-reserva.css">
+    <link rel="stylesheet" href="vistas/css/cp-libro.css">
+    <link rel="stylesheet" href="vistas/css/cp-prestamo.css">
+    <link rel="stylesheet" href="vistas/css/cp-solicitar.css">
 
-    <link rel="stylesheet" href="css/modal-reserva.css">
-    <link rel="stylesheet" href="css/modal-prestamo.css">
-    <link rel="stylesheet" href="css/modal-user-add.css">
-    <link rel="stylesheet" href="css/modal-user-penal.css">
-    <link rel="stylesheet" href="css/modal-user-del.css">
+    <link rel="stylesheet" href="vistas/css/modal-reserva.css">
+    <link rel="stylesheet" href="vistas/css/modal-prestamo.css">
+    <link rel="stylesheet" href="vistas/css/modal-user-add.css">
+    <link rel="stylesheet" href="vistas/css/modal-user-penal.css">
+    <link rel="stylesheet" href="vistas/css/modal-user-del.css">
     
-    <link rel="stylesheet" href="css/calendario.css">
-    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="vistas/css/calendario.css">
+    <link rel="stylesheet" href="vistas/css/icomoon.css">
 
 </head>
 <body>
@@ -1255,7 +1255,7 @@
                 
                 <div class="modal-form1-confirmdialog">
                     <p>¿Está seguro de eliminar el siguiente elemento?</p>
-                    <span class="icon-user del-user-id"><p>#123415135 - Caperucita Verde</p></span>
+                    <span class="icon-book del-libro-id"></span>
                 </div>
 
                 <div class="modal-form1-status db-del-libro">
@@ -1323,14 +1323,14 @@
     </div>
 
     <!-- Scripts -->
-    <script src="js/classes/Libro.js"></script>
-    <script src="js/calendario.js"></script>
-    <script src="js/reservas.js"></script>
-    <script src="js/dashboard-menu.js"></script>
-    <script src="js/user.js"></script>
-    <script src="js/libro.js"></script>
-    <script src="js/prestamo.js"></script>
-    <script src="js/solicitar-libro.js"></script>
+    <script src="vistas/js/classes/Libro.js"></script>
+    <script src="vistas/js/calendario.js"></script>
+    <script src="vistas/js/reservas.js"></script>
+    <script src="vistas/js/dashboard-menu.js"></script>
+    <script src="vistas/js/user.js"></script>
+    <script src="vistas/js/libro.js"></script>
+    <script src="vistas/js/prestamo.js"></script>
+    <script src="vistas/js/solicitar-libro.js"></script>
     
 
 </body>
