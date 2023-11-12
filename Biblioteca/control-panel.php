@@ -158,9 +158,9 @@
                             <span class="icon-mail"><p>pabloperez@gmail.com</p></span>
                         </div>
                         <div class="add-pre-btns box-type1-btns">
-                            <span class="icon-hammer2 penal-user"></span>
-                            <span class="icon-pencil edit-user"></span>
-                            <span class="icon-bin del-user"></span>
+                            <span class="icon-hammer2 penal-user-bm"></span>
+                            <span class="icon-pencil edit-user-bm"></span>
+                            <span class="icon-bin del-user-bm"></span>
                         </div>
                     </div>
                 </div>
@@ -763,38 +763,42 @@
                 
                 <div class="modal-form1-inputs">
                     <div class="modal-form1-input-item">
-                        <input type="text" id="" required>
+                        <input class="input-add-user nombre" type="text" id="" required>
                         <label for="">Nombre</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" name="" id="" required>
+                        <input class="input-add-user apellido" type="text" name="" id="" required>
                         <label for="">Apellido</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" name="" id="" required>
+                        <input class="input-add-user dni" type="text" name="" id="" required>
                         <label for="">DNI</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="date" name="" id="" required>
+                        <input class="input-add-user fechaNac" type="date" name="" id="" required>
                         <label for="">Fecha de Nacimiento</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" name="" id="" required>
+                        <input class="input-add-user direccion" type="text" name="" id="" required>
                         <label for="">Domicilio</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" name="" id="" required>
+                        <input class="input-add-user email" type="text" name="" id="" required>
                         <label for="">Email</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" name="" id="" required>
+                        <input class="input-add-user telefono" type="text" name="" id="" required>
                         <label for="">Telefono</label>
                     </div>
                 </div>
 
+                <div class="modal-form1-status db-add-user">
+
+                </div>
+
                 
                 <div class="modal-form1-btns">
-                    <button type="submit">Confirmar</button>
+                    <button type="button" class="confirm-modal-add-user">Confirmar</button>
                     <button type="button" class="cancel-modal-add-user">Cancelar</button>
                 </div>
 
@@ -814,35 +818,38 @@
                 
                 <div class="modal-form1-inputs">
                     <div class="modal-form1-input-item">
-                        <input type="text" value="TextoEjemplo" id="" required>
+                        <input class="input-edit-user nombre" type="text" id="" required>
                         <label for="">Nombre</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" value="TextoEjemplo" name="" id="" required>
+                        <input class="input-edit-user apellido" type="text" name="" id="" required>
                         <label for="">Apellido</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" value="TextoEjemplo" name="" id="" required>
+                        <input class="input-edit-user dni" type="text" name="" id="" required>
                         <label for="">DNI</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="date" value="TextoEjemplo" name="" id="" required>
+                        <input class="input-edit-user fechaNac" type="date" name="" id="" required>
                         <label for="">Fecha de Nacimiento</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" value="TextoEjemplo" name="" id="" required>
+                        <input class="input-edit-user direccion" type="text" name="" id="" required>
                         <label for="">Domicilio</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" value="TextoEjemplo" name="" id="" required>
+                        <input class="input-edit-user email" type="text" name="" id="" required>
                         <label for="">Email</label>
                     </div>
                     <div class="modal-form1-input-item">
-                        <input type="text" value="TextoEjemplo" name="" id="" required>
+                        <input class="input-edit-user telefono" type="text" name="" id="" required>
                         <label for="">Telefono</label>
                     </div>
                 </div>
 
+                <div class="modal-form1-status db-edit-user">
+                    
+                </div>
                 
                 <div class="modal-form1-btns">
                     <button type="submit">Confirmar</button>
