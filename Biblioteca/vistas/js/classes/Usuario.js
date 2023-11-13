@@ -29,8 +29,9 @@ var inputAddUserModalTelefono = document.querySelector(".input-add-user.telefono
 var modalEditUserClose = document.querySelector(".close-modal-edit-user");
 var modalEditUserCancel = document.querySelector(".cancel-modal-edit-user");
 var modalEditUser = document.querySelector(".modal-frame.modal-edit-user");
-var botonEditUserOpen = document.querySelectorAll(".edit-user-bm");
-
+var botonEditUserOpen;
+var botonEditUserSend = document.querySelector(".confirm-modal-edit-user");
+var fieldEditUserStatus = document.querySelector(".modal-form1-status.db-edit-user");
 
 var inputEditUserModalNombre = document.querySelector(".input-edit-user.nombre");
 var inputEditUserModalApellido = document.querySelector(".input-edit-user.apellido");
@@ -46,6 +47,8 @@ var modalPenalUserClose = document.querySelector(".close-modal-penal-user");
 var modalPenalUserCancel = document.querySelector(".cancel-modal-penal-user");
 var modalPenalUser = document.querySelector(".modal-frame.modal-penal-user");
 var botonPenalUserOpen = document.querySelectorAll(".penal-user-bm");
+
+var inputPenalUserModal = document.querySelector(".input-penal-user");
 
 
 // ----------------------- Eliminar Usuario -----------------------
@@ -140,18 +143,18 @@ class UsuarioController{
     }
 
     // ---------------  Metodos clase UsuarioController ---------------
-    cantidadLibros(){
+    cantidadUsuarios(){
         if(this.listaUsuarioBM)
             return this.listaUsuarioBM.length;
         else
             return 0;
     }
 
-    buscarLibroPorid(id){
+    buscarUsuarioPorid(id){
         let aux;
-        this.listaUsuarioBM.forEach(function (l) {
-            if(l.idLibro == id){
-                aux = new Libro(l.idLibro, l.titulo, l.autor, l.ubicacionFisica, l.editorial, l.materia, l.lugarEdicion, l.anio, l.serie, l.observaciones);
+        this.listaUsuarioBM.forEach(function (u) {
+            if(u.idUsuario == id){
+                aux = new Usuario(u.idUsuario, u.nombre, u.apellido, u.dni, u.direccion, u.telefono, u.email, u.fechaNac);
                 return aux.toJson();
             }
         });
@@ -170,22 +173,22 @@ class UsuarioController{
                 let listado = "";
 
 
-                libroCtrl.listaUsuarioBM = this.listaUsuarioBM;
+                UsuarioCtrl.listaUsuarioBM = this.listaUsuarioBM;
 
                 if(this.listaUsuarioBM){
-                    this.listaUsuarioBM.forEach(function (l) {
-                        listado += (new Libro(l.idLibro, l.titulo, l.autor, l.ubicacionFisica, l.editorial, l.materia, l.lugarEdicion, l.anio, l.serie, l.observaciones)).printBoxLibroBM();
+                    this.listaUsuarioBM.forEach(function (u) {
+                        listado += (new Usuario(u.idUsuario, u.nombre, u.apellido, u.dni, u.direccion, u.telefono, u.email, u.fechaNac)).printBoxUsuarioBM();
                     });
 
                     target.innerHTML = listado;
 
                     //Agregar eventos
 
-                    botonEditLibroOpen = document.querySelectorAll(".edit-libro");
-                    botonDelLibroOpen = document.querySelectorAll(".del-libro");
+                    botonEditUserOpen = document.querySelectorAll(".edit-user-bm");
+                    botonDelUserOpen = document.querySelectorAll(".del-user-bm");
 
-                    agregarEventoLibrosEditar();
-                    agregarEventoLibrosEliminar();
+                    agregarEventoUsuariosEditar();
+                    agregarEventoUsuariosEliminar();
 
                     //fin agregar eventos
 
@@ -216,25 +219,25 @@ class UsuarioController{
                 switch(accion){
                     case "add":
                         if(response.status == "ok"){
-                            modalStatusAdd.innerHTML = '<span class="icon-checkmark"> Usuario agregado exitosamente</span>';
+                            fieldAddUserStatus.innerHTML = '<span class="icon-checkmark"> Usuario agregado exitosamente</span>';
                         }else{
-                            modalStatusAdd.innerHTML = '<span class="icon-blocked"> No se ha podido agregar el usuario</span>';
+                            fieldAddUserStatus.innerHTML = '<span class="icon-blocked"> No se ha podido agregar el usuario</span>';
                         }
                         break;
                     case "edit":
                         if(response.status == "ok"){
-                            modalStatusEdit.innerHTML = '<span class="icon-checkmark"> Libro editado exitosamente</span>';
-                            solicitudAjaxBuscar(listadoResultadosLibrosBM, filtroBuscarLibrosBM.value, inputBuscarLibrosBM.value);
+                            fieldEditUserStatus.innerHTML = '<span class="icon-checkmark"> Usuario editado exitosamente</span>';
+                            solicitudAjaxBuscar(fieldBuscarUsuarioBM, filtrosBuscarUsuarioBM.value, inputBuscarUsuarioBM.value);
                         }else{
-                            modalStatusEdit.innerHTML = '<span class="icon-blocked"> No se ha podido editar el libro</span>';
+                            fieldEditUserStatus.innerHTML = '<span class="icon-blocked"> No se ha podido editar el Usuario</span>';
                         }
                         break;
                     case "del":
                         if(response.status == "ok"){
-                            modalStatusDel.innerHTML = '<span class="icon-checkmark"> Libro eliminado exitosamente</span>';
-                            solicitudAjaxBuscar(listadoResultadosLibrosBM, filtroBuscarLibrosBM.value, inputBuscarLibrosBM.value);
+                            fieldDelUserStatus.innerHTML = '<span class="icon-checkmark"> Usuario eliminado exitosamente</span>';
+                            solicitudAjaxBuscar(fieldBuscarUsuarioBM, filtrosBuscarUsuarioBM.value, inputBuscarUsuarioBM.value);
                         }else{
-                            modalStatusDel.innerHTML = '<span class="icon-blocked"> No se ha podido eliminar el libro</span>';
+                            fieldDelUserStatus.innerHTML = '<span class="icon-blocked"> No se ha podido eliminar el Usuario</span>';
                         }
                         break;
                     
@@ -250,7 +253,7 @@ class UsuarioController{
 
 }
 
-var libroCtrl = new UsuarioController();
+var UsuarioCtrl = new UsuarioController();
 
 
 

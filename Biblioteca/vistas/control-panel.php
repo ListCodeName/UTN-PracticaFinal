@@ -848,11 +848,11 @@
                 </div>
 
                 <div class="modal-form1-status db-edit-user">
-                    
+
                 </div>
                 
                 <div class="modal-form1-btns">
-                    <button type="submit">Confirmar</button>
+                    <button type="submit" class="confirm-modal-edit-user">Confirmar</button>
                     <button type="button" class="cancel-modal-edit-user">Cancelar</button>
                 </div>
 
@@ -872,7 +872,7 @@
                 
                 <div class="modal-form1-inputs user-penalidad">
                     <div class="modal-form1-input-item">
-                        <input type="number" id="" required>
+                        <input class="input-penal-user" type="number" id="" required>
                         <label for="">Penalidad (Horas)</label>
                     </div>
                 </div>
