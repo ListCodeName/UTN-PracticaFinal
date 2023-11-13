@@ -383,8 +383,8 @@ modalDelLibroCancel.addEventListener("click", ()=>{
 
 
 function agregarEventoLibrosEliminar(){
-    for (let i = 0; i < usuarioCtrl.cantidadUsuarios(); i++) {
-        botonDelUserOpen[i].addEventListener("click",()=>{
+    for (let i = 0; i < libroCtrl.cantidadLibros(); i++) {
+        botonDelLibroOpen[i].addEventListener("click",()=>{
             let idLibro = botonDelLibroOpen[i].getAttribute("idLibro");
             let objLibro = libroCtrl.buscarLibroPorid(idLibro);
             

@@ -117,8 +117,8 @@
                             <option value="">Sin Filtros</option>
                             <option value="apellido ASC">por Apellido (ASC)</option>
                             <option value="apellido DESC">por Apellido (DESC)</option>
-                            <option value="domicilio ASC">por Domicilio (ASC)</option>
-                            <option value="domicilio DESC">por Domicilio (DESC)</option>
+                            <option value="direccion ASC">por Domicilio (ASC)</option>
+                            <option value="direccion DESC">por Domicilio (DESC)</option>
     
                         </select>    
                         
@@ -808,6 +808,10 @@
                     <div class="modal-form1-input-item">
                         <input class="input-edit-user telefono" type="text" name="" id="" required>
                         <label for="">Telefono</label>
+                    </div>
+                    <div class="modal-form1-input-item">
+                        <input class="input-edit-user tipoUsuario" type="text" name="" id="" required>
+                        <label for="">Privilegios</label>
                     </div>
                 </div>
 

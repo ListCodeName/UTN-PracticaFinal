@@ -20,7 +20,7 @@ var inputAddUserModalNombre = document.querySelector(".input-add-user.nombre");
 var inputAddUserModalApellido = document.querySelector(".input-add-user.apellido");
 var inputAddUserModalDNI = document.querySelector(".input-add-user.dni");
 var inputAddUserModalFechaNac = document.querySelector(".input-add-user.fechaNac");
-var inputAddUserModalDomicilio = document.querySelector(".input-add-user.direccion");
+var inputAddUserModalDireccion = document.querySelector(".input-add-user.direccion");
 var inputAddUserModalEmail = document.querySelector(".input-add-user.email");
 var inputAddUserModalTelefono = document.querySelector(".input-add-user.telefono");
 
@@ -37,9 +37,10 @@ var inputEditUserModalNombre = document.querySelector(".input-edit-user.nombre")
 var inputEditUserModalApellido = document.querySelector(".input-edit-user.apellido");
 var inputEditUserModalDNI = document.querySelector(".input-edit-user.dni");
 var inputEditUserModalFechaNac = document.querySelector(".input-edit-user.fechaNac");
-var inputEditUserModalDomicilio = document.querySelector(".input-edit-user.direccion");
+var inputEditUserModalDireccion = document.querySelector(".input-edit-user.direccion");
 var inputEditUserModalEmail = document.querySelector(".input-edit-user.email");
 var inputEditUserModalTelefono = document.querySelector(".input-edit-user.telefono");
+var inputEditUserModalTipoUsuario = document.querySelector(".input-edit-user.tipoUsuario");
 
 
 // ----------------------- Penalizar Usuario -----------------------
@@ -73,7 +74,7 @@ var labelDelUserId = document.querySelector(".icon-user.del-user-id");
 
 
 class Usuario{
-    constructor(idUsuario, nombre, apellido, dni, direccion, telefono, email, fechaNac, penalidad){
+    constructor(idUsuario, nombre, apellido, dni, direccion, telefono, email, fechaNac, penalidad, tipoUsuario){
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -83,6 +84,7 @@ class Usuario{
         this.email = email;
         this.fechaNac = fechaNac;
         this.penalidad = penalidad;
+        this.tipoUsuario = tipoUsuario
     }
 
     // --------------  Metodos clase Usuario  -------------------
@@ -140,7 +142,8 @@ class Usuario{
             "telefono" : this.telefono,
             "email" : this.email,
             "fechaNac" : this.fechaNac,
-            "penalidad" : this.penalidad
+            "penalidad" : this.penalidad,
+            "tipoUsuario" : this.tipoUsuario
         };
     }
 }
@@ -163,7 +166,7 @@ class UsuarioController{
         let aux;
         this.listaUsuarioBM.forEach(function (u) {
             if(u.idUsuario == id){
-                aux = new Usuario(u.idUsuario, u.nombre, u.apellido, u.dni, u.direccion, u.telefono, u.email, u.fechaNac, u.penalidad);
+                aux = new Usuario(u.idUsuario, u.nombre, u.apellido, u.dni, u.direccion, u.telefono, u.email, u.fechaNac, u.penalidad, u.tipoUsuario);
                 return aux.toJson();
             }
         });
@@ -186,7 +189,7 @@ class UsuarioController{
 
                 if(listaUsuarios){
                     listaUsuarios.forEach(function (u) {
-                        listado += (new Usuario(u.idUsuario, u.nombre, u.apellido, u.dni, u.direccion, u.telefono, u.email, u.fechaNac, u.penalidad)).printBoxUsuarioBM();
+                        listado += (new Usuario(u.idUsuario, u.nombre, u.apellido, u.dni, u.direccion, u.telefono, u.email, u.fechaNac, u.penalidad, u.tipoUsuario)).printBoxUsuarioBM();
                     });
 
                     target.innerHTML = listado;
@@ -300,7 +303,7 @@ botonAddUserOpen.addEventListener("click",()=>{
     inputAddUserModalNombre.value = "";
     inputAddUserModalApellido.value = "";
     inputAddUserModalDNI.value = "";
-    inputAddUserModalDomicilio.value = "";
+    inputAddUserModalDireccion.value = "";
     inputAddUserModalEmail.value = "";
     inputAddUserModalTelefono.value = "";
     inputAddUserModalFechaNac.value = "";
@@ -313,10 +316,12 @@ botonAddUserSend.addEventListener("click",()=>{
         inputAddUserModalNombre.value,
         inputAddUserModalApellido.value,
         inputAddUserModalDNI.value,
-        inputAddUserModalDomicilio.value,
+        inputAddUserModalDireccion.value,
         inputAddUserModalTelefono.value,
         inputAddUserModalEmail.value,
-        inputAddUserModalFechaNac.value);
+        inputAddUserModalFechaNac.value,
+        null,
+        null);
 
     usuarioCtrl.solicitudAjaxABM(usuario.toJson(),"add");
 });
@@ -343,10 +348,11 @@ function agregarEventoUsuariosEditar(){
             inputAddUserModalNombre.value = objUsuario.nombre;
             inputAddUserModalApellido.value = objUsuario.apellido;
             inputAddUserModalDNI.value = objUsuario.dni;
-            inputAddUserModalDomicilio.value = objUsuario.direccion;
+            inputAddUserModalDireccion.value = objUsuario.direccion;
             inputAddUserModalEmail.value = objUsuario.email;
             inputAddUserModalTelefono.value = objUsuario.telefono;
             inputAddUserModalFechaNac.value = objUsuario.fechaNac;
+            inputEditUserModalTipoUsuario.value = objUsuario.tipoUsuario;
     
             modalEditUser.setAttribute("idUsuarioTemp", idUsuario);
     
@@ -360,10 +366,12 @@ botonEditUserSend.addEventListener("click", ()=>{
         inputEditUserModalNombre.value,
         inputEditUserModalApellido.value,
         inputEditUserModalDNI.value,
-        inputEditUserModalDomicilio.value,
+        inputEditUserModalDireccion.value,
         inputEditUserModalTelefono.value,
         inputEditUserModalEmail.value,
-        inputEditUserModalFechaNac.value);
+        inputEditUserModalFechaNac.value,
+        null,
+        inputEditUserModalTipoUsuario.value);
     
     usuarioCtrl.solicitudAjaxABM(usuario.toJson(),"edit");
 });
@@ -418,8 +426,8 @@ modalDelUserCancel.addEventListener("click", ()=>{
 });
 
 function agregarEventoUsuariosEliminar(){
-    for (let i = 0; i < libroCtrl.cantidadLibros(); i++) {
-        botonDelLibroOpen[i].addEventListener("click",()=>{
+    for (let i = 0; i < usuarioCtrl.cantidadUsuarios(); i++) {
+        botonDelUserOpen[i].addEventListener("click",()=>{
             let idUsuario = botonDelUserOpen[i].getAttribute("idUsuario");
             let objUsuario = usuarioCtrl.buscarUsuarioPorid(idUsuario);
             
