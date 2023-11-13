@@ -10,10 +10,16 @@ class Libros_modelo {
             $consulta->execute();
             
             $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
-            return $resultados;
+            
+            //Esta lógica de retornar Null por array() en caso de que no encuentre resultados <<<<<
+
+            if (count($resultados) > 0)
+                return $resultados;
+            else
+                return null; // <<<<<<<<<<<< antes era array()
          
         } catch (PDOException $e) {
-            return array();
+            return null;
         }
     }
     static public function get_libro_activo_modelo($pActivo) {             

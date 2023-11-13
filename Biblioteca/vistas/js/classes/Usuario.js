@@ -46,7 +46,9 @@ var inputEditUserModalTelefono = document.querySelector(".input-edit-user.telefo
 var modalPenalUserClose = document.querySelector(".close-modal-penal-user");
 var modalPenalUserCancel = document.querySelector(".cancel-modal-penal-user");
 var modalPenalUser = document.querySelector(".modal-frame.modal-penal-user");
-var botonPenalUserOpen = document.querySelectorAll(".penal-user-bm");
+var botonPenalUserOpen; //
+var botonPenalUserSend = document.querySelector(".confirm-modal-penal-user");
+var fieldPenalUserStatus = document.querySelector(".modal-form1-status.db-penal-user");
 
 var inputPenalUserModal = document.querySelector(".input-penal-user");
 
@@ -55,7 +57,12 @@ var inputPenalUserModal = document.querySelector(".input-penal-user");
 var modalDelUserClose = document.querySelector(".close-modal-del-user");
 var modalDelUserCancel = document.querySelector(".cancel-modal-del-user");
 var modalDelUser = document.querySelector(".modal-frame.modal-del-user");
-var botonDelUserOpen = document.querySelectorAll(".del-user-bm");
+var botonDelUserOpen; //
+var botonDelUserSend = document.querySelector(".confirm-modal-del-user");
+var fieldDelUserStatus = document.querySelector(".modal-form1-status.db-del-user");
+
+var labelDelUserId = document.querySelector(".icon-user.del-user-id");
+
 
 
 // *****************************************************************
@@ -169,14 +176,14 @@ class UsuarioController{
     
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && xhr.status == 200) {
-                this.listaUsuarioBM = JSON.parse(xhr.responseText); //el json que envía el servidor
+                let listaUsuarios = JSON.parse(xhr.responseText); //el json que envía el servidor
                 let listado = "";
 
 
-                UsuarioCtrl.listaUsuarioBM = this.listaUsuarioBM;
+                usuarioCtrl.listaUsuarioBM = listaUsuarios;
 
-                if(this.listaUsuarioBM){
-                    this.listaUsuarioBM.forEach(function (u) {
+                if(listaUsuarios){
+                    listaUsuarios.forEach(function (u) {
                         listado += (new Usuario(u.idUsuario, u.nombre, u.apellido, u.dni, u.direccion, u.telefono, u.email, u.fechaNac)).printBoxUsuarioBM();
                     });
 
@@ -185,20 +192,22 @@ class UsuarioController{
                     //Agregar eventos
 
                     botonEditUserOpen = document.querySelectorAll(".edit-user-bm");
+                    botonPenalUserOpen = document.querySelectorAll(".penal-user-bm");
                     botonDelUserOpen = document.querySelectorAll(".del-user-bm");
 
                     agregarEventoUsuariosEditar();
+                    agregarEventosUsuariosPenalizar();
                     agregarEventoUsuariosEliminar();
 
                     //fin agregar eventos
 
                 }else{
-                    document.querySelector(target).innerHTML = "<p>No se han encontrado resultados.</p>";
+                    target.innerHTML = "<p>No se han encontrado resultados.</p>";
                 }
 
             } else if (xhr.readyState == 4 && xhr.status != 200) {
-                this.listaUsuarioBM = null;
-                console.error("Error en la solicitud: " + xhr.status);
+                usuarioCtrl.listaUsuarioBM = null;
+                target.innerHTML = "<p>Se ha producido un error, intente nuevamente.</p>";
             }
         };
     
@@ -253,7 +262,7 @@ class UsuarioController{
 
 }
 
-var UsuarioCtrl = new UsuarioController();
+var usuarioCtrl = new UsuarioController();
 
 
 
@@ -264,13 +273,55 @@ var UsuarioCtrl = new UsuarioController();
 
 // ----------------------- Evento Buscar -----------------------
 
+botonBuscarUsuarioBM.addEventListener("click",()=>{
+    busquedaUsuario();
+});
 
-
-
+function busquedaUsuario(){
+    usuarioCtrl.solicitudAjaxBuscar(fieldBuscarUsuarioBM, filtrosBuscarUsuarioBM.value, inputBuscarUsuarioBM.value);
+}
 
 // ----------------------- Evento Agregar -----------------------
+
+modalAddUserClose.addEventListener("click", ()=>{
+    modalAddUser.classList.remove('active');
+});
+
+modalAddUserCancel.addEventListener("click", ()=>{
+    modalAddUser.classList.remove('active');
+});
+
+botonAddUserOpen.addEventListener("click",()=>{
+
+    fieldAddUserStatus.innerHTML = "";
+
+    inputAddUserModalNombre.value = "";
+    inputAddUserModalApellido.value = "";
+    inputAddUserModalDNI.value = "";
+    inputAddUserModalDomicilio.value = "";
+    inputAddUserModalEmail.value = "";
+    inputAddUserModalTelefono.value = "";
+    inputAddUserModalFechaNac.value = "";
+
+    modalAddUser.classList.add('active');
+});
+
+botonAddUserSend.addEventListener("click",()=>{
+    let usuario = new Usuario(null,
+        inputAddUserModalNombre.value,
+        inputAddUserModalApellido.value,
+        inputAddUserModalDNI.value,
+        inputAddUserModalDomicilio.value,
+        inputAddUserModalTelefono.value,
+        inputAddUserModalEmail.value,
+        inputAddUserModalFechaNac.value);
+
+    usuarioCtrl.solicitudAjaxABM(usuario.toJson(),"add");
+});
+
+
 // ----------------------- Evento Editar -----------------------
-// ----------------------- Evento Eliminar -----------------------
+
 modalEditUserClose.addEventListener("click", ()=>{
     modalEditUser.classList.remove('active');
 });
@@ -279,6 +330,44 @@ modalEditUserCancel.addEventListener("click", ()=>{
     modalEditUser.classList.remove('active');
 });
 
+function agregarEventoUsuariosEditar(){
+    for (let i = 0; i < usuarioCtrl.cantidadUsuarios(); i++) {
+        
+        botonEditUserOpen[i].addEventListener("click",()=>{
+            let idUsuario = botonEditUserOpen[i].getAttribute("idUsuario");
+            let objUsuario = usuarioCtrl.buscarUsuarioPorid(idUsuario);
+            modalStatusEditUsuario.innerHTML = "";
+
+            inputAddUserModalNombre.value = objUsuario.nombre;
+            inputAddUserModalApellido.value = objUsuario.apellido;
+            inputAddUserModalDNI.value = objUsuario.dni;
+            inputAddUserModalDomicilio.value = objUsuario.direccion;
+            inputAddUserModalEmail.value = objUsuario.email;
+            inputAddUserModalTelefono.value = objUsuario.telefono;
+            inputAddUserModalFechaNac.value = objUsuario.fechaNac;
+    
+            modalEditUser.setAttribute("idUsuarioTemp", idUsuario);
+    
+            modalEditUser.classList.add('active');
+        });
+    }
+}
+
+botonEditUserSend.addEventListener("click", ()=>{
+    let usuario = new Usuario(modalEditUser.getAttribute("idUsuarioTemp"),
+        inputEditUserModalNombre.value,
+        inputEditUserModalApellido.value,
+        inputEditUserModalDNI.value,
+        inputEditUserModalDomicilio.value,
+        inputEditUserModalTelefono.value,
+        inputEditUserModalEmail.value,
+        inputEditUserModalFechaNac.value);
+    
+    usuarioCtrl.solicitudAjaxABM(usuario.toJson(),"edit");
+});
+
+
+// ----------------------- Evento Penalizar -----------------------
 
 modalPenalUserClose.addEventListener("click", ()=>{
     modalPenalUser.classList.remove('active');
@@ -289,6 +378,9 @@ modalPenalUserCancel.addEventListener("click", ()=>{
 });
 
 
+
+// ----------------------- Evento Eliminar -----------------------
+
 modalDelUserClose.addEventListener("click", ()=>{
     modalDelUser.classList.remove('active');
 });
@@ -296,6 +388,8 @@ modalDelUserClose.addEventListener("click", ()=>{
 modalDelUserCancel.addEventListener("click", ()=>{
     modalDelUser.classList.remove('active');
 });
+
+
 
 
 for (var i = 0; i < botonDelUserOpen.length; i++) {
@@ -315,16 +409,3 @@ for (var i = 0; i < botonDelUserOpen.length; i++) {
     });
     
 }
-
-
-modalAddUserClose.addEventListener("click", ()=>{
-    modalAddUser.classList.remove('active');
-});
-
-modalAddUserCancel.addEventListener("click", ()=>{
-    modalAddUser.classList.remove('active');
-});
-
-botonAddUserOpen.addEventListener("click",()=>{
-    modalAddUser.classList.add('active');
-});
