@@ -31,10 +31,13 @@ class Libros_modelo {
             $consulta->execute();
             
             $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
-            return $resultados;
+            if (count($resultados) > 0)
+                return $resultados;
+            else
+                return null;
          
         } catch (PDOException $e) {
-            return array();
+            return null;
         }
     }  
 
@@ -68,7 +71,6 @@ class Libros_modelo {
             return true;
         
         } catch (Exception $e) {
-            print_r($e);
             return false;
         }
     }
@@ -102,7 +104,7 @@ class Libros_modelo {
 
             $consulta->execute();
             
-            return $resultados;
+            return true;
             
         } 
         catch (Exception $e) {
