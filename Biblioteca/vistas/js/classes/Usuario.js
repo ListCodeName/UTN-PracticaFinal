@@ -73,7 +73,7 @@ var labelDelUserId = document.querySelector(".icon-user.del-user-id");
 
 
 class Usuario{
-    constructor(idUsuario, nombre, apellido, dni, direccion, telefono, email, fechaNac){
+    constructor(idUsuario, nombre, apellido, dni, direccion, telefono, email, fechaNac, penalidad){
         this.idUsuario = idUsuario;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -82,6 +82,7 @@ class Usuario{
         this.telefono = telefono;
         this.email = email;
         this.fechaNac = fechaNac;
+        this.penalidad = penalidad;
     }
 
     // --------------  Metodos clase Usuario  -------------------
@@ -138,7 +139,8 @@ class Usuario{
             "direccion" : this.direccion,
             "telefono" : this.telefono,
             "email" : this.email,
-            "fechaNac" : this.fechaNac
+            "fechaNac" : this.fechaNac,
+            "penalidad" : this.penalidad
         };
     }
 }
@@ -161,7 +163,7 @@ class UsuarioController{
         let aux;
         this.listaUsuarioBM.forEach(function (u) {
             if(u.idUsuario == id){
-                aux = new Usuario(u.idUsuario, u.nombre, u.apellido, u.dni, u.direccion, u.telefono, u.email, u.fechaNac);
+                aux = new Usuario(u.idUsuario, u.nombre, u.apellido, u.dni, u.direccion, u.telefono, u.email, u.fechaNac, u.penalidad);
                 return aux.toJson();
             }
         });
@@ -184,7 +186,7 @@ class UsuarioController{
 
                 if(listaUsuarios){
                     listaUsuarios.forEach(function (u) {
-                        listado += (new Usuario(u.idUsuario, u.nombre, u.apellido, u.dni, u.direccion, u.telefono, u.email, u.fechaNac)).printBoxUsuarioBM();
+                        listado += (new Usuario(u.idUsuario, u.nombre, u.apellido, u.dni, u.direccion, u.telefono, u.email, u.fechaNac, u.penalidad)).printBoxUsuarioBM();
                     });
 
                     target.innerHTML = listado;
@@ -196,7 +198,7 @@ class UsuarioController{
                     botonDelUserOpen = document.querySelectorAll(".del-user-bm");
 
                     agregarEventoUsuariosEditar();
-                    agregarEventosUsuariosPenalizar();
+                    agregarEventoUsuariosPenalizar();
                     agregarEventoUsuariosEliminar();
 
                     //fin agregar eventos
@@ -377,6 +379,32 @@ modalPenalUserCancel.addEventListener("click", ()=>{
     modalPenalUser.classList.remove('active');
 });
 
+function agregarEventoUsuariosPenalizar(){
+    for (let i = 0; i < usuarioCtrl.cantidadUsuarios(); i++) {
+        
+        botonPenalUserOpen[i].addEventListener("click",()=>{
+            let idUsuario = botonPenalUserOpen[i].getAttribute("idUsuario");
+            let objUsuario = usuarioCtrl.buscarUsuarioPorid(idUsuario);
+            
+            fieldPenalUserStatus.innerHTML = "";
+
+            inputPenalUserModal.value = objUsuario.penalidad;
+    
+            modalEditUser.setAttribute("idUsuarioTemp", idUsuario);
+    
+            modalEditUser.classList.add('active');
+        });
+    }
+}
+
+
+botonDelUserSend.addEventListener("click", ()=>{
+    let usuario = usuarioCtrl.buscarUsuarioPorid(modalDelUser.getAttribute("idUsuarioTemp"));
+
+    usuario.penalidad = inputPenalUserModal.value;
+    
+    usuarioCtrl.solicitudAjaxABM(usuario.toJson(),"del");
+});
 
 
 // ----------------------- Evento Eliminar -----------------------
@@ -389,23 +417,25 @@ modalDelUserCancel.addEventListener("click", ()=>{
     modalDelUser.classList.remove('active');
 });
 
+function agregarEventoUsuariosEliminar(){
+    for (let i = 0; i < libroCtrl.cantidadLibros(); i++) {
+        botonDelLibroOpen[i].addEventListener("click",()=>{
+            let idUsuario = botonDelUserOpen[i].getAttribute("idUsuario");
+            let objUsuario = usuarioCtrl.buscarUsuarioPorid(idUsuario);
+            
+            fieldDelUserStatus.innerHTML = "";
 
+            campoModalDelUsuario.innerHTML = "<p>#"+objUsuario.nombre+" - "+ objUsuario.apellido+"</p>";
 
+            modalDelUser.setAttribute("idUsuarioTemp", idUsuario);
 
-for (var i = 0; i < botonDelUserOpen.length; i++) {
-    
-    botonEditUserOpen[i].addEventListener("click",()=>{
-        modalEditUser.classList.add('active');
-    });
-    
-    
-    botonPenalUserOpen[i].addEventListener("click",()=>{
-        modalPenalUser.classList.add('active');
-    });
-    
-    
-    botonDelUserOpen[i].addEventListener("click",()=>{
-        modalDelUser.classList.add('active');
-    });
-    
+            modalDelUser.classList.add('active');
+        });
+    }
 }
+
+botonDelUserSend.addEventListener("click", ()=>{
+    let usuario = usuarioCtrl.buscarUsuarioPorid(modalDelUser.getAttribute("idUsuarioTemp"));
+    
+    usuarioCtrl.solicitudAjaxABM(usuario.toJson(),"del");
+});
