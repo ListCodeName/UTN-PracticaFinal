@@ -3,6 +3,13 @@
     set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__ . '/../modelo/');
     include_once 'Usuarios_modelo.php';
 
+    $response = json_decode(file_get_contents('php://input'),true);
+        
+    if($response){
+        Usuarios_Controlador::get_usuarios_controlador($response);
+    }
+
+
    class Usuarios_Controlador {
   
       static public function get_usuarios_controlador($data) { 
@@ -59,22 +66,19 @@
                      $aux = $data["data"];
                      //print_r($aux);
                      
-                     $libro = array(
-                         "idLibro" => $aux["idLibro"],
-                         "titulo" => $aux["titulo"],
-                         "idAutor" => $aux["autor"],
-                         "ubicacionFisica" => $aux["ubicacionFisica"],
-                         "idEditorial" => $aux["editorial"],
-                         "lugarEdicion" => $aux["lugarEdicion"],
-                         "anio" => $aux["anio"],
-                         "serie" => $aux["serie"],
-                         "observaciones" => $aux["observaciones"],
-                         "idMateria" => $aux["materia"]
-                     );
-                     
-                     //print_r($libro);
-                     
-                     $respuesta = Libros_modelo::editar_libro_modelo($libro);
+                     $usuario = array(
+                        "idUsuario" =>$aux["idUsuario"],
+                        "nombre" => $aux["nombre"],
+                        "apellido" => $aux["apellido"],
+                        "dni" => $aux["dni"],
+                        "fechaNac" => $aux["fechaNac"],
+                        "telefono" => $aux["telefono"],
+                        "tipoUsuario" => $aux["tipoUsuario"],
+                        "email" => $aux["email"],
+                        "direccion" => $aux["direccion"]
+                       );
+                    
+                     $respuesta = Usuarios_modelo::editar_usuario_modelo($usuario);
                      if ($respuesta) {
                          echo json_encode(array("status"=>"ok"));
                      }else {
