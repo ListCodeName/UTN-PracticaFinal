@@ -21,6 +21,7 @@ body{
 .registro-formulario form{
     width: 100%;
     max-width: 500px;
+    max-height: 90%;
     background: rgba(0,0,0,0.5);
     border-radius: 10px;
     display: flex;
@@ -34,16 +35,16 @@ body{
     font-size: 20px;
     font-weight: 500;
     width: 100%;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
     background: linear-gradient(var(--main-color), var(--second-bg-color));
 }
 
 .reg-form-campo{
     position: relative;
-    width: 100%;
+    width: 90%;
     height: 50px;
-    margin: 25px 0px;
+    margin: 20px 0px 0px 0px;
     padding: 0px 50px;
 }
 
