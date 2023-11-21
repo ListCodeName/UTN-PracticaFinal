@@ -312,6 +312,15 @@ botonAddUserOpen.addEventListener("click",()=>{
 });
 
 botonAddUserSend.addEventListener("click",()=>{
+    
+    if( inputAddUserModalNombre.value !="" &&
+        inputAddUserModalApellido.value !="" &&
+        inputAddUserModalDNI.value !="" &&
+        inputAddUserModalDireccion.value !="" &&
+        inputAddUserModalTelefono.value !="" &&
+        inputAddUserModalEmail.value !="" &&
+        inputAddUserModalFechaNac.value){
+
     let usuario = new Usuario(null,
         inputAddUserModalNombre.value,
         inputAddUserModalApellido.value,
@@ -324,6 +333,10 @@ botonAddUserSend.addEventListener("click",()=>{
         null);
 
     usuarioCtrl.solicitudAjaxABM(usuario.toJson(),"add");
+    }else{
+        fieldAddUserStatus.innerHTML = "<span class='icon-warning'> Complete todos los campos antes de enviar. </span>";
+    }
+
 });
 
 
@@ -363,6 +376,14 @@ function agregarEventoUsuariosEditar(){
 }
 
 botonEditUserSend.addEventListener("click", ()=>{
+    if(inputEditUserModalNombre.value != "" &&
+        inputEditUserModalApellido.value != "" &&
+        inputEditUserModalDNI.value != "" &&
+        inputEditUserModalDireccion.value != "" &&
+        inputEditUserModalTelefono.value != "" &&
+        inputEditUserModalEmail.value != "" &&
+        inputEditUserModalFechaNac.value != "" &&
+        inputEditUserModalTipoUsuario.value != ""){
     let usuario = new Usuario(modalEditUser.getAttribute("idUsuarioTemp"),
         inputEditUserModalNombre.value,
         inputEditUserModalApellido.value,
@@ -375,6 +396,10 @@ botonEditUserSend.addEventListener("click", ()=>{
         inputEditUserModalTipoUsuario.value);
     
     usuarioCtrl.solicitudAjaxABM(usuario.toJson(),"edit");
+    }else{
+        fieldEditUserStatus.innerHTML = "<span class='icon-warning'> Complete todos los campos antes de enviar. </span>";
+    }
+
 });
 
 
@@ -410,9 +435,12 @@ function agregarEventoUsuariosPenalizar(){
 botonPenalUserSend.addEventListener("click", ()=>{
     let usuario = usuarioCtrl.buscarUsuarioPorid(modalPenalUser.getAttribute("idUsuarioTemp"));
 
-    usuario.penalidad = inputPenalUserModal.value;
-    
-    usuarioCtrl.solicitudAjaxABM(usuario.toJson(),"del");
+    if(inputPenalUserModal.value > 0 && inputPenalUserModal != null){
+        usuario.penalidad = inputPenalUserModal.value;
+        usuarioCtrl.solicitudAjaxABM(usuario.toJson(),"del");
+    }else{
+        fieldPenalUserStatus.innerHTML = "<span class='icon-warning'> Escriba un valor válido antes de enviar. </span>";
+    }
 });
 
 
