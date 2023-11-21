@@ -234,6 +234,9 @@ class UsuarioController{
                     case "add":
                         if(response.status == "ok"){
                             fieldAddUserStatus.innerHTML = '<span class="icon-checkmark"> Usuario agregado exitosamente</span>';
+                            setTimeout(() => {
+                                modalAddUser.classList.remove("active");
+                            }, 2000);
                         }else{
                             fieldAddUserStatus.innerHTML = '<span class="icon-blocked"> No se ha podido agregar el usuario</span>';
                         }
@@ -242,6 +245,9 @@ class UsuarioController{
                         if(response.status == "ok"){
                             fieldEditUserStatus.innerHTML = '<span class="icon-checkmark"> Usuario editado exitosamente</span>';
                             busquedaUsuario();
+                            setTimeout(() => {
+                                modalEditUser.classList.remove("active");
+                            }, 2000);
                         }else{
                             fieldEditUserStatus.innerHTML = '<span class="icon-blocked"> No se ha podido editar el Usuario</span>';
                         }
@@ -250,11 +256,25 @@ class UsuarioController{
                         if(response.status == "ok"){
                             fieldDelUserStatus.innerHTML = '<span class="icon-checkmark"> Usuario eliminado exitosamente</span>';
                             busquedaUsuario();
+                            setTimeout(() => {
+                                modalDelUser.classList.remove("active");
+                            }, 2000);
                         }else{
                             fieldDelUserStatus.innerHTML = '<span class="icon-blocked"> No se ha podido eliminar el Usuario</span>';
                         }
                         break;
-                    
+                    case "penal":
+                        if(response.status == "ok"){
+                            fieldPenalUserStatus.innerHTML = '<span class="icon-checkmark"> Usuario eliminado exitosamente</span>';
+                            busquedaUsuario();
+                            setTimeout(() => {
+                                modalPenalUser.classList.remove("active");
+                            }, 2000);
+                        }else{
+                            fieldPenalUserStatus.innerHTML = '<span class="icon-blocked"> No se ha podido eliminar el Usuario</span>';
+                        }
+                        break;
+
                 }
 
             } else if (xhr.readyState == 4 && xhr.status != 200) {
@@ -437,7 +457,7 @@ botonPenalUserSend.addEventListener("click", ()=>{
 
     if(inputPenalUserModal.value > 0 && inputPenalUserModal != null){
         usuario.penalidad = inputPenalUserModal.value;
-        usuarioCtrl.solicitudAjaxABM(usuario.toJson(),"del");
+        usuarioCtrl.solicitudAjaxABM(usuario.toJson(),"penal");
     }else{
         fieldPenalUserStatus.innerHTML = "<span class='icon-warning'> Escriba un valor válido antes de enviar. </span>";
     }

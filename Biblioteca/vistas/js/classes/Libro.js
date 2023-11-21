@@ -229,6 +229,9 @@ class LibroController{
                     case "add":
                         if(response.status == "ok"){
                             modalStatusAddLibro.innerHTML = '<span class="icon-checkmark"> Libro agregado exitosamente</span>';
+                            setTimeout(() => {
+                                modalAddLibro.classList.remove("active");
+                            }, 2000);
                         }else{
                             modalStatusAddLibro.innerHTML = '<span class="icon-blocked"> No se ha podido agregar el libro</span>';
                         }
@@ -237,6 +240,9 @@ class LibroController{
                         if(response.status == "ok"){
                             modalStatusEditLibro.innerHTML = '<span class="icon-checkmark"> Libro editado exitosamente</span>';
                             busquedaLibro();
+                            setTimeout(() => {
+                                modalEditLibro.classList.remove("active");
+                            }, 2000);
                         }else{
                             modalStatusEditLibro.innerHTML = '<span class="icon-blocked"> No se ha podido editar el libro</span>';
                         }
@@ -245,6 +251,9 @@ class LibroController{
                         if(response.status == "ok"){
                             modalStatusDelLibro.innerHTML = '<span class="icon-checkmark"> Libro eliminado exitosamente</span>';
                             busquedaLibro();
+                            setTimeout(() => {
+                                modalDelLibro.classList.remove("active");
+                            }, 2000);
                         }else{
                             modalStatusDelLibro.innerHTML = '<span class="icon-blocked"> No se ha podido eliminar el libro</span>';
                         }
