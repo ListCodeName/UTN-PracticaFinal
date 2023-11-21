@@ -306,18 +306,32 @@ modalAddLibroOpen.addEventListener("click",()=>{
 });
 
 modalAddBotonSend.addEventListener("click",()=>{
-    let libro = new Libro(null,
-    campoTituloAdd.value,
-    campoAutorAdd.value,
-    campoUbicacionAdd.value,
-    campoEditorialAdd.value,
-    campoMateriaAdd.value,
-    campoOrigenAdd.value,
-    campoAnioAdd.value,
-    campoEdicionAdd.value,
-    campoObservacionAdd.value);
+    if(campoTituloAdd.value != "" &&
+        campoAutorAdd.value != "" &&
+        campoUbicacionAdd.value != "" &&
+        campoEditorialAdd.value != "" &&
+        campoMateriaAdd.value != "" &&
+        campoOrigenAdd.value != "" &&
+        campoAnioAdd.value != "" &&
+        campoEdicionAdd.value != "" &&
+        campoObservacionAdd.value){
+    
+        let libro = new Libro(null,
+        campoTituloAdd.value,
+        campoAutorAdd.value,
+        campoUbicacionAdd.value,
+        campoEditorialAdd.value,
+        campoMateriaAdd.value,
+        campoOrigenAdd.value,
+        campoAnioAdd.value,
+        campoEdicionAdd.value,
+        campoObservacionAdd.value);
 
-    libroCtrl.solicitudAjaxABM(libro.toJson(),"add");
+        libroCtrl.solicitudAjaxABM(libro.toJson(),"add");
+
+    }else{
+        modalStatusAddLibro = "<span class='icon-warning'>Por favor complete los campos antes de enviar.</span>";
+    }
 });
 
 // ------------------------  Eventos editar libro  ------------------------
@@ -356,18 +370,33 @@ function agregarEventoLibrosEditar(){
 }
 
 modalEditBotonSend.addEventListener("click", ()=>{
-    let libro = new Libro(modalEditLibro.getAttribute("idLibroTemp"),
-        campoTituloEdit.value,
-        campoAutorEdit.value,
-        campoUbicacionEdit.value,
-        campoEditorialEdit.value,
-        campoMateriaEdit.value,
-        campoOrigenEdit.value,
-        campoAnioEdit.value,
-        campoEdicionEdit.value,
-        campoObservacionEdit.value);
+
+    if(campoTituloEdit.value != "" &&
+        campoAutorEdit.value != "" &&
+        campoUbicacionEdit.value != "" &&
+        campoEditorialEdit.value != "" &&
+        campoMateriaEdit.value != "" &&
+        campoOrigenEdit.value != "" &&
+        campoAnioEdit.value != "" &&
+        campoEdicionEdit.value != "" &&
+        campoObservacionEdit.value){
+
+        let libro = new Libro(modalEditLibro.getAttribute("idLibroTemp"),
+            campoTituloEdit.value,
+            campoAutorEdit.value,
+            campoUbicacionEdit.value,
+            campoEditorialEdit.value,
+            campoMateriaEdit.value,
+            campoOrigenEdit.value,
+            campoAnioEdit.value,
+            campoEdicionEdit.value,
+            campoObservacionEdit.value);
     
-    libroCtrl.solicitudAjaxABM(libro.toJson(),"edit");
+        libroCtrl.solicitudAjaxABM(libro.toJson(),"edit");
+    }else{
+        modalStatusEditLibro.innerHTML = "<span class='icon-warning'>Por favor complete los campos antes de enviar.</span>";
+    }
+
 });
 
 
