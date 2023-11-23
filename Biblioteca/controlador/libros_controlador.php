@@ -39,7 +39,7 @@
                         $libro = array(
                             "titulo" => $aux["titulo"],
                             "idAutor" => $aux["autor"],
-                            "ubicacionBiblioteca" => $aux["ubicacionFisica"],
+                            "ubicacionFisica" => $aux["ubicacionFisica"],
                             "idEditorial" => $aux["editorial"],
                             "lugarEdicion" => $aux["lugarEdicion"],
                             "anio" => $aux["anio"],
@@ -69,8 +69,8 @@
                         }else {
                             echo json_encode(array("status"=>"no"));
                         }
+                        break;
                     }
-                    break;
             
                 case "edit":
                     if (isset($data["data"])) {
@@ -81,8 +81,8 @@
                             "idLibro" => $aux["idLibro"],
                             "titulo" => $aux["titulo"],
                             "idAutor" => $aux["autor"],
-                            "ubicacionFisica" => $aux["ubicacionFisica"],
                             "idEditorial" => $aux["editorial"],
+                            "ubicacionFisica" => $aux["ubicacionFisica"],
                             "lugarEdicion" => $aux["lugarEdicion"],
                             "anio" => $aux["anio"],
                             "serie" => $aux["serie"],
