@@ -222,18 +222,18 @@
             
             <div class="about-galery">
                 <div class="about-img-left">
-                    <img src="img/leyendo2.jpg" alt="">
-                    <img src="img/leyendo3.jpg" alt="">
+                    <img src="vistas/img/leyendo2.jpg" alt="">
+                    <img src="vistas/img/leyendo3.jpg" alt="">
                 </div>
                 
                 <div class="about-img">
-                    <img src="img/leyendo1.jpg" alt="">
+                    <img src="vistas/img/leyendo1.jpg" alt="">
                     <span class="circle-spin"></span>
                 </div>
 
                 <div class="about-img-right">
-                    <img src="img/leyendo4.jpg" alt="">
-                    <img src="img/leyendo5.jpeg" alt="">
+                    <img src="vistas/img/leyendo4.jpg" alt="">
+                    <img src="vistas/img/leyendo5.jpeg" alt="">
                 </div>
                 
             </div>
