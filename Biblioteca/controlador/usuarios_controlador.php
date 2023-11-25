@@ -95,6 +95,7 @@ class Usuarios_Controlador {
 
     static public function get_pre_Usuarios_Controlador() {
         $respuesta = Usuarios_modelo::get_pre_usuarios_modelo();
+        return $respuesta;
     }
     
 }
