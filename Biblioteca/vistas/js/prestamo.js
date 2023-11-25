@@ -1,5 +1,3 @@
-try{
-
 const slidePrestamo = document.querySelector(".modal-slide-form");
 const slidePrestamoNext1 = document.querySelector(".icon-arrow-right.next1");
 const slidePrestamoNext2 = document.querySelector(".icon-arrow-right.next2");
@@ -36,7 +34,3 @@ slidePrestamoPrev1.addEventListener("click",()=>{
 slidePrestamoPrev2.addEventListener("click",()=>{
     slidePrestamo.style.left = "-100%";
 });
-
-}catch(e){
-    
-}

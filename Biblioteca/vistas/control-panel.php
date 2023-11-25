@@ -137,7 +137,9 @@
     
     <?php if($_SESSION['tipoUsuario'] == 0){ ?>
         <script src="vistas/js/classes/Libro.js"></script>
+        <script src="vistas/js/classes/LibroController.js"></script>
         <script src="vistas/js/classes/Usuario.js"></script>
+        <script src="vistas/js/classes/UsuarioController.js"></script>
         <script src="vistas/js/calendario.js"></script>
         <script src="vistas/js/prestamo.js"></script>
     <?php } ?>

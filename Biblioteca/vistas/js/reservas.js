@@ -1,5 +1,3 @@
-try{
-
 modalResClose = document.querySelector(".close-modal-res");
 modalResCancel = document.querySelector(".cancel-modal-res");
 modalRes = document.querySelector(".modal-reserva");
@@ -38,8 +36,4 @@ for (var i = 0; i < modalDelResOpen.length; i++) {
     modalDelResOpen[i].addEventListener("click", ()=>{
         modalDelRes.classList.add('active');
     });
-}
-
-}catch(e){
-    
 }

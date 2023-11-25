@@ -1,5 +1,3 @@
-try{
-
 modalSolicitarLibroClose = document.querySelector(".close-modal-solicitar");
 modalSolicitarLibroCancel = document.querySelector(".cancel-modal-solicitar");
 modalSolicitarLibro = document.querySelector(".modal-frame.modal-solicitar");
@@ -17,7 +15,3 @@ modalSolicitarLibroCancel.addEventListener("click", ()=>{
 modalSolicitarLibroOpen.addEventListener("click",()=>{
     modalSolicitarLibro.classList.add('active');
 });
-
-}catch(e){
-    
-}
