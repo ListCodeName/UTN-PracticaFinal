@@ -1,3 +1,4 @@
+try{
 // *****************************************************************
 //              Elementos de la vista user (GLOBALES)
 // *****************************************************************
@@ -496,3 +497,7 @@ botonDelUserSend.addEventListener("click", ()=>{
     
     usuarioCtrl.solicitudAjaxABM(usuario.toJson(),"del");
 });
+
+}catch(e){
+    
+}

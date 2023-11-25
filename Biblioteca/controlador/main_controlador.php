@@ -12,10 +12,5 @@ class ControladorIndex{
         }
     }
 
-    static public function url()
-    {
-        return "http://localhost/MVC 6.0/";
-    }
-
 }
 ?>

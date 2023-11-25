@@ -1,3 +1,5 @@
+try{
+
 let meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 let mesesDias = [31,28,31,30,31,30,31,31,30,31,30,31];
 let dias = ['Dom','Lun','Mar','Mie','Jue','Vie','Sab'];
@@ -117,4 +119,8 @@ document.querySelector(".icon-arrow-right").addEventListener("click", ()=>{
 function cargarFecha(){
     document.querySelector(".almanaque-mes.primer").innerHTML = "<p>"+meses[fechaPivote.getMonth()]+" ("+fechaPivote.getFullYear()+")</p>";
     document.querySelector(".almanaque-mes.segundo").innerHTML = "<p>"+meses[(fechaPivote.getMonth()+1)%12]+" ("+fechaPivote.getFullYear()+")</p>";
+}
+
+}catch(e){
+    
 }

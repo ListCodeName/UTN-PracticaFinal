@@ -1,5 +1,7 @@
 <?php
 
+include_once("modelo/login_modelo.php");
+
 class LoginControlador{
 
 
@@ -10,12 +12,6 @@ class LoginControlador{
 
         $respuesta = LoginModelo::login_modelo($username, $encriptar);
 
-            if ($respuesta){
-                return 1;
-            } else {
-                return 0;
-            }
-        
     }
 
     static public function registro_controlador($datos){

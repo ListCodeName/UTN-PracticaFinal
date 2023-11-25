@@ -1,3 +1,4 @@
+try{
 // *****************************************************************
 //              Elementos de la vista libro (GLOBALES)
 // *****************************************************************
@@ -452,3 +453,7 @@ modalDelBotonSend.addEventListener("click", ()=>{
 botonDescargaPDF.addEventListener("click",()=>{
     window.open("libraries/examples/informe.php")
 });
+
+}catch(e){
+
+}

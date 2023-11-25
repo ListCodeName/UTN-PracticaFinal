@@ -4,15 +4,17 @@ require_once 'Conectar.php';
 
 class LoginModelo{
     static public function login_modelo($nombre_usuario, $password){
-        $consulta = Conectar::conexion()->prepare("SELECT COUNT(*) AS user FROM usuarios WHERE username = :nombre_usuario AND contraseña = :contrasenia");
+        $consulta = Conectar::conexion()->prepare("SELECT * FROM usuarios WHERE username = :nombre_usuario AND contraseña = :contrasenia");
         $consulta->bindParam(":nombre_usuario", $nombre_usuario, PDO::PARAM_STR);
         $consulta->bindParam(':contrasenia', $password, PDO::PARAM_STR);
         $consulta->execute();
         $result = $consulta->fetch(PDO::FETCH_ASSOC);
         
-        if($result['user'] == 1)
+        if($result['tipoUsuario'] < 3){
+            session_start();
+            $_SESSION = $result;
             return true;
-        else
+        }else
             return false;
         
     }
