@@ -376,7 +376,7 @@ function agregarEventoUsuariosEditar(){
         botonEditUserOpen[i].addEventListener("click",()=>{
             let idUsuario = botonEditUserOpen[i].getAttribute("idUsuario");
             let objUsuario = usuarioCtrl.buscarUsuarioPorid(idUsuario);
-            console.log(objUsuario);
+            
             fieldEditUserStatus.innerHTML = "";
 
             inputEditUserModalNombre.value = objUsuario.nombre;

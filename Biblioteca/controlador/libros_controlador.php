@@ -1,11 +1,13 @@
 <?php
     //include_once("../modelo/Libros_modelo.php");
+    
     include_once __DIR__ . '/../modelo/Libros_modelo.php';
     set_include_path(get_include_path() . PATH_SEPARATOR . __DIR__ . '/../modelo/');
     include_once 'Libros_modelo.php';
-    
+
+
     $response = json_decode(file_get_contents('php://input'),true);
-        
+
     if($response){
         Libros_Controlador::get_Libros_Controlador($response);
     }
@@ -15,6 +17,7 @@
             if ($data["funcion"] == "pedidos") {
                 if (isset($data["data"])) {
                         $pActivo = $data["data"];
+
                         $respuesta = Libros_modelo::get_libro_activo_modelo($pActivo);
                         
                         echo json_encode($respuesta);
@@ -27,8 +30,10 @@
                     if (isset($data["data"])) {
                         $pTitulo = $data["data"];
                         $respuesta = Libros_modelo::get_libros_modelo($pTitulo);
-                        
-                        echo json_encode($respuesta);
+                        if($respuesta)
+                            echo json_encode($respuesta);
+                        else
+                            array("status"=>"no");
                     }
                     break;
             
@@ -39,8 +44,8 @@
                         $libro = array(
                             "titulo" => $aux["titulo"],
                             "idAutor" => $aux["autor"],
-                            "ubicacionFisica" => $aux["ubicacionFisica"],
                             "idEditorial" => $aux["editorial"],
+                            "ubicacionFisica" => $aux["ubicacionFisica"],
                             "lugarEdicion" => $aux["lugarEdicion"],
                             "anio" => $aux["anio"],
                             "serie" => $aux["serie"],

@@ -342,7 +342,7 @@ modalAddBotonSend.addEventListener("click",()=>{
         libroCtrl.solicitudAjaxABM(libro.toJson(),"add");
 
     }else{
-        modalStatusAddLibro = "<span class='icon-warning'>Por favor complete los campos antes de enviar.</span>";
+        modalStatusAddLibro.innerHTML = "<span class='icon-warning'>Por favor complete los campos antes de enviar.</span>";
     }
 });
 
