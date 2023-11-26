@@ -17,7 +17,8 @@ class Usuarios_Controlador {
             case "search":
                 if (isset($data["data"])) {
                     $pUsuario = $data["data"];
-                    $respuesta = Usuarios_modelo::get_usuarios_modelo($pUsuario);
+                    $filtros = $data["filtros"];
+                    $respuesta = Usuarios_modelo::get_usuarios_modelo($pUsuario, $filtros);
                     
                     echo json_encode($respuesta);
                 }
@@ -44,8 +45,9 @@ class Usuarios_Controlador {
                     }else {
                         echo json_encode(array("status"=>"no"));
                     }
-                    break;
                 }
+                break;
+
             case "del":
                 if (isset($data["data"])) {
                     $aux = $data["data"];
@@ -58,37 +60,52 @@ class Usuarios_Controlador {
                     }else {
                         echo json_encode(array("status"=>"no"));
                     }
-                    break;
                 }
+                break;
         
             case "edit":
                 if (isset($data["data"])) {
-                $aux = $data["data"];
+                    $aux = $data["data"];
+                        
+                    $usuario = array(
+                        "idUsuario" =>$aux["idUsuario"],
+                        "nombre" => $aux["nombre"],
+                        "apellido" => $aux["apellido"],
+                        "dni" => $aux["dni"],
+                        "fechaNac" => $aux["fechaNac"],
+                        "telefono" => $aux["telefono"],
+                        "tipoUsuario" => $aux["tipoUsuario"],
+                        "email" => $aux["email"],
+                        "direccion" => $aux["direccion"]
+                        );
                     
-                    
-                $usuario = array(
-                    "idUsuario" =>$aux["idUsuario"],
-                    "nombre" => $aux["nombre"],
-                    "apellido" => $aux["apellido"],
-                    "dni" => $aux["dni"],
-                    "fechaNac" => $aux["fechaNac"],
-                    "telefono" => $aux["telefono"],
-                    "tipoUsuario" => $aux["tipoUsuario"],
-                    "email" => $aux["email"],
-                    "direccion" => $aux["direccion"]
-                    );
-                
-                $respuesta = Usuarios_modelo::editar_usuario_modelo($usuario);
-                if ($respuesta) {
+                    $respuesta = Usuarios_modelo::editar_usuario_modelo($usuario);
+                    if ($respuesta) {
                         echo json_encode(array("status"=>"ok"));
-                }else {
+                    }else {
                         echo json_encode(array("status"=>"no"));
+                    }
                 }
                 break;
-            }
-        default:
-                // Manejo de error si la función no está definida
-            echo json_encode(["error" => "Función no válida"]);
+            
+            case "penal":
+                if(isset($data["data"])){
+                    $aux = $data["data"];
+                    if($aux["penalidad"] >= 0){
+                        $fechaActual = date("Y-m-d");
+                        $fecha = date( "Y-m-d", strtotime($fechaActual."+ ".$aux["penalidad"]." days"));
+                        $respuesta = Usuarios_modelo::penalidad_modelo($aux["idUsuario"], $fecha);
+                        if($respuesta)
+                            echo json_encode(array("status"=> "ok"));
+                        else
+                            echo json_encode(array("status" => "no"));
+                    }else{
+                        echo json_encode(array("status" => "no"));
+                    }
+                }
+                break;
+            default:
+                echo json_encode(array("status" => "error"));
             break;
         }    
     }

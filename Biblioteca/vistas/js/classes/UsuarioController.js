@@ -364,7 +364,7 @@ function agregarEventoUsuariosPenalizar(){
             
             fieldPenalUserStatus.innerHTML = "";
 
-            inputPenalUserModal.value = objUsuario.penalidad;
+            inputPenalUserModal.value = 0;
     
             modalPenalUser.setAttribute("idUsuarioTemp", idUsuario);
     

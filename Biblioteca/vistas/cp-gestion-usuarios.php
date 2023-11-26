@@ -192,7 +192,7 @@
             <div class="modal-form1-inputs user-penalidad">
                 <div class="modal-form1-input-item">
                     <input class="input-penal-user" type="number" id="" required>
-                    <label for="">Penalidad (Horas)</label>
+                    <label for="">Penalidad (Dias)</label>
                 </div>
             </div>
 

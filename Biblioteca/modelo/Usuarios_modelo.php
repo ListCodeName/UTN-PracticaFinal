@@ -18,13 +18,30 @@ class Usuarios_modelo {
         }
     }
     
-    static public function get_usuarios_modelo($pUsuario) {
+    static public function get_usuarios_modelo($pUsuario, $filtros) {
         try {
-            $consulta = Conectar::conexion()->prepare("CALL `usuarioXparam`(:pUsuario)");
+            $order = "";
+            if(isset($filtros) && $filtros != ""){
+                $filtros = explode(" ", $filtros);
+                $order = "ORDER BY ".$filtros[0]." ".$filtros[1];
+            }
+            $consulta = Conectar::conexion()->prepare("SELECT idUsuarios as idUsuario, nombre, apellido, dni, direccion, telefono, email, fechaNac, tipoUsuario, penalidad
+            FROM usuarios 
+            WHERE Nombre LIKE concat('%', :pUsuario, '%') OR Apellido LIKE concat('%', :pUsuario, '%') OR DNI like concat ('%',:pUsuario, '%') ".$order);
+            //$consulta = Conectar::conexion()->prepare("CALL `usuarioXparam`(:pUsuario)");
             $consulta->bindParam(":pUsuario", $pUsuario, PDO::PARAM_STR);
             $consulta->execute();
 
             $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+            $fechaActual = new DateTime();
+
+            foreach ($resultados as &$usuario) {
+                $fechaNacimiento = new DateTime($usuario["penalidad"]);
+                $diferencia = $fechaActual->diff($fechaNacimiento);
+                $usuario["penalidad"] = $diferencia->days;
+            }
+
             
             if(count($resultados) > 0)
                 return $resultados;
@@ -59,7 +76,6 @@ class Usuarios_modelo {
             return true;
         
         } catch (Exception $e) {
-            print_r($e);
             return false;
         }
     }
@@ -90,12 +106,11 @@ class Usuarios_modelo {
             return true;
         
         } catch (Exception $e) {
-            print_r($e);
             return false;
         }
     }
-    static public function eliminar_usuario_modelo($idUsuario)
-    {
+
+    static public function eliminar_usuario_modelo($idUsuario){
         try {
         $consulta = Conectar::conexion()->prepare(" CALL `eliminarUsuario`(:idUsuario)");
         $consulta->bindParam(":idUsuario", $idUsuario, PDO::PARAM_INT);
@@ -109,4 +124,18 @@ class Usuarios_modelo {
         }
     }
    
+    static public function penalidad_modelo($idUsuario, $penalidad){
+        $consulta = Conectar::conexion()->prepare("UPDATE usuarios SET penalidad = :penalidad WHERE usuarios.idUsuarios = :idUsuario");
+        $consulta->bindParam(":idUsuario", $idUsuario, PDO::PARAM_INT);
+        $consulta->bindParam(":penalidad", $penalidad, PDO::PARAM_STR);
+
+        try{
+            $consulta->execute();
+
+            return true;
+        }catch(Exception $e){
+            return false;
+        }
+
+    }
 }
