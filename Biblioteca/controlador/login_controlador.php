@@ -21,8 +21,10 @@ class LoginControlador{
         $email = $datos["email"];
 
         $respuesta = LoginModelo::registro_modelo($username, $encriptar, $email);
-        
-        return 0;
+        if($respuesta)
+            return 2;
+        else
+            return 0;
     }
 
 }

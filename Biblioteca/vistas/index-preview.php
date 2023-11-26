@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="vistas/css/busqueda.css">
 </head>
 <body>
-
     <header>
         <span class="icon-search abrir-busqueda"></span>
 
@@ -128,8 +127,21 @@
 
     </div>
 
-    <div class="login-frame">
+    <div class="login-frame <?php if(isset($_SESSION)) echo "active"?>">
         <span class="icon-cross cerrar-login"></span>
+        
+        <?php
+            if(isset($_SESSION['tipoUsuario'])){
+                switch($_SESSION['tipoUsuario']){
+                    case -1:
+                        echo "<p class='mensaje-status'>El usuario o la contraseña no son correctas.<p>";
+                        break;
+                    case 3:
+                        echo "<p class='mensaje-status'>¡Ten paciencia! Tu cuenta será dada de alta en cuanto la bibliotecaria corrobore los datos.<p>";
+                        break;
+                }
+            }
+        ?>
         <div class="wrapper">
 
             <span class="bg-animate">

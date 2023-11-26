@@ -10,13 +10,14 @@ class LoginModelo{
         $consulta->execute();
         $result = $consulta->fetch(PDO::FETCH_ASSOC);
         
-        if($result['tipoUsuario'] < 3){
-            session_start();
+        if($result){
             $_SESSION = $result;
-            return true;
-        }else
-            return false;
-        
+            if($result['tipoUsuario'] < 3){
+                session_start();
+            }
+        }else{
+            $_SESSION = array('tipoUsuario'=> -1);
+        }
     }
 
     static public function registro_modelo($nombre_usuario, $password, $email){

@@ -1,8 +1,18 @@
 <aside>
     <div class="avatar">
         <img src="vistas/img/129868.PNG">
-        <span class="icon-cross"></span>
+        <span class="icon-cross logout"></span>
     </div>
+
+    <script>
+        document.querySelector(".logout").addEventListener("click", ()=>{
+            document.querySelector(".formulario-logout").submit();
+        });
+    </script>
+
+    <form action="index.php" method="POST" class="formulario-logout" style="display: none;">
+        <input type="submit" name="deslogear" value="1">
+    </form>
 
     <div class="menu-dash">
     <?php

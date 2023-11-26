@@ -61,7 +61,7 @@
 
 
 <!-- Scripts -->
-<?php ?>
+
     <script>
         const showRes = document.querySelector(".menu-item.show-reservas");
         const frameRes = document.querySelector(".frame-reservas");
@@ -134,11 +134,11 @@
     </script>
 
     <script src="vistas/js/reservas.js"></script>
+    <script src="vistas/js/classes/Libro.js"></script>
+    <script src="vistas/js/classes/Usuario.js"></script>
     
     <?php if($_SESSION['tipoUsuario'] == 0){ ?>
-        <script src="vistas/js/classes/Libro.js"></script>
         <script src="vistas/js/classes/LibroController.js"></script>
-        <script src="vistas/js/classes/Usuario.js"></script>
         <script src="vistas/js/classes/UsuarioController.js"></script>
         <script src="vistas/js/calendario.js"></script>
         <script src="vistas/js/prestamo.js"></script>
