@@ -20,11 +20,21 @@ class LoginControlador{
         $encriptar = md5($datos["password"]);
         $email = $datos["email"];
 
-        $respuesta = LoginModelo::registro_modelo($username, $encriptar, $email);
-        if($respuesta)
-            return 2;
-        else
-            return 0;
+        LoginModelo::registro_modelo($username, $encriptar, $email);
+    }
+
+    static public function registro2_controlador($datos){
+        LoginModelo::registro2_modelo(
+            $datos["nombre"],
+            $datos["apellido"],
+            $datos["dni"],
+            $datos["fechaNac"],
+            $datos["direccion"],
+            $datos["telefono"],
+            $datos["re-email"]
+        );
+
+
     }
 
 }

@@ -1,25 +1,18 @@
 <?php
-
-    // Consultar tipo de usuario
-    // Importar solo modulos necesarios
-
     include_once("controlador/main_controlador.php");
     include_once("controlador/login_controlador.php");
-
-    $pagina = 0;
 
     if(isset($_POST["logout"])){
         session_destroy();
         $_SESSION = null;
+        $_GET = null;
+        $_POST = null;
+        llamarPagina(0);
     }
 
+    //Login data
     if(isset($_POST["nombre_usuario"]) && isset($_POST["contrasenia"])){
         LoginControlador::login_controlador(array("nombre_usuario" => $_POST["nombre_usuario"], "password"=>$_POST["contrasenia"]));
-    }
-    
-    if(isset($_POST["r-username"]) && isset($_POST["r-password"]) && isset($_POST["r-email"])){
-        $pagina = LoginControlador::registro_controlador(array("nombre_usuario" => $_POST["r-username"], "password"=>$_POST["r-password"], "email"=>$_POST["r-email"]));
-
     }
     
     if(isset($_SESSION['tipoUsuario'])){
@@ -31,19 +24,42 @@
                 include_once("controlador/usuarios_controlador.php");
                 include_once("modelo/Libros_modelo.php");
                 include_once("modelo/Usuarios_modelo.php");
-                $pagina = 1;
-                break;
-            case 4:
-                $pagina = 2;
+                llamarPagina(1);
                 break;
             default:
-                $pagina = 0;
+                llamarPagina(0);
         }
     }
 
+    //Registro1 data
+    if(isset($_POST["r-username"]) && isset($_POST["r-password"]) && isset($_POST["r-email"])){
+        LoginControlador::registro_controlador(array("nombre_usuario" => $_POST["r-username"], "password"=>$_POST["r-password"], "email"=>$_POST["r-email"]));
+        if($_GET["status"] == "ok")
+            llamarPagina(2);
+        else
+            llamarPagina(0);
+    }
+
+    //Registro2 data
+    if(isset($_POST["r2-nombre"]) && isset($_POST["r2-apellido"]) && isset($_POST["r2-dni"]) && isset($_POST["r2-fechaNac"]) && isset($_POST["r2-domicilio"]) && isset($_POST["r2-telefono"]) && isset($_POST["r2-email"])){
+        $_GET = null;
+        LoginControlador::registro2_controlador(array(
+            "nombre" => $_POST["r2-nombre"],
+            "apellido" => $_POST["r2-apellido"] ,
+            "dni" => $_POST["r2-dni"] ,
+            "fechaNac" => $_POST["r2-fechaNac"] ,
+            "direccion" => $_POST["r2-domicilio"] ,
+            "telefono" => $_POST["r2-telefono"],
+            "re-email" => $_POST["r2-email"]
+        ));
+        llamarPagina(0);
+    }
     
-    $plantilla = new ControladorIndex();
-    $plantilla->ctrMostrarPlantilla($pagina);
+    function llamarPagina($pagina){
+        $plantilla = new ControladorIndex();
+        $plantilla->ctrMostrarPlantilla($pagina);
+        die();
+    }
 
-
+    llamarPagina(0);
 ?>

@@ -127,7 +127,7 @@
 
     </div>
 
-    <div class="login-frame <?php if(isset($_SESSION)) echo "active"?>">
+    <div class="login-frame <?php if(isset($_SESSION) || isset($GET)) echo "active"?>">
         <span class="icon-cross cerrar-login"></span>
         
         <?php
@@ -139,6 +139,13 @@
                     case 3:
                         echo "<p class='mensaje-status'>¡Ten paciencia! Tu cuenta será dada de alta en cuanto la bibliotecaria corrobore los datos.<p>";
                         break;
+                }
+            }else{
+                if(isset($_GET["funcion"])){
+                    if( $_GET["funcion"] == "reg2" && $_GET["status"] == "ok")
+                        echo "<p class='mensaje-status'>¡Ten paciencia! Tu cuenta será dada de alta en cuanto la bibliotecaria corrobore los datos.<p>";
+                    else
+                        echo "<p class='mensaje-status'>Corrobora los datos que ingresaste, puede que ya haya alguien usando esas credenciales.<p>";
                 }
             }
         ?>
