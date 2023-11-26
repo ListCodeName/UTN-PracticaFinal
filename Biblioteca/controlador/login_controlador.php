@@ -10,7 +10,7 @@ class LoginControlador{
         $username = $datos["nombre_usuario"];
         $encriptar = md5($datos["password"]);
 
-        $respuesta = LoginModelo::login_modelo($username, $encriptar);
+        LoginModelo::login_modelo($username, $encriptar);
 
     }
 

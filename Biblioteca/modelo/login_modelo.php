@@ -12,8 +12,9 @@ class LoginModelo{
         
         if($result){
             $_SESSION = $result;
-            if($result['tipoUsuario'] < 3){
+            if($_SESSION['tipoUsuario'] < 3){
                 session_start();
+                $_SESSION = $result;
             }
         }else{
             $_SESSION = array('tipoUsuario'=> -1);

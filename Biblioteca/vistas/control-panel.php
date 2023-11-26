@@ -70,9 +70,11 @@
             <?php if($_SESSION['tipoUsuario'] == 1){ ?>
                 frameSolicitar.classList.remove('active');
             <?php } ?>
-            frameUser.classList.remove('active');
-            frameLibro.classList.remove('active');
-            framePrest.classList.remove('active');
+            <?php if($_SESSION['tipoUsuario'] == 0){ ?>
+                frameUser.classList.remove('active');
+                frameLibro.classList.remove('active');
+                framePrest.classList.remove('active');
+            <?php } ?>
             setTimeout(()=>{
                 frameRes.classList.add('active');
             },250);
