@@ -114,6 +114,8 @@ class Usuarios_Controlador {
         $respuesta = Usuarios_modelo::get_pre_usuarios_modelo();
         return $respuesta;
     }
+
+    
     
 }
 
