@@ -31,6 +31,7 @@ var modalEditUserCancel = document.querySelector(".cancel-modal-edit-user");
 var modalEditUser = document.querySelector(".modal-frame.modal-edit-user");
 var botonEditUserOpen;
 var botonEditUserSend = document.querySelector(".confirm-modal-edit-user");
+var labelEditUserPrivilegio = document.querySelector(".tipoUsuario-label");
 var fieldEditUserStatus = document.querySelector(".modal-form1-status.db-edit-user");
 
 var inputEditUserModalNombre = document.querySelector(".input-edit-user.nombre");
@@ -187,13 +188,13 @@ class UsuarioController{
                         break;
                     case "penal":
                         if(response.status == "ok"){
-                            fieldPenalUserStatus.innerHTML = '<span class="icon-checkmark"> Usuario eliminado exitosamente</span>';
+                            fieldPenalUserStatus.innerHTML = '<span class="icon-checkmark"> Se han atribuido una nueva penalidad</span>';
                             busquedaUsuario();
                             setTimeout(() => {
                                 modalPenalUser.classList.remove("active");
                             }, 2000);
                         }else{
-                            fieldPenalUserStatus.innerHTML = '<span class="icon-blocked"> No se ha podido eliminar el Usuario</span>';
+                            fieldPenalUserStatus.innerHTML = '<span class="icon-blocked"> No se ha podido penalizar al usuario</span>';
                         }
                         break;
 
@@ -292,6 +293,25 @@ modalEditUserCancel.addEventListener("click", ()=>{
     modalEditUser.classList.remove('active');
 });
 
+inputEditUserModalTipoUsuario.addEventListener("change", ()=>{
+    
+    switch(Number(inputEditUserModalTipoUsuario.value)){
+        case 0: 
+            labelEditUserPrivilegio.innerHTML="Privilegios >>> Bibliotecario";
+            break;
+        case 1:
+            labelEditUserPrivilegio.innerHTML="Privilegios >>> Profesor";
+            break;
+        case 2:
+            labelEditUserPrivilegio.innerHTML="Privilegios >>> Socio";
+            break;
+        default:
+            labelEditUserPrivilegio.innerHTML="Privilegios";
+            break;
+    }
+    
+});
+
 function agregarEventoUsuariosEditar(){
     for (let i = 0; i < usuarioCtrl.cantidadUsuarios(); i++) {
         
@@ -364,7 +384,7 @@ function agregarEventoUsuariosPenalizar(){
             
             fieldPenalUserStatus.innerHTML = "";
 
-            inputPenalUserModal.value = 0;
+            inputPenalUserModal.value = objUsuario.penalidad;
     
             modalPenalUser.setAttribute("idUsuarioTemp", idUsuario);
     

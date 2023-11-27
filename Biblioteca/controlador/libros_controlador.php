@@ -24,6 +24,7 @@
                     }
                 }
         }
+        
         static public function get_Libros_Controlador($data) { 
             switch ($data["funcion"]) {
                 case "search":
@@ -103,14 +104,70 @@
                         }else {
                             echo json_encode(array("status"=>"no"));
                         }
-                        break;
                     }
+                    break;
+                case "searchAvanzada":
+                    $titulo = isset($data["titulo"]) ? $data["titulo"] : null;
+                
+                    // Verifica si ya hay resultados de búsqueda por título
+                    $resultadosTitulo = Libros_modelo::get_resultados_titulo();
+                
+                    if ($titulo && $resultadosTitulo) {
+                        // Combina los resultados de la búsqueda por título con los parámetros de búsqueda avanzada
+                        $resultadosAvanzada = array_filter($resultadosTitulo, function ($libro) use ($data) {
+                            // Verifica si la materia del libro coincide con la materia de la búsqueda avanzada
+                            $materiaValida = empty($data["idMateria"]) || $libro["idMateria"] == $data["idMateria"];
+                    
+                            // Verifica si el autor del libro coincide con el autor de la búsqueda avanzada
+                            $autorValido = empty($data["idAutor"]) || $libro["idAutor"] == $data["idAutor"];
+                    
+                            // Verifica si la editorial del libro coincide con la editorial de la búsqueda avanzada
+                            $editorialValida = empty($data["idEditorial"]) || $libro["idEditorial"] == $data["idEditorial"];
+                    
+                            // Devuelve true si todas las condiciones se cumplen
+                            return $materiaValida && $autorValido && $editorialValida;
+                        });
+                    
+                        // Puedes devolver los resultados combinados o realizar cualquier otra lógica necesaria
+                        echo json_encode($resultadosAvanzada);
+                    } else {
+                        // Realiza la búsqueda avanzada normal si no hay resultados de búsqueda por título
+                        if (isset($data["idMateria"]) && isset($data["idAutor"]) && isset($data["idEditorial"])) {
+                            $idMateria = $data["idMateria"];
+                            $idAutor = $data["idAutor"];
+                            $idEditorial = $data["idEditorial"];
+                    
+                            $respuesta = Libros_modelo::buscar_libros_avanzada_modelo($idMateria, $idAutor, $idEditorial);
+                    
+                            if ($respuesta) {
+                                echo json_encode($respuesta);
+                            } else {
+                                echo json_encode(array("status" => "no"));
+                            }
+                        }
+                    }
+                    break;
                 default:
                     // Manejo de error si la función no está definida
-                    echo json_encode(["error" => "Función no válida"]);
+                    echo json_encode(["status" => "error"]);
                     break;
             }
        
+        }
+
+        static public function get_materias_Controlador() {
+            $respuesta = Libros_modelo::get_materias_modelo();
+            return $respuesta;
+        }
+
+        static public function get_autores_Controlador() {
+            $respuesta = Libros_modelo::get_autores_modelo();
+            return $respuesta;
+        }
+
+        static public function get_editoriales_Controlador() {
+            $respuesta = Libros_modelo::get_editoriales_modelo();
+            return $respuesta;
         }
          
     }      

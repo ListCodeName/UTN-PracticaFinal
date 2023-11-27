@@ -1,3 +1,9 @@
+<?php
+include_once("controlador/libros_controlador.php");
+$materias = Libros_Controlador::get_materias_Controlador();
+$autores = Libros_Controlador::get_autores_Controlador();
+$editoriales = Libros_Controlador::get_editoriales_Controlador();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,47 +47,51 @@
             <form action="#">
                 <div class="buscar-normal">
                     <div class="input-box animation">
-                        <input type="text" name="" id="" required placeholder="Buscar titulo de libro">
+                        <input type="text" name="" id="" class="inputLibro" required placeholder="Buscar titulo de libro">
                     </div>
-                    <button type="submit" class="btn animation">Buscar</button>
+                    <button type="button" class="btn animation" onclick="busquedaLibro()">Buscar</button>
                 </div>
 
                 <div class="buscar-avanzada">
                     <div class="adv-modes">
-                        <div class="adv-modes-items">
-                            <h2>Genero</h2>
-                            <div class="input-box">
-                                <select>
-                                    <option value="">- - - - - - </option>
-                                    <option value="">Drama</option>
-                                    <option value="">Ciencia Ficción</option>
-                                    <option value="">Policial</option>
-                                    <option value="">Física</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="adv-modes-items">
+                    <div class="adv-modes-items">
                             <h2>Materia</h2>
                             <div class="input-box">
-                                <select>
-                                    <option value="">- - - - - - </option>
-                                    <option value="">Literatura</option>
-                                    <option value="">Matematica</option>
-                                    <option value="">Historia</option>
-                                    <option value="">Física</option>
-                                </select>
+                            <select name="materia" id="materia" onclick="buscarLibrosAvanzada()">
+                                <option value="">- - - - - - </option>
+                                    <?php
+                                    foreach ($materias as $materia) {
+                                        echo '<option value="' . $materia['idMateria'] . '">' . $materia['materia'] . '</option>';
+                                    }
+                                    ?>
+                            </select>
                             </div>
-                        </div>
+                            </div>
+                            <div class="adv-modes-items">
+                                <h2>Autor</h2>
+                                <div class="input-box">
+                                    <select name="autor" idname="autor" onclick="buscarLibrosAvanzada()">
+                                    <option value="">- - - - - - </option>
+                                    <?php
+                                    foreach ($autores as $autor) {
+                                        echo '<option value="' . $autor['idAutor'] . '">' . $autor['autor'] . '</option>';
+                                    }
+                                    ?>
+                                    </select>
+                                </div>
+                            </div>
+                        
                         <div class="adv-modes-items">
                             <h2>Editorial</h2>
                             <div class="input-box">
-                                <select>
+                            <select name="editorial" idname="editorial" onclick="buscarLibrosAvanzada()">
                                     <option value="">- - - - - - </option>
-                                    <option value="">Santillana</option>
-                                    <option value="">ALgon</option>
-                                    <option value="">Policial</option>
-                                    <option value="">Física</option>
-                                </select>
+                                    <?php
+                                    foreach ($editoriales as $editorial) {
+                                        echo '<option value="' . $editorial['idEditorial'] . '">' . $editorial['editorial'] . '</option>';
+                                    }
+                                    ?>
+                                    </select>
                             </div>
                         </div>
                     </div>
@@ -90,40 +100,10 @@
 
         </div>
 
-        <div class="resultado-busqueda">
-            <form action="#">
-
-                <div class="res-item">
-                    <div class="item-breef">
-                        <h3>La caperucita Rosa</h3>
-                    </div>
-                    <div class="pulse"></div>
-                    <div class="item-content">
-                        <p> Descripcion del libro, un texto medio largo para que se vea que tiene contenido</p>
-                    </div>
-                </div>
-
-                <div class="res-item">
-                    <div class="item-breef">
-                        <h3>Los 3 mosquiteros</h3>
-                    </div>
-                    <div class="pulse"></div>
-                    <div class="item-content">
-                        <p> Descripcion del libro, un texto medio largo para que se vea que tiene contenido</p>
-                    </div>
-                </div>
-
-                <div class="res-item">
-                    <div class="item-breef">
-                        <h3>Biografía de John Lemon</h3>
-                    </div>
-                    <div class="pulse2"></div>
-                    <div class="item-content">
-                        <p> Descripcion del libro, un texto medio largo para que se vea que tiene contenido</p>
-                    </div>
-                </div>
-            </form>
+        <div class="busqueda-result resultado-busqueda">
+      
         </div>
+
 
     </div>
 
@@ -304,5 +284,7 @@
 
     <script src="vistas/js/login2.js"></script>
     <script src="vistas/js/front-page.js"></script>
+    <script src="vistas/js/classes/BusquedaController.js"></script>
+    
 </body> 
 </html>
