@@ -1,7 +1,3 @@
-<?php
-    $usuarios = Usuarios_Controlador::get_pre_Usuarios_Controlador();
-?>
-
 <!-- Frames -->
 <section class="frame-usuarios">
     <form action="" class="form-container">
@@ -16,20 +12,7 @@
             <h3>Pre registros por aprobar</h3>
 
             <div class="add-pre-registred">
-                <?php foreach ($usuarios as $usuario) : ?>
-                    <div class="add-pre-item box-type1">
-                        <h4><?php echo $usuario['nombre'], ', ',$usuario['apellido']; ?></h4>
-                        <div class="add-pre-content box-type1-content">
-                            <span class="icon-home"><p><?php echo $usuario['direccion']; ?></p></span>
-                            <span class="icon-phone"><p><?php echo $usuario['telefono']; ?></p></span>
-                            <span class="icon-mail"><p><?php echo $usuario['email']; ?></p></span>
-                        </div>
-                        <div class="add-pre-btns box-type1-btns">
-                            <span class="icon-checkmark pre-registrado-add" idUsuario="<?php echo $usuario['idUsuario']; ?>"></span>
-                            <span class="icon-cross pre-registrado-del" idUsuario="<?php echo $usuario['idUsuario']; ?>"></span>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
+                
             </div>
         </article>
         

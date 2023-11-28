@@ -9,10 +9,12 @@ class Usuarios_modelo {
             $consulta = Conectar::conexion()->prepare("Call preUsuarios");
             $consulta->execute();
             $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
-            return $resultados;
+            if(count($resultados)> 0)
+                return $resultados;
+            else
+                return null;
         }
-        catch(Exception $e)
-        {
+        catch(Exception $e){
             return null;
         }
     }

@@ -45,7 +45,8 @@ class Usuarios_Controlador {
                     }else {
                         echo json_encode(array("status"=>"no"));
                     }
-                }
+                }else
+                    echo json_encode(array("status"=>"no"));
                 break;
 
             case "del":
@@ -60,7 +61,8 @@ class Usuarios_Controlador {
                     }else {
                         echo json_encode(array("status"=>"no"));
                     }
-                }
+                }else
+                    echo json_encode(array("status"=>"no"));
                 break;
         
             case "edit":
@@ -85,7 +87,8 @@ class Usuarios_Controlador {
                     }else {
                         echo json_encode(array("status"=>"no"));
                     }
-                }
+                }else
+                    echo json_encode(array("status"=>"no"));
                 break;
             
             case "penal":
@@ -101,8 +104,39 @@ class Usuarios_Controlador {
                     }else{
                         echo json_encode(array("status" => "no"));
                     }
-                }
+                }else
+                    echo json_encode(array("status"=>"no"));
                 break;
+
+            case "add-pre":
+                if(isset($data["data"])){
+                    $aux = $data["data"];
+                    $respuesta = Usuarios_modelo::aprobar_pre_registrado_modelo($aux["idUsuario"]);
+                    if($respuesta)
+                            echo json_encode(array("status"=> "ok"));
+                        else
+                            echo json_encode(array("status" => "no"));
+                }else
+                    echo json_encode(array("status" => "no"));
+                break;
+
+            case "del-pre":
+                if(isset($data["data"])){
+                    $aux = $data["data"];
+                    $respuesta = Usuarios_modelo::rechazar_pre_registrado_modelo($aux["idUsuario"]);
+                    if($respuesta)
+                            echo json_encode(array("status"=> "ok"));
+                        else
+                            echo json_encode(array("status" => "no"));
+                }else
+                    echo json_encode(array("status" => "no"));
+                break;
+
+            case "search-pre":
+                $respuesta = self::get_pre_Usuarios_Controlador();
+                echo json_encode($respuesta);
+                break;
+
             default:
                 echo json_encode(array("status" => "error"));
             break;
@@ -113,8 +147,6 @@ class Usuarios_Controlador {
         $respuesta = Usuarios_modelo::get_pre_usuarios_modelo();
         return $respuesta;
     }
-
-    
     
 }
 
