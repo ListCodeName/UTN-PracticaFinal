@@ -397,7 +397,7 @@ function agregarEventoUsuariosPenalizar(){
 botonPenalUserSend.addEventListener("click", ()=>{
     let usuario = usuarioCtrl.buscarUsuarioPorid(modalPenalUser.getAttribute("idUsuarioTemp"));
 
-    if(inputPenalUserModal.value > 0 && inputPenalUserModal != null){
+    if( inputPenalUserModal != null && inputPenalUserModal.value.length > 0){
         usuario.penalidad = inputPenalUserModal.value;
         usuarioCtrl.solicitudAjaxABM(usuario.toJson(),"penal");
     }else{

@@ -52,25 +52,6 @@ class Libros_modelo {
         return self::$resultadosTitulo;
     }
 
-    static public function get_libro_activo_modelo($pActivo) {             
-        try {
-            $consulta = Conectar::conexion()->prepare("CALL `librosXactivo`(:pActivo)");
-
-            $consulta->bindParam(":pActivo", $pActivo, PDO::PARAM_STR);
-            
-            $consulta->execute();
-            
-            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
-            if (count($resultados) > 0)
-                return $resultados;
-            else
-                return null;
-         
-        } catch (PDOException $e) {
-            return null;
-        }
-    }
-
     static public function nuevo_libro_modelo($libro){
         try {
             $consulta = Conectar::conexion()->prepare("CALL `insertarLibro`(

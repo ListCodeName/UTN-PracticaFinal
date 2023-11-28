@@ -91,10 +91,9 @@ class Usuarios_Controlador {
             case "penal":
                 if(isset($data["data"])){
                     $aux = $data["data"];
-                    if($aux["penalidad"] >= 0){
-                        $fechaActual = date("Y-m-d");
-                        $fecha = date( "Y-m-d", strtotime($fechaActual."+ ".$aux["penalidad"]." days"));
-                        $respuesta = Usuarios_modelo::penalidad_modelo($aux["idUsuario"], $fecha);
+                    if($aux["penalidad"]){
+                        $fecha = explode("T",$aux["penalidad"]);
+                        $respuesta = Usuarios_modelo::penalidad_modelo($aux["idUsuario"], $fecha[0]." ".$fecha[1]);
                         if($respuesta)
                             echo json_encode(array("status"=> "ok"));
                         else

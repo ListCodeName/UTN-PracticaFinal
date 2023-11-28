@@ -25,8 +25,8 @@
                             <span class="icon-mail"><p><?php echo $usuario['email']; ?></p></span>
                         </div>
                         <div class="add-pre-btns box-type1-btns">
-                            <span class="icon-checkmark"></span>
-                            <span class="icon-cross"></span>
+                            <span class="icon-checkmark pre-registrado-add" idUsuario="<?php echo $usuario['idUsuario']; ?>"></span>
+                            <span class="icon-cross pre-registrado-del" idUsuario="<?php echo $usuario['idUsuario']; ?>"></span>
                         </div>
                     </div>
                 <?php endforeach; ?>
