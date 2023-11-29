@@ -5,22 +5,18 @@ class Libros_modelo {
     private static $resultadosTitulo = null;
     static public function get_libros_modelo($pTitulo, $filtros) {
         try {
-            $cadena = "";
-            print_r($filtros);
-            // && (count($filtros) > 0)
-            if(isset($filtros))
-                $cadena = "ORDER BY".$filtros;
+            $order = "";
+            if(isset($filtros) && $filtros != "")
+                $order = "ORDER BY ".$filtros;
             
-            print_r(" - ".$cadena);
-
-            $consulta = Conectar::conexion()->prepare("SELECT idLibro, titulo, A.autor,
-            ubicacionFisica, E.editorial, M.materia, lugarEdicion, anio, serie, observaciones 
+            $consulta = Conectar::conexion()->prepare("SELECT L.idLibro, L.titulo, A.autor,
+            L.ubicacionFisica, E.editorial, M.materia, L.lugarEdicion, L.anio, L.serie, L.observaciones 
             FROM libros AS L JOIN autores AS A ON L.idAutor = A.idAutor 
             JOIN editoriales AS E ON E.idEditorial = L.idEditorial 
             JOIN materias AS M on M.idMateria = L.idMateria 
-            where Titulo like '%:pTitulo%'".$cadena);
+            where L.titulo like '%$pTitulo%' $order");
 
-            $consulta->bindParam(":pTitulo", $pTitulo, PDO::PARAM_STR);
+            //$consulta->bindParam(":pTitulo", $pTitulo, PDO::PARAM_STR);
             
             $consulta->execute();
             
