@@ -30,7 +30,8 @@
                 case "search":
                     if (isset($data["data"])) {
                         $pTitulo = $data["data"];
-                        $respuesta = Libros_modelo::get_libros_modelo($pTitulo);
+                        $filtros = $data["filtros"];
+                        $respuesta = Libros_modelo::get_libros_modelo($pTitulo, $filtros);
                         if($respuesta)
                             echo json_encode($respuesta);
                         else

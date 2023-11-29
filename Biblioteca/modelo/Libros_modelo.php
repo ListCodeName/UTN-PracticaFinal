@@ -3,10 +3,22 @@ include_once 'Conectar.php';
 
 class Libros_modelo {
     private static $resultadosTitulo = null;
-    static public function get_libros_modelo($pTitulo) {             
+    static public function get_libros_modelo($pTitulo, $filtros) {
         try {
+            $cadena = "";
+            print_r($filtros);
+            // && (count($filtros) > 0)
+            if(isset($filtros))
+                $cadena = "ORDER BY".$filtros;
             
-            $consulta = Conectar::conexion()->prepare("CALL `librosXtitulo`(:pTitulo)");
+            print_r(" - ".$cadena);
+
+            $consulta = Conectar::conexion()->prepare("SELECT idLibro, titulo, A.autor,
+            ubicacionFisica, E.editorial, M.materia, lugarEdicion, anio, serie, observaciones 
+            FROM libros AS L JOIN autores AS A ON L.idAutor = A.idAutor 
+            JOIN editoriales AS E ON E.idEditorial = L.idEditorial 
+            JOIN materias AS M on M.idMateria = L.idMateria 
+            where Titulo like '%:pTitulo%'".$cadena);
 
             $consulta->bindParam(":pTitulo", $pTitulo, PDO::PARAM_STR);
             
