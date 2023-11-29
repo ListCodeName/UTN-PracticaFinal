@@ -32,10 +32,19 @@ class Pedido{
                     '<span class="icon-calendar"><p>Fecha solicitada: '+ this.fechaPedido +'</p></span>'+
                 '</div>'+
                 '<div class="add-lp-btns box-type1-btns">'+
-                    '<span class="icon-cross" idPedido="'+this.idPedido+'"></span>'+
+                    '<span class="icon-cross cancel-pedido" idPedido="'+this.idPedido+'"></span>'+
                 '</div>'+
             '</div>';
     }
 
+    toJson(){
+        return {
+            "idPedido" : this.idPedido,
+            "libro" : this.libro.toJson(),
+            "usuario" : this.usuario.toJson(),
+            "cantidad" : this.cantidad,
+            "fechaPedido" : this.fechaPedido
+        }
+    }
 
 }

@@ -138,8 +138,11 @@
     <script src="vistas/js/reservas.js"></script>
     <script src="vistas/js/classes/Libro.js"></script>
     <script src="vistas/js/classes/Usuario.js"></script>
+    <script src="vistas/js/classes/Pedido.js"></script>
+
     
     <?php if($_SESSION['tipoUsuario'] == 0){ ?>
+        <script src="vistas/js/classes/PedidoController.js"></script>
         <script src="vistas/js/classes/LibroController.js"></script>
         <script src="vistas/js/classes/UsuarioController.js"></script>
         <script src="vistas/js/calendario.js"></script>
@@ -148,6 +151,7 @@
 
     <?php if($_SESSION['tipoUsuario'] == 1){ ?>
         <script src="vistas/js/solicitar-libro.js"></script>
+        <script src="vistas/js/classes/PedidoController.js"></script>
     <?php } ?>
 
 </body>
