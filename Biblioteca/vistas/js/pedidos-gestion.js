@@ -1,26 +1,26 @@
 // ****************************************************************************
-//  Elementos de la vista Solicitar (Profesor) (GLOBALES)
+//  Elementos de la vista Pedidos (Libros) (GLOBALES)
 // ****************************************************************************
 
-var gridSolicitudesProfesor = document.querySelector(".add-libros-pedidos");
-var filtrosSolicitudesProfesor = document.querySelector("filtros-pedidos-profesor");
-var botonAddPedido = document.querySelector(".add-solicitud-libro");
-var botonesDelPedido = document.querySelectorAll(".del-pedido");
-var modalSolicitarLibroClose = document.querySelector(".close-modal-solicitar");
-var modalSolicitarLibroCancel = document.querySelector(".cancel-modal-solicitar");
+var filtrosPedidosLibro = document.querySelector(".filtro-libro-pedido");
+var gridPedidosLibro = document.querySelector(".add-libros-pedidos");
 
-var modalSolicitarLibro;
-var botonSendSolicitarLibro = document.querySelector(".send-modal-solicitar");
+var botonesConfirmPedidosLibro = document.querySelectorAll(".confirm-libro-pedido");
+var botonesEditPedidosLibro = document.querySelectorAll(".edit-libro-pedido");
+var botonesRejectPedidosLibro = document.querySelectorAll(".reject-libro-pedido");
 
-var inputAddSolicitudTitulo = document.querySelector(".solicitud-add.titulo");
-var inputAddSolicitudAutor = document.querySelector(".solicitud-add.autor");
-var inputAddSolicitudEditorial = document.querySelector(".solicitud-add.editorial");
-var inputAddSolicitudMateria = document.querySelector(".solicitud-add.materia");
-var inputAddSolicitudOrigen = document.querySelector(".solicitud-add.origen");
-var inputAddSolicitudAnio = document.querySelector(".solicitud-add.anio");
-var inputAddSolicitudEdicion = document.querySelector(".solicitud-add.edicion");
-var inputAddSolicitudCantidad = document.querySelector(".solicitud-add.cantidad");
-var inputAddSolicitudObservacion = document.querySelector(".solicitud-add.observacion");
+var statusEditPedidoLibro = document.querySelector(".db-edit-libro-pedido");
+var botonSendPedidoLibro = document.querySelector(".confirm-modal-edi-libro-pedido");
+
+var inputEditPedidoTitulo = document.querySelector(".solicitud-edit.titulo");
+var inputEditPedidoAutor = document.querySelector(".solicitud-edit.autor");
+var inputEditPedidoEditorial = document.querySelector(".solicitud-edit.editorial");
+var inputEditPedidoMateria = document.querySelector(".solicitud-edit.materia");
+var inputEditPedidoOrigen = document.querySelector(".solicitud-edit.origen");
+var inputEditPedidoAnio = document.querySelector(".solicitud-edit.anio");
+var inputEditPedidoEdicion = document.querySelector(".solicitud-edit.edicion");
+var inputEditPedidoCantidad = document.querySelector(".solicitud-edit.cantidad");
+var inputEditPedidoObservacion = document.querySelector(".solicitud-edit.observacion");
 
 
 // ****************************************************************************
@@ -31,7 +31,7 @@ var inputAddSolicitudObservacion = document.querySelector(".solicitud-add.observ
 
 
 // *****************************************************************
-//                      Eventos de pedidos (Profesor)
+//                      Eventos de pedidos (Libros)
 // *****************************************************************
 
 // ------------------------ Metodos Buscar ----------------------------

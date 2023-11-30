@@ -56,11 +56,12 @@ class PedidoController{
 
                     //Agregar eventos
 
-                    //botonEditLibroOpen = document.querySelectorAll(".edit-libro");
-                    //botonDelLibroOpen = document.querySelectorAll(".del-libro");
-
-                    //agregarEventoLibrosEditar();
-                    //agregarEventoLibrosEliminar();
+                    if(boxType == "abm"){
+                        // <<<<<
+                    }else{
+                        modalSolicitarLibro = document.querySelector(".modal-solicitar");
+                        agregarEventosEliminarPedido();
+                    }
 
                     //fin agregar eventos
 

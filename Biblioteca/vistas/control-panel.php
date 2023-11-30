@@ -147,6 +147,7 @@
         <script src="vistas/js/classes/UsuarioController.js"></script>
         <script src="vistas/js/calendario.js"></script>
         <script src="vistas/js/prestamo.js"></script>
+        <script src="vistas/js/pedidos-gestion.js"></script>
     <?php } ?>
 
     <?php if($_SESSION['tipoUsuario'] == 1){ ?>
