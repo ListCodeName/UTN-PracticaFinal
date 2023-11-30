@@ -91,23 +91,21 @@ class PedidoController{
                 switch(accion){
                     case "add": //profesor
                         if(response.status == "ok"){
-                            modalStatusAddLibro.innerHTML = '<span class="icon-checkmark"> Libro agregado exitosamente</span>';
+                            alert('<span class="icon-checkmark"> Se ha generado un nuevo pedido de libro</span>');
+                            buscarPedidosProfesor();
                             setTimeout(() => {
-                                modalAddLibro.classList.remove("active");
+                                modalSolicitarLibro.classList.remove("active");
                             }, 2000);
                         }else{
-                            modalStatusAddLibro.innerHTML = '<span class="icon-blocked"> No se ha podido agregar el libro</span>';
+                            alert('<span class="icon-blocked"> No se ha podido agregar el libro</span>');
                         }
                         break;
                     case "del": //profesor
                         if(response.status == "ok"){
-                            modalStatusDelLibro.innerHTML = '<span class="icon-checkmark"> Libro eliminado exitosamente</span>';
-                            busquedaLibro();
-                            setTimeout(() => {
-                                modalDelLibro.classList.remove("active");
-                            }, 2000);
+                            alert('<span class="icon-checkmark"> Pedido de libro eliminado exitosamente</span>');
+                            buscarPedidosProfesor();
                         }else{
-                            modalStatusDelLibro.innerHTML = '<span class="icon-blocked"> No se ha podido eliminar el libro</span>';
+                            alert('<span class="icon-blocked"> No se ha podido eliminar el pedido</span>');
                         }
                         break;
                     case "edit": //bibliotecaria
