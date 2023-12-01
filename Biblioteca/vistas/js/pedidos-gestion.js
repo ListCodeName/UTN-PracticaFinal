@@ -39,12 +39,12 @@ var inputEditPedidoObservacion = document.querySelector(".solicitud-edit.observa
 
 // ------------------------ Metodo Buscar ----------------------------
 
-function buscarPedidosProfesor(){
+function buscarPedidosLibro(){
     pedidoCtrl.solicitudAjaxBuscar(gridPedidosLibro, filtrosPedidosLibro.value, "abm");
 }
 
 filtrosPedidosLibro.addEventListener("change", ()=>{
-    buscarPedidosProfesor();
+    buscarPedidosLibro();
 });
 
 // ------------------------ Metodo Editar -----------------------------
@@ -75,92 +75,67 @@ function agregarEventosEditarPedido(){
             inputEditPedidoCantidad.value = objPedido.cantidad;
             inputEditPedidoObservacion.value = objPedido.libro.observaciones;
 
-            modalEditLibro.setAttribute("idLibroTemp", idLibro);
+            modalLibroPedido.setAttribute("idPedidoTemp", idPedido);
     
-            modalEditLibro.classList.add('active');
+            modalLibroPedido.classList.add('active');
         });
     }
 }
 
-modalEditBotonSend.addEventListener("click", ()=>{
+botonSendPedidoLibro.addEventListener("click", ()=>{
 
-    if(campoTituloEdit.value != "" &&
-        campoAutorEdit.value != "" &&
-        campoUbicacionEdit.value != "" &&
-        campoEditorialEdit.value != "" &&
-        campoMateriaEdit.value != "" &&
-        campoOrigenEdit.value != "" &&
-        campoAnioEdit.value != "" &&
-        campoEdicionEdit.value != "" &&
-        campoObservacionEdit.value){
-
-        let libro = new Libro(modalEditLibro.getAttribute("idLibroTemp"),
-            campoTituloEdit.value,
-            campoAutorEdit.value,
-            campoUbicacionEdit.value,
-            campoEditorialEdit.value,
-            campoMateriaEdit.value,
-            campoOrigenEdit.value,
-            campoAnioEdit.value,
-            campoEdicionEdit.value,
-            campoObservacionEdit.value);
-    
-        libroCtrl.solicitudAjaxABM(libro.toJson(),"edit");
-    }else{
-        modalStatusEditLibro.innerHTML = "<span class='icon-warning'>Por favor complete los campos antes de enviar.</span>";
-    }
-
-});
-
-
-
-// ------------------------ Metodos agregar ----------------------------
-modalSolicitarLibroClose.addEventListener("click", ()=>{
-    modalSolicitarLibro.classList.remove('active');
-});
-
-modalSolicitarLibroCancel.addEventListener("click", ()=>{
-    modalSolicitarLibro.classList.remove('active');
-});
-
-botonAddPedido.addEventListener("click",()=>{
-    modalSolicitarLibro.classList.add('active');
-});
-
-botonSendSolicitarLibro.addEventListener("click", ()=>{
-    if(inputAddSolicitudTitulo != "" && inputAddSolicitudAutor != "" && inputAddSolicitudEditorial != "" &&
-        inputAddSolicitudMateria != "" && inputAddSolicitudOrigen != "" && inputAddSolicitudAnio != "" &&
-        inputAddSolicitudEdicion != "" && inputAddSolicitudCantidad != "" && inputAddSolicitudObservacion){
+    if(inputEditPedidoTitulo.value != "" &&
+        inputEditPedidoAutor.value != "" &&
+        inputEditPedidoEditorial.value != "" &&
+        inputEditPedidoMateria.value != "" &&
+        inputEditPedidoOrigen.value != "" &&
+        inputEditPedidoAnio.value != "" &&
+        inputEditPedidoEdicion.value != "" &&
+        inputEditPedidoCantidad.value != "" &&
+        inputEditPedidoObservacion.value != "" ){
 
         let pedidoAux = new Pedido(null,
             new Libro(null, 
-                inputAddSolicitudTitulo.value, 
-                inputAddSolicitudAutor.value,
+                inputEditPedidoTitulo.value, 
+                inputEditPedidoAutor.value,
                 null, 
-                inputAddSolicitudEditorial.value, 
-                inputAddSolicitudMateria.value, 
-                inputAddSolicitudOrigen.value, 
-                inputAddSolicitudAnio.value, 
-                inputAddSolicitudEdicion.value, 
-                inputAddSolicitudObservacion.value),
-            null, // <---- Los datos del usuario vienen de la variable $_SESSION
-            inputAddSolicitudCantidad.value,
+                inputEditPedidoEditorial.value, 
+                inputEditPedidoMateria.value, 
+                inputEditPedidoOrigen.value, 
+                inputEditPedidoAnio.value, 
+                inputEditPedidoEdicion.value, 
+                inputEditPedidoObservacion.value),
+            new Usuario(null, null, null, null, null, null, null, null, null, null), // <---- Los datos del usuario vienen de la variable $_SESSION
+            inputEditPedidoCantidad.value,
             null);
-
-        pedidoCtrl.solicitudAjaxABM(pedidoAux.toJson(), "add");
+    
+        libroCtrl.solicitudAjaxABM(pedidoAux.toJson(),"edit");
     }else{
-        alert("Hay campos sin llenar todavía");
+        statusEditPedidoLibro.innerHTML = "<span class='icon-warning'>Por favor complete los campos antes de enviar.</span>";
     }
+
 });
+
+
+// ------------------------ Metodos confirmar ----------------------------
+
+function agregarEventosEliminarPedido(){
+    for (let i = 0; i < botonesRejectPedidosLibro.length ; i++) {
+        botonesRejectPedidosLibro[i].addEventListener("click",()=>{
+            let idPedido = botonesRejectPedidosLibro[i].getAttribute("idPedido");
+            pedidoCtrl.solicitudAjaxABM({"idPedido": idPedido}, "del");
+        });
+    }
+}
 
 
 // ---------------------------- Metodos Cancelar ----------------------------------
 
 function agregarEventosEliminarPedido(){
-    for (let i = 0; i < botonesDelPedido.length ; i++) {
-        botonesDelPedido[i].addEventListener("click",()=>{
-            let idPedido = botonesDelPedido[i].getAttribute("idPedido");
-            pedidoCtrl.solicitudAjaxABM({"idPedido": idPedido}, "del");
+    for (let i = 0; i < botonesRejectPedidosLibro.length ; i++) {
+        botonesRejectPedidosLibro[i].addEventListener("click",()=>{
+            let idPedido = botonesRejectPedidosLibro[i].getAttribute("idPedido");
+            pedidoCtrl.solicitudAjaxABM({"idPedido": idPedido}, "reject");
         });
     }
 }

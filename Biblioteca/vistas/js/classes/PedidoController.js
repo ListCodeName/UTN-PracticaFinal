@@ -114,35 +114,29 @@ class PedidoController{
                         break;
                     case "edit": //bibliotecaria
                         if(response.status == "ok"){
-                            modalStatusEditLibro.innerHTML = '<span class="icon-checkmark"> Libro editado exitosamente</span>';
-                            busquedaLibro();
+                            statusEditPedidoLibro.innerHTML = '<span class="icon-checkmark"> El pedido ha sido editado</span>';
+                            buscarPedidosLibro();
                             setTimeout(() => {
-                                modalEditLibro.classList.remove("active");
+                                modalLibroPedido.classList.remove("active");
                             }, 2000);
                         }else{
-                            modalStatusEditLibro.innerHTML = '<span class="icon-blocked"> No se ha podido editar el libro</span>';
+                            statusEditPedidoLibro.innerHTML = '<span class="icon-blocked"> No se ha podido editar el pedido</span>';
                         }
                         break;
                     case "confirm": //bibliotecaria
                         if(response.status == "ok"){
-                            modalStatusDelLibro.innerHTML = '<span class="icon-checkmark"> Libro eliminado exitosamente</span>';
+                            alert('<span class="icon-checkmark"> ¡Pedido aprobado! Los libros ya están disponibles.</span>');
                             busquedaLibro();
-                            setTimeout(() => {
-                                modalDelLibro.classList.remove("active");
-                            }, 2000);
                         }else{
-                            modalStatusDelLibro.innerHTML = '<span class="icon-blocked"> No se ha podido eliminar el libro</span>';
+                            alert('<span class="icon-blocked"> Se ha producido un error.</span>');
                         }
                         break;
                     case "reject": //bibliotecaria
                         if(response.status == "ok"){
-                            modalStatusDelLibro.innerHTML = '<span class="icon-checkmark"> Libro eliminado exitosamente</span>';
+                            alert('<span class="icon-checkmark"> Pedido Rechazado.</span>');
                             busquedaLibro();
-                            setTimeout(() => {
-                                modalDelLibro.classList.remove("active");
-                            }, 2000);
                         }else{
-                            modalStatusDelLibro.innerHTML = '<span class="icon-blocked"> No se ha podido eliminar el libro</span>';
+                            alert('<span class="icon-blocked"> Se ha producido un error.s</span>');
                         }
                         break;
                 }

@@ -73,7 +73,7 @@ botonSendSolicitarLibro.addEventListener("click", ()=>{
                 inputAddSolicitudAnio.value, 
                 inputAddSolicitudEdicion.value, 
                 inputAddSolicitudObservacion.value),
-            null, // <---- Los datos del usuario vienen de la variable $_SESSION
+            new Usuario(null, null, null, null, null, null, null, null, null, null), // <---- Los datos del usuario vienen de la variable $_SESSION
             inputAddSolicitudCantidad.value,
             null);
 
