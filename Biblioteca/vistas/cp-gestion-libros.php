@@ -206,7 +206,7 @@
 
             
             <div class="modal-form1-btns">
-                <button type="submit" class="confirm-modal-edit-libro-pedido">Confirmar</button>
+                <button type="button" class="confirm-modal-edit-libro-pedido">Confirmar</button>
                 <button type="button" class="cancel-modal-edit-libro-pedido">Cancelar</button>
             </div>
 

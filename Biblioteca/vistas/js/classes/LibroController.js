@@ -57,23 +57,6 @@ var modalStatusDelLibro = document.querySelector(".db-del-libro");
 var campoModalDelLibro = document.querySelector(".icon-book.del-libro-id");
 
 
-// ------------------------ Editar libro pedido + modal pedido ------------------------
-var modalPedidoLibroClose = document.querySelector(".close-modal-edit-libro-pedido");
-var modalPedidolibroCancel = document.querySelector(".cancel-modal-edit-libro-pedido");
-var modalPedidoLibro = document.querySelector(".modal-edit-libro-pedido");
-var botonPedidoLibroOpen = document.querySelectorAll(".edit-libro-pedido");
-var modalEditPedidoBotonSend = document.querySelector(".confirm-modal-edit-libro-pedido");
-var modalStatusEditLibro = document.querySelector(".db-edit-libro-pedido");
-
-var campoTituloEditPedido = document.querySelector(".libro-edit-pedido.titulo");
-var campoEditorialEditPedido = document.querySelector(".libro-edit-pedido.editorial");
-var campoAutorEditPedido = document.querySelector(".libro-edit-pedido.autor");
-var campoAnioEditPedido = document.querySelector(".libro-edit-pedido.anio");
-var campoEjemplaresEditPedido = document.querySelector(".libro-edit-pedido.ejemplares");
-var campoEdicionEditPedido = document.querySelector(".libro-edit-pedido.edicion");
-var campoUbicacionEditPedido = document.querySelector(".libro-edit-pedido.ubicacion");
-var campoObservacionEditPedido = document.querySelector(".libro-edit-pedido.observacion");
-
 // ------------------------ Boton descarga de pdf ----------------------------------
 var botonDescargaPDF = document.querySelector(".descargar-pdf");
 

@@ -57,7 +57,10 @@ class PedidoController{
                     //Agregar eventos
 
                     if(boxType == "abm"){
-                        // <<<<<
+                        agregarEventosConfirmarPedido();
+                        agregarEventosEditarPedido();
+                        agregarEventosRechazarPedido();
+                        
                     }else{
                         modalSolicitarLibro = document.querySelector(".modal-solicitar");
                         agregarEventosEliminarPedido();
