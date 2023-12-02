@@ -1,5 +1,5 @@
 class Libro{
-    constructor(idLibro, titulo, autor, ubicacionFisica, editorial, materia, lugarEdicion, anio, serie, observaciones){
+    constructor(idLibro, titulo, autor, ubicacionFisica, editorial, materia, lugarEdicion, anio, serie, observaciones, activo){
         this.idLibro = idLibro;
         this.titulo = titulo;
         this.autor = autor;
@@ -9,6 +9,7 @@ class Libro{
         this.lugarEdicion = lugarEdicion;
         this.anio = anio;
         this.serie = serie;
+        this.activo = activo;
         this.observaciones = observaciones;
     }
 
@@ -41,6 +42,20 @@ class Libro{
             '</div>';
     }
 
+    printToBoxMain() {
+        return '<div class="res-item">' +
+                    '<div class="item-breef">' +
+                    '<h3>' + this.titulo + '</h3>' +
+                '</div>' +
+            (this.activo == 1 ? '<div class="pulse"></div>' : '<div class="pulse2"></div>') +
+                '<div class="item-content">' +
+                    '<span class="icon-quill" title="Autor"><p>' + this.autor + '</p></span>' +
+                    '<span class="icon-library" title="Editorial"><p>' + this.editorial + '</p></span>' +
+                    '<p>' + this.observaciones + '</p>' + 
+                '</div>' +
+            '</div>';
+    }
+
     toJson(){
         return {
             "idLibro" : this.idLibro,
@@ -52,6 +67,7 @@ class Libro{
             "lugarEdicion" : this.lugarEdicion,
             "anio" : this.anio,
             "serie" : this.serie,
+            "activo" : this.activo,
             "observaciones" : this.observaciones
         }
     }

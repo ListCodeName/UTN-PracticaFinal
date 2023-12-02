@@ -2,7 +2,9 @@
 include_once 'Conectar.php';
 
 class Libros_modelo {
+
     private static $resultadosTitulo = null;
+
     static public function get_libros_modelo($pTitulo, $filtros) {
         try {
             $order = "";
@@ -15,21 +17,54 @@ class Libros_modelo {
             JOIN editoriales AS E ON E.idEditorial = L.idEditorial 
             JOIN materias AS M on M.idMateria = L.idMateria 
             where L.titulo like '%$pTitulo%' $order");
-
-            //$consulta->bindParam(":pTitulo", $pTitulo, PDO::PARAM_STR);
             
             $consulta->execute();
             
             $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
             
-            //Esta lógica de retornar Null por array() en caso de que no encuentre resultados <<<<<
+            if (count($resultados) > 0){
+                self::$resultadosTitulo = $resultados;
+                return $resultados;
+            }else{
+                self::$resultadosTitulo = null;
+                return null; 
+            }
+         
+        } catch (PDOException $e) {
+            return null;
+        }
+    }
+
+    static public function get_libros_modelo_main($data) {             
+        try {
+            $and = "";
+            if (isset($data['filtros']) && $data['filtros'] != "") {
+                $filtros = $data['filtros'];
+                if($filtros['materia'] > 0)
+                    $and .= " AND M.idMateria = " . $filtros["materia"];
+
+                if($filtros['autor'] > 0)
+                    $and .= " AND A.idAutor = " . $filtros["autor"];
+
+                if($filtros['editorial'] > 0)
+                    $and .= " AND E.idEditorial = " . $filtros["editorial"];
+            }
+            
+            $consulta = Conectar::conexion()->prepare("select idLibro, titulo, autor, ubicacionFisica, editorial, materia, lugarEdicion, anio, serie, observaciones, activo
+            from libros as L 
+            JOIN autores as A ON L.idAutor = A.idAutor 
+            JOIN editoriales as E ON E.idEditorial = L.idEditorial 
+            JOIN materias as M on M.idMateria = L.idMateria 
+            where Titulo like '%".$data['data']."%' $and");
+            $consulta->execute();
+            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
 
             if (count($resultados) > 0){
                 self::$resultadosTitulo = $resultados;
                 return $resultados;
             }else{
                 self::$resultadosTitulo = null;
-                return null; // <<<<<<<<<<<< antes era array()
+                return null; 
             }
          
         } catch (PDOException $e) {
@@ -155,6 +190,7 @@ class Libros_modelo {
             return null;
         }
     }
+
     static public function get_autores_modelo(){
         try
         { 
@@ -168,6 +204,7 @@ class Libros_modelo {
             return null;
         }
     }
+    
     static public function get_editoriales_modelo(){
         try
         { 
@@ -178,25 +215,6 @@ class Libros_modelo {
         }
         catch(Exception $e)
         {
-            return null;
-        }
-    }
-    static public function buscar_libros_avanzada_modelo($idMateria, $idAutor, $idEditorial) {
-        try {
-            $consulta = Conectar::conexion()->prepare("CALL `librosMateriaAutorEditorial`(:idMateria, :idAutor, :idEditorial)");
-    
-            $consulta->bindParam(":idMateria", $idMateria, PDO::PARAM_INT);
-            $consulta->bindParam(":idAutor", $idAutor, PDO::PARAM_INT);
-            $consulta->bindParam(":idEditorial", $idEditorial, PDO::PARAM_INT);
-            $consulta->execute();
-    
-            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
-    
-            if (count($resultados) > 0)
-                return $resultados;
-            else
-                return null;
-        } catch (PDOException $e) {
             return null;
         }
     }

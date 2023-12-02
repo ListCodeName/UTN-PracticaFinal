@@ -32,19 +32,6 @@
             <h3>Lista de pedidos <span class="icon-file-pdf descargar-pdf" title="Descarga lista pdf"></span></h3>
             
             <div class="add-libros-pedidos">
-                <div class="add-lp-item box-type1" >
-                    <h4>Los 3 mosquiteros</h4>
-                    <div class="add-lp-content box-type1-content">
-                        <span class="icon-user"><p>Prof. Pablo Perez</p></span>
-                        <span class="icon-book"><p>Cantidad: 10</p></span>
-                        <span class="icon-calendar"><p>Fecha solicitada: 16/10/2023</p></span>
-                    </div>
-                    <div class="add-lp-btns box-type1-btns">
-                        <span class="icon-checkmark confirm-libro-pedido" idPedido=""></span>
-                        <span class="icon-pencil edit-libro-pedido" idPedido=""></span>
-                        <span class="icon-cross reject-libro-pedido" idPedido=""></span>
-                    </div>
-                </div>
                 
             </div>
         </article>
