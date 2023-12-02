@@ -100,3 +100,4 @@ function agregarEventosEliminarPedido(){
 //                                Fin Eventos
 // *****************************************************************
 
+buscarPedidosProfesor();

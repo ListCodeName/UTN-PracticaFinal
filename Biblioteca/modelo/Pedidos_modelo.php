@@ -12,12 +12,14 @@ class Pedidos_modelo
             $consulta = Conectar::conexion()->prepare("SELECT *
             FROM (((((pedidos AS p
             INNER JOIN libros AS l ON p.idLibro = l.idLibro)
-            INNER JOIN usuarios AS u ON p.idUsuarios = u.idUsuarios)
+            INNER JOIN usuarios AS u ON p.idUsuario = u.idUsuarios)
             INNER JOIN materias AS m ON l.idMateria = m.idMateria)
             INNER JOIN autores AS a ON l.idAutor = a.idAutor)
             INNER JOIN editoriales AS e ON l.idEditorial = e.idEditorial) $order");
+            
             $consulta->execute();
             $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+            print_r($resultados);
             if(count($resultados)> 0)
                 return $resultados;
             else

@@ -151,8 +151,8 @@
     <?php } ?>
 
     <?php if($_SESSION['tipoUsuario'] == 1){ ?>
-        <script src="vistas/js/solicitar-libro.js"></script>
         <script src="vistas/js/classes/PedidoController.js"></script>
+        <script src="vistas/js/solicitar-libro.js"></script>
     <?php } ?>
 
 </body>
