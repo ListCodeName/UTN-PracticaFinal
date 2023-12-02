@@ -15,7 +15,6 @@
                     <span class="icon-play3"></span>
 
                     <select class="filtros-pedidos-profesor" name="" id="">
-                        <option value="">-- Sin Filtros --</option>    
                         <option value="fecha ASC">por Fecha (ASC)</option>
                         <option value="fecha DESC">por Fecha (DESC)</option>
                     </select>    

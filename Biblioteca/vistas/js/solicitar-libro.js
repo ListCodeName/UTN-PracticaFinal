@@ -3,7 +3,7 @@
 // ****************************************************************************
 
 var gridSolicitudesProfesor = document.querySelector(".add-libros-pedidos");
-var filtrosSolicitudesProfesor = document.querySelector("filtros-pedidos-profesor");
+var filtrosSolicitudesProfesor = document.querySelector(".filtros-pedidos-profesor");
 var botonAddPedido = document.querySelector(".add-solicitud-libro");
 var botonesDelPedido = document.querySelectorAll(".del-pedido");
 var modalSolicitarLibroClose = document.querySelector(".close-modal-solicitar");

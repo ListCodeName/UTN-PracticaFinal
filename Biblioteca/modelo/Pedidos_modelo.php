@@ -3,9 +3,19 @@ include_once 'Conectar.php';
 
 class Pedidos_modelo 
 {
-    static public function get_pedidos_modelo(){
+    static public function get_pedidos_modelo($filtros){
         try{ 
-            $consulta = Conectar::conexion()->prepare("select * from pedidos");
+            $order = "";
+            if($filtros)
+                $order = "ORDER BY ".$filtros;
+
+            $consulta = Conectar::conexion()->prepare("SELECT *
+            FROM (((((pedidos AS p
+            INNER JOIN libros AS l ON p.idLibro = l.idLibro)
+            INNER JOIN usuarios AS u ON p.idUsuarios = u.idUsuarios)
+            INNER JOIN materias AS m ON l.idMateria = m.idMateria)
+            INNER JOIN autores AS a ON l.idAutor = a.idAutor)
+            INNER JOIN editoriales AS e ON l.idEditorial = e.idEditorial) $order");
             $consulta->execute();
             $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
             if(count($resultados)> 0)
@@ -17,6 +27,7 @@ class Pedidos_modelo
             return null;
         }
     }
+
     static public function nuevo_libro_pedido_modelo($pedido){
         try {
             $consulta = Conectar::conexion()->prepare("CALL `InsertarLibroYPedido`(

@@ -16,13 +16,12 @@ class Pedidos_Controlador
     { 
         switch ($data["funcion"]) {
             case "search":
-                if (isset($data["data"])) {
-                    $respuesta = Pedidos_modelo::get_pedidos_modelo();
-                    if($respuesta)
-                        echo json_encode($respuesta);
-                    else
-                        array("status"=>"no");
-                }
+                $respuesta = Pedidos_modelo::get_pedidos_modelo($data["filtros"]);
+                if($respuesta)
+                    echo json_encode($respuesta);
+                else
+                    array("status"=>"no");
+                
                 break;
             case "add":
                 if (isset($data["data"])) {

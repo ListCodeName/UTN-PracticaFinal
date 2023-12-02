@@ -5,7 +5,7 @@ include_once ('/modelo/Conectar.php');
 $consulta = Conectar::conexion()->prepare("SELECT u.nombre, u.apellido, m.materia, l.titulo, a.autor, e.editorial, p.cantidad, p.fechaPedido
 FROM (((((pedidos AS p
 INNER JOIN libros AS l ON p.idLibro = l.idLibro)
-INNER JOIN usuarios AS u ON p.idUsuario = u.idUsuario)
+INNER JOIN usuarios AS u ON p.idUsuarios = u.idUsuarios)
 INNER JOIN materias AS m ON l.idMateria = m.idMateria)
 INNER JOIN autores AS a ON l.idAutor = a.idAutor)
 INNER JOIN editoriales AS e ON l.idEditorial = e.idEditorial)
