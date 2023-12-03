@@ -58,9 +58,9 @@ botonAddPedido.addEventListener("click",()=>{
 });
 
 botonSendSolicitarLibro.addEventListener("click", ()=>{
-    if(inputAddSolicitudTitulo != "" && inputAddSolicitudAutor != "" && inputAddSolicitudEditorial != "" &&
-        inputAddSolicitudMateria != "" && inputAddSolicitudOrigen != "" && inputAddSolicitudAnio != "" &&
-        inputAddSolicitudEdicion != "" && inputAddSolicitudCantidad != "" && inputAddSolicitudObservacion){
+    if(inputAddSolicitudTitulo.value != "" && inputAddSolicitudAutor.value != "" && inputAddSolicitudEditorial.value != "" &&
+        inputAddSolicitudMateria.value != "" && inputAddSolicitudOrigen.value != "" && inputAddSolicitudAnio.value != "" &&
+        inputAddSolicitudEdicion.value != "" && inputAddSolicitudCantidad.value != "" && inputAddSolicitudObservacion.value != ""){
 
         let pedidoAux = new Pedido(null,
             new Libro(null, 
