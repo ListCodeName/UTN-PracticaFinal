@@ -33,8 +33,8 @@ class PedidoController{
                 let listado = "";
 
 
-                if(listaPedidos){
-                    pedidoCtrl.listaPedidosBM = {};
+                if(!listaPedidos.status){
+                    pedidoCtrl.listaPedidosBM = [];
 
                     listaPedidos.forEach(function (l) {
                         let pedidoAux = new Pedido(l.idPedido,

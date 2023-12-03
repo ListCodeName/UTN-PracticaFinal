@@ -20,7 +20,7 @@ class Pedidos_Controlador
                 if($respuesta)
                     echo json_encode($respuesta);
                 else
-                    array("status"=>"no");
+                    echo json_encode(array("status"=>"no"));
                 
                 break;
             case "add":
