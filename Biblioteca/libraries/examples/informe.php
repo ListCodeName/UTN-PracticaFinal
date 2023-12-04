@@ -1,15 +1,15 @@
 <?php
 
-include_once ('/modelo/Conectar.php');
+include_once ('../../modelo/Conectar.php');
 
 $consulta = Conectar::conexion()->prepare("SELECT u.nombre, u.apellido, m.materia, l.titulo, a.autor, e.editorial, p.cantidad, p.fechaPedido
 FROM (((((pedidos AS p
 INNER JOIN libros AS l ON p.idLibro = l.idLibro)
-INNER JOIN usuarios AS u ON p.idUsuarios = u.idUsuarios)
+INNER JOIN usuarios AS u ON p.idUsuario = u.idUsuarios)
 INNER JOIN materias AS m ON l.idMateria = m.idMateria)
 INNER JOIN autores AS a ON l.idAutor = a.idAutor)
 INNER JOIN editoriales AS e ON l.idEditorial = e.idEditorial)
-WHERE l.activo = 2 ORDER BY p.fechaPedido ASC");
+ORDER BY p.fechaPedido ASC");
             
 $consulta->execute();
             
@@ -18,7 +18,7 @@ $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
 $tablas = "";
 
 foreach ($resultados as &$pedido){
-    $tablas += "<tr>
+    $tablas .= "<tr>
         <td width='150'>".$pedido['nombre']." ".$pedido['apellido']."</td>
         <td width='75'>".$pedido['materia']."</td>
         <td width='150'>".$pedido['titulo']."</td>
@@ -108,7 +108,7 @@ $html = <<<EOF
         <th width="50"><b>CANT.</b></th>
         <th width="65"><b>FECHA</b></th>
     </tr>
-    $tabla
+    $tablas
 </table>
 EOF;
 
@@ -121,6 +121,6 @@ $pdf->lastPage();
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output('Informe.pdf', 'I');
+$pdf->Output('Listado de libros pedidos.pdf', 'I');
 
 ?>
