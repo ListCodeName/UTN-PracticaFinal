@@ -61,6 +61,14 @@
             
             <div class="modal-form1-inputs">
                 <div class="modal-form1-input-item">
+                    <input class="input-add-user username" type="text" id="" required>
+                    <label for="">Nombre de Usuario</label>
+                </div>
+                <div class="modal-form1-input-item">
+                    <input class="input-add-user password" type="text" id="" required>
+                    <label for="">Contraseña</label>
+                </div>
+                <div class="modal-form1-input-item">
                     <input class="input-add-user nombre" type="text" id="" required>
                     <label for="">Nombre</label>
                 </div>
