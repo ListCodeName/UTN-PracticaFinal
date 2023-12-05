@@ -5,7 +5,7 @@
 var gridSolicitudesProfesor = document.querySelector(".add-libros-pedidos");
 var filtrosSolicitudesProfesor = document.querySelector(".filtros-pedidos-profesor");
 var botonAddPedido = document.querySelector(".add-solicitud-libro");
-var botonesDelPedido = document.querySelectorAll(".del-pedido");
+var botonesDelPedido;
 var modalSolicitarLibroClose = document.querySelector(".close-modal-solicitar");
 var modalSolicitarLibroCancel = document.querySelector(".cancel-modal-solicitar");
 
@@ -87,6 +87,7 @@ botonSendSolicitarLibro.addEventListener("click", ()=>{
 // ---------------------------- Metodos Cancelar ----------------------------------
 
 function agregarEventosEliminarPedido(){
+    botonesDelPedido = document.querySelectorAll(".del-pedido");
     for (let i = 0; i < botonesDelPedido.length ; i++) {
         botonesDelPedido[i].addEventListener("click",()=>{
             let idPedido = botonesDelPedido[i].getAttribute("idPedido");
