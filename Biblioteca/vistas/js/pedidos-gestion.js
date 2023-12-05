@@ -44,6 +44,7 @@ function buscarPedidosLibro(){
 }
 
 filtrosPedidosLibro.addEventListener("change", ()=>{
+    console.log(filtrosPedidosLibro.value);
     buscarPedidosLibro();
 });
 
@@ -105,7 +106,7 @@ botonSendPedidoLibro.addEventListener("click", ()=>{
                 inputEditPedidoAnio.value, 
                 inputEditPedidoEdicion.value, 
                 inputEditPedidoObservacion.value),
-            new Usuario(null, null, null, null, null, null, null, null, null, null), // <---- Los datos del usuario vienen de la variable $_SESSION
+            new Usuario(null, null, null, null, null, null, null, null, null, null, null, null), // <---- Los datos del usuario vienen de la variable $_SESSION
             inputEditPedidoCantidad.value,
             null);
     
@@ -119,11 +120,11 @@ botonSendPedidoLibro.addEventListener("click", ()=>{
 
 // ------------------------ Metodos confirmar ----------------------------
 
-function agregarEventosEliminarPedido(){
-    for (let i = 0; i < botonesRejectPedidosLibro.length ; i++) {
-        botonesRejectPedidosLibro[i].addEventListener("click",()=>{
-            let idPedido = botonesRejectPedidosLibro[i].getAttribute("idPedido");
-            pedidoCtrl.solicitudAjaxABM({"idPedido": idPedido}, "del");
+function agregarEventosConfirmarPedido(){
+    for (let i = 0; i < botonesConfirmPedidosLibro.length ; i++) {
+        botonesConfirmPedidosLibro[i].addEventListener("click",()=>{
+            let idPedido = botonesConfirmPedidosLibro[i].getAttribute("idPedido");
+            pedidoCtrl.solicitudAjaxABM({"idPedido": idPedido}, "confirm");
         });
     }
 }
@@ -131,7 +132,7 @@ function agregarEventosEliminarPedido(){
 
 // ---------------------------- Metodos Cancelar ----------------------------------
 
-function agregarEventosEliminarPedido(){
+function agregarEventosRechazarPedido(){
     for (let i = 0; i < botonesRejectPedidosLibro.length ; i++) {
         botonesRejectPedidosLibro[i].addEventListener("click",()=>{
             let idPedido = botonesRejectPedidosLibro[i].getAttribute("idPedido");
@@ -145,3 +146,4 @@ function agregarEventosEliminarPedido(){
 //                                Fin Eventos
 // *****************************************************************
 
+buscarPedidosLibro();

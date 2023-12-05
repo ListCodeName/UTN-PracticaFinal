@@ -9,17 +9,30 @@ class Pedidos_modelo
             if($filtros)
                 $order = "ORDER BY ".$filtros;
 
-            $consulta = Conectar::conexion()->prepare("SELECT  p.idLibro, p.idPedido, p.idUsuario, cantidad, fechaPedido,
-             titulo, l.idAutor, l.idEditorial, ubicacionFisica, lugarEdicion, anio, serie, observaciones, l.idMateria,
-              activo, nombre, apellido, materia, autor, editorial, dni, direccion, telefono, email, fechaNac, penalidadDesde,
-               penalidadHasta, tipoUsuario    
-            FROM (((((pedidos AS p
-            INNER JOIN libros AS l ON p.idLibro = l.idLibro)
-            INNER JOIN usuarios AS u ON p.idUsuario = u.idUsuarios)
-            INNER JOIN materias AS m ON l.idMateria = m.idMateria)
-            INNER JOIN autores AS a ON l.idAutor = a.idAutor)
-            INNER JOIN editoriales AS e ON l.idEditorial = e.idEditorial) 
-            WHERE p.idUsuario = ".$_SESSION['idUsuarios']." $order");
+            if($_SESSION["tipoUsuario"] == 1){
+                $consulta = Conectar::conexion()->prepare("SELECT  p.idLibro, p.idPedido, p.idUsuario, cantidad, fechaPedido,
+                titulo, l.idAutor, l.idEditorial, ubicacionFisica, lugarEdicion, anio, serie, observaciones, l.idMateria,
+                activo, nombre, apellido, materia, autor, editorial, dni, direccion, telefono, email, fechaNac, penalidadDesde,
+                penalidadHasta, tipoUsuario    
+                FROM (((((pedidos AS p
+                INNER JOIN libros AS l ON p.idLibro = l.idLibro)
+                INNER JOIN usuarios AS u ON p.idUsuario = u.idUsuarios)
+                INNER JOIN materias AS m ON l.idMateria = m.idMateria)
+                INNER JOIN autores AS a ON l.idAutor = a.idAutor)
+                INNER JOIN editoriales AS e ON l.idEditorial = e.idEditorial) 
+                WHERE p.idUsuario = ".$_SESSION['idUsuarios']." $order");
+            }else{
+                $consulta = Conectar::conexion()->prepare("SELECT  p.idLibro, p.idPedido, p.idUsuario, cantidad, fechaPedido,
+                titulo, l.idAutor, l.idEditorial, ubicacionFisica, lugarEdicion, anio, serie, observaciones, l.idMateria,
+                activo, nombre, apellido, materia, autor, editorial, dni, direccion, telefono, email, fechaNac, penalidadDesde,
+                penalidadHasta, tipoUsuario    
+                FROM (((((pedidos AS p
+                INNER JOIN libros AS l ON p.idLibro = l.idLibro)
+                INNER JOIN usuarios AS u ON p.idUsuario = u.idUsuarios)
+                INNER JOIN materias AS m ON l.idMateria = m.idMateria)
+                INNER JOIN autores AS a ON l.idAutor = a.idAutor)
+                INNER JOIN editoriales AS e ON l.idEditorial = e.idEditorial) $order");
+            }
             
             $consulta->execute();
             $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);

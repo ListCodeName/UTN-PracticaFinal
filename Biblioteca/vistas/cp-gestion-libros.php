@@ -17,12 +17,12 @@
 
                     <select name="" id="" class="filtro-libro-pedido">
                         <option value="">Sin Filtros</option>
-                        <option value="libros.titulo ASC">por Titulo (ASC)</option>
-                        <option value="libros.titulo DESC">por Titulo (DESC)</option>
-                        <option value="usuarios.apellido ASC">por Profesor (ASC)</option>
-                        <option value="usuarios.apellido DESC">por Profesor (DESC)</option>
-                        <option value="pedidos.fecha ASC">por Fecha (ASC)</option>
-                        <option value="pedidos.fecha DESC">por Fecha (DESC)</option>
+                        <option value="l.titulo ASC">por Titulo (ASC)</option>
+                        <option value="l.titulo DESC">por Titulo (DESC)</option>
+                        <option value="u.apellido ASC">por Profesor (ASC)</option>
+                        <option value="u.apellido DESC">por Profesor (DESC)</option>
+                        <option value="p.fechaPedido ASC">por Fecha (ASC)</option>
+                        <option value="p.fechaPedido DESC">por Fecha (DESC)</option>
                         
                     </select>    
                     
