@@ -63,6 +63,15 @@
 <!-- Scripts -->
 
     <script>
+
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault(); 
+            }
+        });
+    </script>
+
+    <script>
         const showRes = document.querySelector(".menu-item.show-reservas");
         const frameRes = document.querySelector(".frame-reservas");
         
