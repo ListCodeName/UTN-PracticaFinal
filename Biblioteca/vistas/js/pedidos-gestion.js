@@ -94,7 +94,7 @@ botonSendPedidoLibro.addEventListener("click", ()=>{
         inputEditPedidoCantidad.value != "" &&
         inputEditPedidoObservacion.value != "" ){
 
-        let pedidoAux = new Pedido(null,
+        let pedidoAux = new Pedido(modalLibroPedido.getAttribute("idPedidoTemp"),
             new Libro(null, 
                 inputEditPedidoTitulo.value, 
                 inputEditPedidoAutor.value,
