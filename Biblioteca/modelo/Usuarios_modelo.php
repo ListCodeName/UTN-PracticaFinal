@@ -145,7 +145,8 @@ class Usuarios_modelo {
     }
 
     static public function rechazar_pre_registrado_modelo($idUsuario){
-        $consulta = Conectar::conexion()->prepare("DELETE FROM usuarios WHERE usuarios.idUsuarios = :idUsuario");
+        print_r($idUsuario);
+        $consulta = Conectar::conexion()->prepare("DELETE FROM usuarios WHERE idUsuarios = :idUsuario");
         $consulta->bindParam(":idUsuario", $idUsuario, PDO::PARAM_INT);
         try{
             $consulta->execute();
@@ -156,7 +157,7 @@ class Usuarios_modelo {
     }
 
     static public function aprobar_pre_registrado_modelo($idUsuario){
-        $consulta = Conectar::conexion()->prepare("UPDATE usuarios SET tipoUsuario = 2 WHERE usuarios.idUsuarios = :idUsuario ");
+        $consulta = Conectar::conexion()->prepare("UPDATE usuarios SET tipoUsuario = 2 WHERE idUsuarios = :idUsuario ");
         $consulta->bindParam(":idUsuario", $idUsuario, PDO::PARAM_INT);
         try{
             $consulta->execute();
