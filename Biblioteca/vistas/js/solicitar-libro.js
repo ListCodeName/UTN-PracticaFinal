@@ -9,7 +9,7 @@ var botonesDelPedido;
 var modalSolicitarLibroClose = document.querySelector(".close-modal-solicitar");
 var modalSolicitarLibroCancel = document.querySelector(".cancel-modal-solicitar");
 
-var modalSolicitarLibro;
+var modalSolicitarLibro = document.querySelector(".modal-solicitar");
 var botonSendSolicitarLibro = document.querySelector(".send-modal-solicitar");
 
 var inputAddSolicitudTitulo = document.querySelector(".solicitud-add.titulo");

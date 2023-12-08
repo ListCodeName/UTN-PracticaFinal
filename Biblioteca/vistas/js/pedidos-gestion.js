@@ -109,7 +109,7 @@ botonSendPedidoLibro.addEventListener("click", ()=>{
             inputEditPedidoCantidad.value,
             null);
     
-        libroCtrl.solicitudAjaxABM(pedidoAux.toJson(),"edit");
+        pedidoCtrl.solicitudAjaxABM(pedidoAux.toJson(),"edit");
     }else{
         statusEditPedidoLibro.innerHTML = "<span class='icon-warning'>Por favor complete los campos antes de enviar.</span>";
     }

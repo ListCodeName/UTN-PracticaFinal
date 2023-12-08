@@ -312,6 +312,8 @@ botonAddUserOpen.addEventListener("click",()=>{
 
     fieldAddUserStatus.innerHTML = "";
 
+    inputAddUserModalUsername.value = "";
+    inputAddUserModalPassword.value = "";
     inputAddUserModalNombre.value = "";
     inputAddUserModalApellido.value = "";
     inputAddUserModalDNI.value = "";
@@ -347,6 +349,8 @@ botonAddUserSend.addEventListener("click",()=>{
         inputAddUserModalFechaNac.value,
         null,
         null);
+
+        console.log(usuario);
 
     usuarioCtrl.solicitudAjaxABM(usuario.toJson(),"add");
     }else{

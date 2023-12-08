@@ -56,26 +56,19 @@ class Usuarios_modelo {
 
     static public function nuevo_usuario_modelo($usuario){
         try {
-            $consulta = Conectar::conexion()->prepare("CALL `insertarUsuario`(
-                :username,
-                :password,
-                :nombre, 
-                :apellido, 
-                :dni, 
-                :fechaNac, 
-                :telefono, 
-                :email,
-                :direccion)");
-
-            $consulta->bindParam(":username", $usuario["username"], PDO::PARAM_STR);
-            $consulta->bindParam(":password", $usuario["password"], PDO::PARAM_STR);
-            $consulta->bindParam(":nombre", $usuario["nombre"], PDO::PARAM_STR);
-            $consulta->bindParam(":apellido", $usuario["apellido"], PDO::PARAM_STR);
-            $consulta->bindParam(":dni", $usuario["dni"], PDO::PARAM_INT);
-            $consulta->bindParam(":fechaNac", $usuario["fechaNac"], PDO::PARAM_STR);
-            $consulta->bindParam(":telefono", $usuario["telefono"], PDO::PARAM_INT);
-            $consulta->bindParam(":email", $usuario["email"], PDO::PARAM_STR);
-            $consulta->bindParam(":direccion", $usuario["direccion"], PDO::PARAM_STR);
+            $consulta = Conectar::conexion()->prepare("INSERT INTO usuarios(nombre, apellido, dni, fechaNac, telefono, tipoUsuario, email, direccion, username, contrasenia) 
+            VALUES ( '".$usuario["nombre"]."', '".$usuario["apellido"]."', ".$usuario["dni"].", '".$usuario["fechaNac"]."', ".$usuario["telefono"].", 2, '".$usuario["email"]."', '".$usuario["direccion"]."', '".$usuario["username"]."', '".$usuario["password"]."')");
+            /*
+            $consulta->bindParam(":pNombre", $usuario["nombre"], PDO::PARAM_STR);
+            $consulta->bindParam(":pApellido", $usuario["apellido"], PDO::PARAM_STR);
+            $consulta->bindParam(":pDni", $usuario["dni"], PDO::PARAM_INT);
+            $consulta->bindParam(":pFechaNac", $usuario["fechaNac"], PDO::PARAM_STR);
+            $consulta->bindParam(":pTelefono", $usuario["telefono"], PDO::PARAM_INT);
+            $consulta->bindParam(":pEmail", $usuario["email"], PDO::PARAM_STR);
+            $consulta->bindParam(":pDireccion", $usuario["direccion"], PDO::PARAM_STR);
+            $consulta->bindParam(":pUserName", $usuario["username"], PDO::PARAM_STR);
+            $consulta->bindParam(":pContrasenia", $usuario["password"], PDO::PARAM_STR);
+            */
             $consulta->execute();
             
             return true;
@@ -130,9 +123,18 @@ class Usuarios_modelo {
     }
    
     static public function penalidad_modelo($idUsuario, $penalidad){
-        $consulta = Conectar::conexion()->prepare("UPDATE usuarios SET penalidadHasta = :penalidad WHERE usuarios.idUsuarios = :idUsuario");
-        $consulta->bindParam(":idUsuario", $idUsuario, PDO::PARAM_INT);
-        $consulta->bindParam(":penalidad", $penalidad, PDO::PARAM_STR);
+
+        $fechaActual = new DateTime();
+        $fechaHasta = new DateTime($penalidad);
+        
+        if($fechaActual->diff($fechaHasta)->format('%R') == "+"){
+            $fechaActual = (new DateTime())->format('Y-m-d H:i:s');
+            $consulta = Conectar::conexion()->prepare("UPDATE usuarios SET penalidadDesde = '$fechaActual', penalidadHasta = :penalidad WHERE usuarios.idUsuarios = :idUsuario");
+            $consulta->bindParam(":idUsuario", $idUsuario, PDO::PARAM_INT);
+            $consulta->bindParam(":penalidad", $penalidad, PDO::PARAM_STR);
+        }else{
+            return false;
+        }
 
         try{
             $consulta->execute();

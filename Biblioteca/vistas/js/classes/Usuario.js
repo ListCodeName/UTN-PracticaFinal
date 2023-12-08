@@ -11,7 +11,7 @@ class Usuario{
         this.email = email;
         this.fechaNac = fechaNac;
         this.penalidad = penalidad;
-        this.tipoUsuario = tipoUsuario
+        this.tipoUsuario = tipoUsuario;
     }
 
     // --------------  Metodos clase Usuario  -------------------
