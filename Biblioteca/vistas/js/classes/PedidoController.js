@@ -126,7 +126,7 @@ class PedidoController{
                     case "confirm": //bibliotecaria
                         if(response.status == "ok"){
                             alert('<span class="icon-checkmark"> ¡Pedido aprobado! Los libros ya están disponibles.</span>');
-                            busquedaLibro();
+                            busquedaPedidosLibro();
                         }else{
                             alert('<span class="icon-blocked"> Se ha producido un error.</span>');
                         }
@@ -134,7 +134,7 @@ class PedidoController{
                     case "reject": //bibliotecaria
                         if(response.status == "ok"){
                             alert('<span class="icon-checkmark"> Pedido Rechazado.</span>');
-                            busquedaLibro();
+                            busquedaPedidosLibro();
                         }else{
                             alert('<span class="icon-blocked"> Se ha producido un error.s</span>');
                         }

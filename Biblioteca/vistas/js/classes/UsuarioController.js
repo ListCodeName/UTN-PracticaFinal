@@ -538,7 +538,6 @@ function agregarEventoPreRegistradosEliminar(){
     for (let i = 0; i < botonDelPreRegistrado.length; i++) {
         botonDelPreRegistrado[i].addEventListener("click",()=>{
             let idUsuario = botonDelPreRegistrado[i].getAttribute("idUsuario");
-            console.log(idUsuario);
             
             usuarioCtrl.solicitudAjaxABM({"idUsuario":idUsuario}, "del-pre");
             

@@ -50,31 +50,28 @@ class Pedidos_modelo
     static public function nuevo_libro_pedido_modelo($pedido){
         try {
             $consulta = Conectar::conexion()->prepare("CALL `InsertarLibroYPedido`(
-                :titulo,
-                :idAutor,
-                :idEditorial, 
-                :ubicacionFisica, 
-                :lugarEdicion, 
-                :anio, 
-                :serie, 
-                :observaciones, 
-                :idMateria,
-                :idUsuario,
-                :cantidad,
-                :fechaPedido)");
+                '" . $pedido['titulo'] . "',
+                '" . $pedido['autor'] . "',
+                '" . $pedido['editorial'] . "',
+                '" . $pedido['lugarEdicion'] . "',
+                '" . $pedido['anio'] . "',
+                '" . $pedido['serie'] . "',
+                '" . $pedido['observaciones'] . "',
+                '" . $pedido['materia'] . "',
+                '" . $_SESSION['idUsuarios'] . "',
+                '" . $pedido['cantidad'] . "'
+            )");
            
-            $consulta->bindParam(":titulo", $pedido["titulo"], PDO::PARAM_STR);
-            $consulta->bindParam(":idAutor", $pedido["idAutor"], PDO::PARAM_STR);
-            $consulta->bindParam(":idEditorial", $pedido["idEditorial"], PDO::PARAM_STR);
-            $consulta->bindParam(":ubicacionFisica", $pedido["ubicacionFisica"], PDO::PARAM_STR);
-            $consulta->bindParam(":lugarEdicion", $pedido["lugarEdicion"], PDO::PARAM_STR);
-            $consulta->bindParam(":anio", $pedido["anio"], PDO::PARAM_INT);
-            $consulta->bindParam(":serie", $pedido["serie"], PDO::PARAM_INT);
-            $consulta->bindParam(":observaciones", $pedido["observaciones"], PDO::PARAM_STR);
-            $consulta->bindParam(":idMateria", $pedido["idMateria"], PDO::PARAM_STR);
-            $consulta->bindParam(":idUsuario", $pedido["idUsuario"], PDO::PARAM_INT);
-            $consulta->bindParam(":cantidad", $pedido["cantidad"], PDO::PARAM_INT);
-            $consulta->bindParam(":fechaPedido", $pedido["fechaPedido"], PDO::PARAM_STR);
+            // $consulta->bindParam(":titulo", $pedido["titulo"], PDO::PARAM_STR);
+            // $consulta->bindParam(":idAutor", $pedido["idAutor"], PDO::PARAM_STR);
+            // $consulta->bindParam(":idEditorial", $pedido["idEditorial"], PDO::PARAM_STR);
+            // $consulta->bindParam(":lugarEdicion", $pedido["lugarEdicion"], PDO::PARAM_STR);
+            // $consulta->bindParam(":anio", $pedido["anio"], PDO::PARAM_INT);
+            // $consulta->bindParam(":serie", $pedido["serie"], PDO::PARAM_INT);
+            // $consulta->bindParam(":observaciones", $pedido["observaciones"], PDO::PARAM_STR);
+            // $consulta->bindParam(":idMateria", $pedido["idMateria"], PDO::PARAM_STR);
+            // $consulta->bindParam(":idUsuario", $_SESSION['idUsuarios'], PDO::PARAM_INT);
+            // $consulta->bindParam(":cantidad", $pedido["cantidad"], PDO::PARAM_INT);
 
             $consulta->execute();
             
@@ -97,19 +94,20 @@ class Pedidos_modelo
     }
     static public function editar_pedido_modelo($pedido){
         try{
-            $consulta = Conectar::conexion()->prepare(" CALL `editarLibro`(
-                :idPedido, 
-                :libro, 
-                :usuario, 
-                :cantidad, 
-                :fechaPedido)");
+            $consulta = Conectar::conexion()->prepare("CALL editarPedido(
+                '" . $pedido['idPedido'] . "',
+                '" . $pedido['titulo'] . "',
+                '" . $pedido['idAutor'] . "',
+                '" . $pedido['idEditorial'] . "',
+                '" . $pedido['lugarEdicion'] . "',
+                '" . $pedido['anio'] . "',
+                '" . $pedido['serie'] . "',
+                '" . $pedido['observaciones'] . "',
+                '" . $pedido['idMateria'] . "',
+                '" . $pedido['cantidad'] . "'
+            )");
 
-            $consulta->bindParam(":idPedido", $pedido["idPedido"], PDO::PARAM_INT); //
-            $consulta->bindParam(":libro", $pedido["libro"], PDO::PARAM_INT);
-            $consulta->bindParam(":usuario", $pedido["usuario"], PDO::PARAM_INT);
-            $consulta->bindParam(":cantidad", $pedido["cantidad"], PDO::PARAM_INT);
-            $consulta->bindParam(":fechaPedido", $pedido["fechaPedido"], PDO::PARAM_STR);
-            
+           
             $consulta->execute();
             
             return true;
@@ -118,10 +116,10 @@ class Pedidos_modelo
             return false;
         }
     }
-    static public function get_pedidos_confirmar_modelo($idLibro){
+    static public function get_pedidos_confirmar_modelo($idPedido){
         try{ 
-            $consulta = Conectar::conexion()->prepare(" CALL pedidoConfirmar(:idLibro");
-            $consulta->bindParam(":idLibro", $idLibro, PDO::PARAM_INT);
+            $consulta = Conectar::conexion()->prepare(" CALL pedidoConfirmar(:idPedido)");
+            $consulta->bindParam(":idPedido", $idPedido, PDO::PARAM_INT);
             $consulta->execute();
             return true;
         

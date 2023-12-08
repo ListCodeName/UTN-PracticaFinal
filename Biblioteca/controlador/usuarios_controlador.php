@@ -54,15 +54,16 @@ class Usuarios_Controlador {
             case "del":
                 if (isset($data["data"])) {
                     $aux = $data["data"];
-                    
-                    $idUsuario= $aux["idUsuario"];
-                    
-                    $respuesta = Usuarios_modelo::eliminar_usuario_modelo($idUsuario);
-                    if ($respuesta) {
-                        echo json_encode(array("status"=>"ok"));
-                    }else {
+                    if($aux["tipoUsuario"] != 0){
+                        $idUsuario= $aux["idUsuario"];
+                        
+                        $respuesta = Usuarios_modelo::eliminar_usuario_modelo($idUsuario);
+                        if ($respuesta) {
+                            echo json_encode(array("status"=>"ok"));
+                        }else
+                            echo json_encode(array("status"=>"no"));
+                    }else
                         echo json_encode(array("status"=>"no"));
-                    }
                 }else
                     echo json_encode(array("status"=>"no"));
                 break;

@@ -27,20 +27,17 @@ class Pedidos_Controlador
             case "add":
                 if (isset($data["data"])) {
                     $aux = $data["data"];
-
+                    $libro = $aux["libro"];
                     $pedido = array(
-                        "titulo" => $aux["titulo"],
-                        "idAutor" => $aux["idAutor"],
-                        "idEditorial" => $aux["idEditorial"],
-                        "ubicacionFisica" => $aux["cantidad"],
-                        "lugarEdicion" => $aux["lugarEdicion"],
-                        "anio" => $aux["anio"],
-                        "serie" => $aux["serie"],
-                        "observaciones" => $aux["observaciones"],
-                        "idMateria" => $aux["idMateria"],
-                        "idUsuario" => $aux["idUsuario"],
-                        "cantidad" => $aux["cantidad"],
-                        "fechaPedido" => $aux["fechaPedido"]);
+                        "titulo" => $libro["titulo"],
+                        "autor" => $libro["autor"],
+                        "editorial" => $libro["editorial"],
+                        "materia" => $libro["materia"],
+                        "lugarEdicion" => $libro["lugarEdicion"],
+                        "anio" => $libro["anio"],
+                        "serie" => $libro["serie"],
+                        "observaciones" => $libro["observaciones"],                        
+                        "cantidad" => $aux["cantidad"]);
                     $respuesta = Pedidos_modelo::nuevo_libro_pedido_modelo($pedido);
                     if ($respuesta) {
                         echo json_encode(array("status"=>"ok"));
@@ -66,13 +63,18 @@ class Pedidos_Controlador
             case "edit":
                 if (isset($data["data"])) {
                     $aux = $data["data"];
-                   
+                    $libro = $aux["libro"];
                     $pedido = array(
                         "idPedido" => $aux["idPedido"],
-                        "libro" => $aux["libro"],
-                        "usuario" => $aux["usuario"],
-                        "cantidad" => $aux["cantidad"],
-                        "fechaPedido" => $aux["fechaPedido"]);
+                        "titulo" => $libro["titulo"],
+                        "idAutor" => $libro["autor"],
+                        "idEditorial" => $libro["editorial"],
+                        "idMateria" => $libro["materia"],
+                        "lugarEdicion" => $libro["lugarEdicion"],
+                        "anio" => $libro["anio"],
+                        "serie" => $libro["serie"],
+                        "observaciones" => $libro["observaciones"],
+                        "cantidad" => $aux["cantidad"]);
                                         
                     $respuesta = Pedidos_modelo::editar_pedido_modelo($pedido);
                     if ($respuesta) {
@@ -86,9 +88,9 @@ class Pedidos_Controlador
             if (isset($data["data"])) {
                 $aux = $data["data"];
                     
-                    $idLibro = $aux["idLibro"];
+                    $idPedido = $aux["idPedido"];
                     
-                    $respuesta = Pedidos_modelo::get_pedidos_confirmar_modelo($idLibro);
+                    $respuesta = Pedidos_modelo::get_pedidos_confirmar_modelo($idPedido);
                     if ($respuesta) {
                         echo json_encode(array("status"=>"ok"));
                     }else {
@@ -96,6 +98,20 @@ class Pedidos_Controlador
                     }
                     break;
             }
+            case "reject":
+                if (isset($data["data"])) {
+                    $aux = $data["data"];
+                    
+                    $idPedido = $aux["idPedido"];
+                    
+                    $respuesta = Pedidos_modelo::eliminar_pedido_modelo($idPedido);
+                    if ($respuesta) {
+                        echo json_encode(array("status"=>"ok"));
+                    }else {
+                        echo json_encode(array("status"=>"no"));
+                    }
+                    break;
+                }
 
         }
     }
